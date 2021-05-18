@@ -1,12 +1,18 @@
-<h2>Sign up</h2>
+<div class="container">
+  <h2 style="margin-bottom: 20px; margin-top: 20px">Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.input :username,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "username" }%>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
+                hint: "Note: email cannot be changed after registration",
                 input_html: { autocomplete: "email" }%>
     <%= f.input :password,
                 required: true,
@@ -15,11 +21,18 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <%= f.input :address,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "street address" }%>
+    <%= f.input :avatar, as: :file %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+  <div class="form-actions" style="margin-top: 20px; margin-bottom: 20px">
+    <%= f.button :submit, "Sign up", class:"btn btn-success w-100" %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+</div>
