@@ -1,10 +1,10 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const fitMapToMarkers = (map, markers) => {
+const fitMapToMarkers = (map, fitPoints) => {
   const bounds = new mapboxgl.LngLatBounds();
-  markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+  fitPoints.forEach(point => bounds.extend([ point.lng, point.lat ]));
+  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 5000 });
 };
 
 const initMapbox = () => {
@@ -22,13 +22,26 @@ const initMapbox = () => {
     var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
     map.setMaxBounds(mapBoundary);
 
-    // add origin and destination markers
-    const origin = JSON.parse(mapElement.dataset.origin);
-    new mapboxgl.Marker()
-      .setLngLat([ origin.lng, origin.lat ])
-      .addTo(map);
+    // add start and end markers
+    const start = JSON.parse(mapElement.dataset.start);
+    const end = JSON.parse(mapElement.dataset.end);
+    const fitPoints = JSON.parse(mapElement.dataset.fitpoints);
 
-    fitMapToMarkers(map, markers);
+    start.forEach((ele) => {
+      new mapboxgl.Marker({
+        color: "#2CBB73"
+      })
+        .setLngLat([ ele.lng, ele.lat ])
+        .addTo(map);
+    });
+    end.forEach((ele) => {
+      new mapboxgl.Marker({
+        color: "#2CBB73"
+      })
+        .setLngLat([ ele.lng, ele.lat ])
+        .addTo(map);
+    });
+    fitMapToMarkers(map, fitPoints);
   }
 };
 
