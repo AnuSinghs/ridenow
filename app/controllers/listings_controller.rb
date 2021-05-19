@@ -3,5 +3,9 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
+    @origin = params.start
+    @destination = params.end
+    katong = []
+    marinabay= []
   end
 end

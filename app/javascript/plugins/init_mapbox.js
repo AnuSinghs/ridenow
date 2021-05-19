@@ -1,6 +1,12 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
+const fitMapToMarkers = (map, markers) => {
+  const bounds = new mapboxgl.LngLatBounds();
+  markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
+  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+};
+
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
@@ -13,11 +19,16 @@ const initMapbox = () => {
       zoom: 10
     });
     // set the bounds of the map
-    var bounds = [[103.560, 1.215], [104.072, 1.487]];
-    map.setMaxBounds(bounds);
+    var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
+    map.setMaxBounds(mapBoundary);
 
-    // initialize the map canvas to interact with later
-    var canvas = map.getCanvasContainer();
+    // add origin and destination markers
+    const origin = JSON.parse(mapElement.dataset.origin);
+    new mapboxgl.Marker()
+      .setLngLat([ origin.lng, origin.lat ])
+      .addTo(map);
+
+    fitMapToMarkers(map, markers);
   }
 };
 
