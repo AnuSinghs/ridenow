@@ -1,0 +1,52 @@
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 5px;
+  font-size: 16px;
+  width: 25%;
+  opacity: 70%;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content */
+
+.tabcontent {
+  background-size: cover;
+  height: 300px;
+  background-position: center;
+  padding: 70px 0;
+}
+
+.tabcontent h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.tabcontent p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.tabcontent a {
+  display: flex;
+  width: 50%;
+  background-color: white;
+  color: black;
+  opacity: 50%;
+  justify-content: center;
+}
+
