@@ -12,6 +12,8 @@ require "open-uri"
 puts 'destroy old data'
 
 User.destroy_all
+Listing.destroy_all
+Category.destroy_all
 
 3.times do
   user = User.new(
@@ -26,31 +28,30 @@ User.destroy_all
   user.save!
 end
 
-  5.times do
-    listing = Listing.new(
-      address: ["Spinach", "Carrots", "Broccoli", "Brussels Sprouts", "Green Peas", "Ginger", "Asparagus", "Cabbage", "Potatoes", "Turnip", "Capsicum", "Eggplant", "Bok Choy", "Radish", "Onion", "Celery", "Lettuce", "Artichoke", "Cauliflower","Avocado", "Cucumber"].sample,
-      rating: (1..5).to_a.sample,
-    )
-  puts "creating listing: #{listing.id}"
-  file = URI.open("https://source.unsplash.com/400x300/?restaurants")
-  listing.photo.attach(io: file, filename: "#{listing.title}.png", content_type: 'image/png')
-  listing.save!
-  end
-
-  5.times do
+5.times do
     category = Category.new(
-    name: ["Spinach", "Carrots", "Broccoli", "Brussels Sprouts", "Green Peas", "Ginger", "Asparagus", "Cabbage", "Potatoes", "Turnip", "Capsicum", "Eggplant", "Bok Choy", "Radish", "Onion", "Celery", "Lettuce", "Artichoke", "Cauliflower","Avocado", "Cucumber"].sample,
+    name: ["Hawker Centre", "Historic Sights", "Kid Friendly", "Halal Certified"].sample
     )
-  puts "creating listing: #{category.name}"
-  category.save!
-  end
+    puts "creating category: #{category.name}"
+    category.save!
+end
 
-  5.times do
-    category_listing = Category_listings.new(
-      category: category.sample,
-      listing: listing.sample
-      )
-  category_listing.save!
-  end
+5.times do
+  listing = Listing.new(
+    address: ["920 ECP, Singapore", "902 E Coast Park Service Rd, Singapore", "208 E Coast Rd, Singapore", "6 Chapel Rd, Singapore", "920 East Coast Parkway, Singapore", "63 E Coast Rd, Singapore", "318A Joo Chiat Rd, Singapore", "10 Bayfront Ave, Singapore", "18 Marina Gardens Dr, Singapore", "1 Fullerton Rd, Singapore", "30 Raffles Ave, Singapore", "1 Cluny Rd, Singapore", "6 Bayfront Ave, Singapore", "93 Stamford Rd, Singapore", "31 Mugliston Rd, Singapore", "287 Joo Chiat Rd, Singapore", "83 Marine Parade Central, Singapore", "122 Ceylon Rd, Singapore"].sample,
+    rating: (1..5).to_a.sample,
+    )
+  file = URI.open("https://source.unsplash.com/400x300/?restaurants")
+  listing.photo.attach(io: file, filename: "#{listing.id}.png", content_type: 'image/png')
+  listing.save!
+  puts "creating listing: #{listing.address}"
+  listing.categories << Category.all.sample
+end
+
+puts "Seed done!"
+
+
+
+
 
 
