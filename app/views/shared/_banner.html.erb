@@ -1,0 +1,69 @@
+<!-- BANNER -->
+<div class="row">
+  <div class="col-sm-12">
+
+    <div id="Welcome" class="tabcontent" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1600x900/?bicycle,katong,singapore)">
+      <h1>Begin your exploration on wheels!</h1>
+      <p>Pick a destination and let us do all the groundwork for you. Customize your itinerary and it's time to ring up your buddies!</p>
+      <div class="group">
+        <form class="form-inline">
+          <select class="form-control mr-lg-2" type="search" placeholder="Start">
+            <option selected="start">Choose start point...</option>
+            <option value="Marina Bay">Marina Bay</option>
+            <option value="Katong">Katong</option>
+          </select>
+          <select class="form-control mr-lg-2" type="search" placeholder="End">
+            <option selected="end">Choose end point...</option>
+            <option value="Katong">Katong</option>
+            <option value="Marina Bay">Marina Bay</option>
+          </select>
+          <button class="btn btn-success my-2 my-sm-0" type="submit">Explore Singapore!</button>
+        </form>
+
+      </div>
+    </div>
+
+    <div id="tab1" class="tabcontent" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1600x900/?bicycle,cafe,fund)">
+      <h1>All roads lead to Katong</h1>
+      <p>Explore the quaint little enclave of Singapore that's a blend of historic heritage and hipster chic!</p>
+    </div>
+
+    <div id="tab2" class="tabcontent" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1600x900/?merlon,singapore,city)">
+      <h1>Marina Bay Sands</h1>
+      <p>Marvel at the picturesque city skyline of Singapore and check out all the sights and eats along this family-friend route! </p>
+    </div>
+
+    <div id="tab3" class="tabcontent" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1600x900/?singapore,nightscape,city)">>
+      <h1>The amazing nightscape of Singapore skyline</h1>
+      <p>Let's go when the clock strikes twelve!</p>
+    </div>
+
+  </div>
+</div>
+
+<button class="tablink" onclick="openTab('Welcome', this, 'red')" id="defaultOpen">RideNow!</button>
+<button class="tablink" onclick="openTab('tab1', this, 'green')">Katong</button>
+<button class="tablink" onclick="openTab('tab2', this, 'blue')">Marina Bay</button>
+<button class="tablink" onclick="openTab('tab3', this, 'orange')">Nightscape</button>
+
+
+<script>
+  function openTab(tabName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(tabName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+
+  }
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+
