@@ -47,8 +47,8 @@ end
 
   5.times do
     category_listing = Category_listings.new(
-      category: ,
-      listing:
+      category: category.sample,
+      listing: listing.sample
       )
   category_listing.save!
   end
