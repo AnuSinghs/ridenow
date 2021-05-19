@@ -3,14 +3,15 @@
   <div class="col-sm-12">
 
     <div id="Welcome" class="tabcontent" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1600x900/?bicycle,katong,singapore)">
-      <h1>Welcome to <strong>R</strong>ide<strong>N</strong>ow <strong></h1>
-      <p>Explore the eats and sights of Singapore on wheels!</p>
-      <div class="group" align="center">
-        <% if user_signed_in? %>
-        <a class="btn btn-flat" href="/listings/new">See your journeys!</a>
-        <% else %>
-        <a class="btn btn-flat" href="/users/sign_up">Sign Up Today!</a>
-        <% end %>
+      <h1>Begin your exploration on wheels!</h1>
+      <p>Pick a destination and let us do all the groundwork for you. Customize your itinerary and it's time to ring up your buddies!</p>
+      <div class="group">
+        <form class="form-inline">
+          <input class="form-control mr-lg-2" type="search" placeholder="Start">
+          <input class="form-control mr-lg-2" type="search" placeholder="End">
+          <button class="btn btn-success my-2 my-sm-0" type="submit">Explore Singapore!</button>
+        </form>
+
       </div>
     </div>
 
@@ -32,9 +33,9 @@
   </div>
 </div>
 
-<button class="tablink" onclick="openTab('Welcome', this, 'red')" id="defaultOpen">Welcome to RideNow!</button>
+<button class="tablink" onclick="openTab('Welcome', this, 'red')" id="defaultOpen">RideNow!</button>
 <button class="tablink" onclick="openTab('tab1', this, 'green')">Katong</button>
-<button class="tablink" onclick="openTab('tab2', this, 'blue')">Marina Bay Sands</button>
+<button class="tablink" onclick="openTab('tab2', this, 'blue')">Marina Bay</button>
 <button class="tablink" onclick="openTab('tab3', this, 'orange')">Nightscape</button>
 
 
