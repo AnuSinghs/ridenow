@@ -1,0 +1,5 @@
+<% if listing.photo.attached? %>
+<img class="card-img-top" src="https://res.cloudinary.com/dcm2heeuf/image/upload/v1620723373/<%=listing.photo.key %>" href="/listing">
+<% else %>
+<img class="card-img-top" src="https://source.unsplash.com/400x300/?vegetables" />
+<% end %>
