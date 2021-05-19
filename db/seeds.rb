@@ -13,7 +13,7 @@ puts 'destroy old data'
 
 User.destroy_all
 
-6.times do
+3.times do
   user = User.new(
     username: Faker::Name.unique.name,
     email: Faker::Internet.email,
@@ -25,3 +25,28 @@ User.destroy_all
   user.avatar.attach(io: fileav, filename: "#{user.username}.png", content_type: 'image/png')
   user.save!
 end
+
+  5.times do
+    listing = Listing.new(
+      address: ["Spinach", "Carrots", "Broccoli", "Brussels Sprouts", "Green Peas", "Ginger", "Asparagus", "Cabbage", "Potatoes", "Turnip", "Capsicum", "Eggplant", "Bok Choy", "Radish", "Onion", "Celery", "Lettuce", "Artichoke", "Cauliflower","Avocado", "Cucumber"].sample,
+      rating: (1..5).to_a.sample,
+      lat: ,
+      long:
+    )
+    puts "creating listing: #{listing.id}"
+    file = URI.open("https://source.unsplash.com/400x300/?restaurants")
+    listing.photo.attach(io: file, filename: "#{listing.title}.png", content_type: 'image/png')
+    listing.save!
+  end
+
+  2.times do
+    category= Category.new(
+    name: ["Spinach", "Carrots", "Broccoli", "Brussels Sprouts", "Green Peas", "Ginger", "Asparagus", "Cabbage", "Potatoes", "Turnip", "Capsicum", "Eggplant", "Bok Choy", "Radish", "Onion", "Celery", "Lettuce", "Artichoke", "Cauliflower","Avocado", "Cucumber"].sample,
+    )
+    puts "creating listing: #{category.name}"
+    category.save!
+    end
+  end
+end
+
+
