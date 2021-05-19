@@ -3,5 +3,6 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
+    @categories = Category.all
   end
 end
