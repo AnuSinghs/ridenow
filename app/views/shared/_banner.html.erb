@@ -7,8 +7,16 @@
       <p>Pick a destination and let us do all the groundwork for you. Customize your itinerary and it's time to ring up your buddies!</p>
       <div class="group">
         <form class="form-inline">
-          <input class="form-control mr-lg-2" type="search" placeholder="Start">
-          <input class="form-control mr-lg-2" type="search" placeholder="End">
+          <select class="form-control mr-lg-2" type="search" placeholder="Start">
+            <option selected="start">Choose start point...</option>
+            <option value="Marina Bay">Marina Bay</option>
+            <option value="Katong">Katong</option>
+          </select>
+          <select class="form-control mr-lg-2" type="search" placeholder="End">
+            <option selected="end">Choose end point...</option>
+            <option value="Katong">Katong</option>
+            <option value="Marina Bay">Marina Bay</option>
+          </select>
           <button class="btn btn-success my-2 my-sm-0" type="submit">Explore Singapore!</button>
         </form>
 
