@@ -38,11 +38,13 @@ end
 
 5.times do
   listing = Listing.new(
+    name: ["Sri Senpaga Vinayagar Temple","Parkland Green","Coastal Playgrove","Katong Antique House","Church of the Holy Family","Amber Beacon Tower","The Red House","Straits Enclave","Marina Bay Sands Singapore","Gardens by the Bay","Merlion","Singapore Flyer","Singapore Botanic Gardens","ArtScience Museum","National Museum of Singapore","Haig Walk","Peranakan Houses","Houses with preserved facade","Marine Parade Promenade","Ceylon Road Interim Park"].sample,
+    description: Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4),
     address: ["920 ECP, Singapore", "902 E Coast Park Service Rd, Singapore", "208 E Coast Rd, Singapore", "6 Chapel Rd, Singapore", "920 East Coast Parkway, Singapore", "63 E Coast Rd, Singapore", "318A Joo Chiat Rd, Singapore", "10 Bayfront Ave, Singapore", "18 Marina Gardens Dr, Singapore", "1 Fullerton Rd, Singapore", "30 Raffles Ave, Singapore", "1 Cluny Rd, Singapore", "6 Bayfront Ave, Singapore", "93 Stamford Rd, Singapore", "31 Mugliston Rd, Singapore", "287 Joo Chiat Rd, Singapore", "83 Marine Parade Central, Singapore", "122 Ceylon Rd, Singapore"].sample,
     rating: (1..5).to_a.sample,
     )
-  file = URI.open("https://source.unsplash.com/400x300/?restaurants")
-  listing.photo.attach(io: file, filename: "#{listing.id}.png", content_type: 'image/png')
+  file = URI.open("https://source.unsplash.com/400x300/?#{listing.name}")
+  listing.photo.attach(io: file, filename: "#{listing.name}.png", content_type: 'image/png')
   listing.save!
   puts "creating listing: #{listing.address}"
   listing.categories << Category.all.sample
