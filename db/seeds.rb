@@ -30,23 +30,27 @@ end
     listing = Listing.new(
       address: ["Spinach", "Carrots", "Broccoli", "Brussels Sprouts", "Green Peas", "Ginger", "Asparagus", "Cabbage", "Potatoes", "Turnip", "Capsicum", "Eggplant", "Bok Choy", "Radish", "Onion", "Celery", "Lettuce", "Artichoke", "Cauliflower","Avocado", "Cucumber"].sample,
       rating: (1..5).to_a.sample,
-      lat: ,
-      long:
     )
-    puts "creating listing: #{listing.id}"
-    file = URI.open("https://source.unsplash.com/400x300/?restaurants")
-    listing.photo.attach(io: file, filename: "#{listing.title}.png", content_type: 'image/png')
-    listing.save!
+  puts "creating listing: #{listing.id}"
+  file = URI.open("https://source.unsplash.com/400x300/?restaurants")
+  listing.photo.attach(io: file, filename: "#{listing.title}.png", content_type: 'image/png')
+  listing.save!
   end
 
-  2.times do
-    category= Category.new(
+  5.times do
+    category = Category.new(
     name: ["Spinach", "Carrots", "Broccoli", "Brussels Sprouts", "Green Peas", "Ginger", "Asparagus", "Cabbage", "Potatoes", "Turnip", "Capsicum", "Eggplant", "Bok Choy", "Radish", "Onion", "Celery", "Lettuce", "Artichoke", "Cauliflower","Avocado", "Cucumber"].sample,
     )
-    puts "creating listing: #{category.name}"
-    category.save!
-    end
+  puts "creating listing: #{category.name}"
+  category.save!
   end
-end
+
+  5.times do
+    category_listing = Category_listings.new(
+      category: ,
+      listing:
+      )
+  category_listing.save!
+  end
 
 
