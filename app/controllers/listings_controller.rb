@@ -28,7 +28,8 @@ class ListingsController < ApplicationController
       {
         lat: listing.latitude,
         lng: listing.longitude,
-        category: listing.category.name
+        category: listing.category.name,
+      }
       }
     end
   end
