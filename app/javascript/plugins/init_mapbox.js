@@ -26,7 +26,8 @@ const initMapbox = () => {
     const start = JSON.parse(mapElement.dataset.start);
     const end = JSON.parse(mapElement.dataset.end);
     const fitPoints = JSON.parse(mapElement.dataset.fitpoints);
-
+    const listingMarkers = JSON.parse(mapElement.dataset.listingmarkers);
+    
     start.forEach((ele) => {
       new mapboxgl.Marker({
         color: "#2CBB73"
@@ -34,13 +35,23 @@ const initMapbox = () => {
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
     });
+
     end.forEach((ele) => {
       new mapboxgl.Marker({
-        color: "#2CBB73"
+        color: "#1B512D"
       })
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
     });
+
+    listingMarkers.forEach((ele) => {
+      new mapboxgl.Marker({
+        color: "#3aaed8"
+      })
+        .setLngLat([ ele.lng, ele.lat ])
+        .addTo(map);
+    });
+
     fitMapToMarkers(map, fitPoints);
   }
 };
