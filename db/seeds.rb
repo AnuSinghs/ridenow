@@ -8,7 +8,6 @@
 
 require 'faker'
 require "open-uri"
-require "pry-byebug"
 
 puts 'destroy old data'
 
