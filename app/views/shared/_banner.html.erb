@@ -1,27 +1,31 @@
 <!-- BANNER -->
-<div class="row">
-  <div class="col-sm-12">
+<div class="row justify-content-center">
+  <div class="col-lg-12">
 
     <div id="Welcome" class="tabcontent" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1600x900/?bicycle,katong,singapore)">
       <h1>Begin your exploration on wheels!</h1>
       <p>Pick a destination and let us do all the groundwork for you. Customize your itinerary and it's time to ring up your buddies!</p>
-      <div class="group">
+
+      <!-- SEARCH FORM -->
+      <div class="row justify-content-center">
         <form class="form-inline">
           <select class="form-control mr-lg-2" type="search" placeholder="Start">
             <option selected="start">Choose start point...</option>
             <option value="Marina Bay">Marina Bay</option>
             <option value="Katong">Katong</option>
           </select>
-          <select class="form-control mr-lg-2" type="search" placeholder="End">
-            <option selected="end">Choose end point...</option>
+          <label for="end">End</label>
+          <select class="form-control mr-lg-2" id="end" name="end">
             <option value="Katong">Katong</option>
             <option value="Marina Bay">Marina Bay</option>
           </select>
           <button class="btn btn-success my-2 my-sm-0" type="submit">Explore Singapore!</button>
         </form>
-
       </div>
+
     </div>
+
+    <!-- BANNER TABS x 4 -->
 
     <div id="tab1" class="tabcontent" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/1600x900/?bicycle,cafe,fund)">
       <h1>All roads lead to Katong</h1>
@@ -62,8 +66,8 @@
     elmnt.style.backgroundColor = color;
 
   }
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+    </script>
 
 

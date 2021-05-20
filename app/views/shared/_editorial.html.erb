@@ -1,0 +1,29 @@
+
+<!-- BOTTOM RACK - featured editorial -->
+
+<hr>
+<h4>Feeling in need of inspiration?</h4>
+
+<!-- BOTTOM: EDITORIAL RACK#1 - freshest produce (latest add) -->
+
+<div class="row">
+  <div class="col-lg-12" style="margin-top: 20px">
+    <h6><strong>Get 'em Farm to table!</strong></h6>
+    The freshest of our grocers' crops, any fresher you may have to harvest them yourselves!
+  </div>
+
+  <div class="row" style="padding: 12px">
+    <div class="col-lg 12">
+      <div class="cards-small">
+        <% @listings.last(5).each do |listing| %>
+        <div class="card-small">
+          <%= render "shared/listing-image", listing: listing %>
+          <%= render "shared/cards-of-5-rack", listing: listing %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM: EDITORIAL RACK#2 - featured category #1 -->
