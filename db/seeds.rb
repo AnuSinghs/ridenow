@@ -29,6 +29,14 @@ Category.destroy_all
   user.save!
 end
 
+ 3.times do
+    tag = Tag.new(
+      name: ["Park", "Historic", "Popular", "Top Rated"].sample
+      )
+    puts "creating tag: #{tag.name}"
+    tag.save!
+  end
+
 Category.create(name: "Sights")
 Category.create(name: "Eats")
 
@@ -41,23 +49,13 @@ Category.all.each do |category|
       rating: (1..5).to_a.sample,
       category: category
       )
+    listing.tags << Tag.all.sample
     file = URI.open("https://source.unsplash.com/400x300/?#{listing.name}")
     listing.photo.attach(io: file, filename: "#{listing.name}.png", content_type: 'image/png')
     listing.save!
-    binding.pry
     puts "creating listing: #{listing.address}"
   end
 end
-
-  3.times do
-    tag = Tag.new(
-      name: ["park", "historic"].sample,
-      listing_id: listing
-      )
-    puts "creating tag: #{tag.name}"
-    tag.save!
-    tag.listings << Tag.all.sample
-  end
 
 puts "Seed done!"
 
