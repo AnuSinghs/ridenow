@@ -49,7 +49,7 @@ Category.all.each do |category|
   end
 end
 
-  1.times do
+  3.times do
     tag = Tag.new(
       name: ["park", "historic"].sample,
       listing_id: listing
