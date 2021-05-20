@@ -55,7 +55,7 @@ const initMapbox = () => {
 
     listingEats.forEach((ele) => {
       new mapboxgl.Marker({
-        color: "#3aaed8"
+        color: ele.category === "Eats" ? "#3aaed8": "yellow"
       })
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
