@@ -6,14 +6,14 @@ class ListingsController < ApplicationController
     @categories = Category.all
     katong =
       [{
-        lat: 1.305880,
-        lng: 103.900368
+        lat: 1.307734,
+        lng: 103.907653
       }]
 
     marina_bay =
       [{
-        lat: 1.280600,
-        lng: 103.865650
+        lat: 1.282534,
+        lng: 103.847962
       }]
     if params[:start] == "Katong"
       @start = katong
