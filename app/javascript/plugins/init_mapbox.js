@@ -28,6 +28,7 @@ const initMapbox = () => {
     const fitPoints = JSON.parse(mapElement.dataset.fitpoints);
     const listingMarkers = JSON.parse(mapElement.dataset.listingmarkers);
 
+
     start.forEach((ele) => {
       new mapboxgl.Marker({
         color: "#2CBB73"
@@ -45,11 +46,31 @@ const initMapbox = () => {
     });
 
     listingMarkers.forEach((ele) => {
-      new mapboxgl.Marker({
-        color: ele.category === "Eats" ? "#3aaed8": "yellow"
-      })
+
+      if (ele.category === "Eats") {
+      const element = document.createElement('div');
+      element.className = 'marker';
+      element.style.backgroundImage = `url(http://placekitten.com/g/200/300)`;
+      element.style.backgroundSize = 'contain';
+      element.style.width = '25px';
+      element.style.height = '25px';
+
+      new mapboxgl.Marker(element)
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
+    }
+    else {
+      const element = document.createElement('div');
+      element.className = 'marker';
+      element.style.backgroundImage = `url(https://place.dog/300/200)`;
+      element.style.backgroundSize = 'contain';
+      element.style.width = '25px';
+      element.style.height = '25px';
+
+      new mapboxgl.Marker(element)
+        .setLngLat([ ele.lng, ele.lat ])
+        .addTo(map);
+        }
     });
 
     fitMapToMarkers(map, fitPoints);
