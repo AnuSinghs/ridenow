@@ -1,13 +1,13 @@
 <div class="main">
-  <ul class="routes-grid">
+  <div class="routes-grid">
     <% if @listings.count == 0 %>
       <div class="col-sm-12" style="display: block; color: grey; text-align: center; padding: 100px">
         <h5>No listings available</h5>
         <h5>Try again!</h5>
       </div>
-    <%else%>
-      <% @listings.sample(6).each do |listing| %>
+      <%else%>
       <li>
+        <% @listings.sample(6).each do |listing| %>
         <div class="route-tile">
           <div class="route-tile-media">
             <%= render "shared/listing-image", listing: listing %>
@@ -23,8 +23,8 @@
             </p>
           </div>
         </div>
+          <% end %>
         <li>
-        <% end %>
       <% end %>
     </ul>
   <div id="map"
