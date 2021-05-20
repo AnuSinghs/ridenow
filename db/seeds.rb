@@ -8,6 +8,7 @@
 
 require 'faker'
 require "open-uri"
+require "pry-byebug"
 
 puts 'destroy old data'
 
@@ -28,27 +29,35 @@ Category.destroy_all
   user.save!
 end
 
-5.times do
-    category = Category.new(
-    name: ["Hawker Centre", "Historic Sights", "Kid Friendly", "Halal Certified"].sample
-    )
-    puts "creating category: #{category.name}"
-    category.save!
+Category.create(name: "Sights")
+Category.create(name: "Eats")
+
+Category.all.each do |category|
+  4.times do
+    listing = Listing.new(
+      name: ["Sri Senpaga Vinayagar Temple","Parkland Green","Coastal Playgrove","Katong Antique House","Church of the Holy Family","Amber Beacon Tower","The Red House","Straits Enclave","Marina Bay Sands Singapore","Gardens by the Bay","Merlion","Singapore Flyer","Singapore Botanic Gardens","ArtScience Museum","National Museum of Singapore","Haig Walk","Peranakan Houses","Houses with preserved facade","Marine Parade Promenade","Ceylon Road Interim Park"].sample,
+      description: Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4),
+      address: ["920 ECP, Singapore", "902 E Coast Park Service Rd, Singapore", "208 E Coast Rd, Singapore", "6 Chapel Rd, Singapore", "920 East Coast Parkway, Singapore", "63 E Coast Rd, Singapore", "318A Joo Chiat Rd, Singapore", "10 Bayfront Ave, Singapore", "18 Marina Gardens Dr, Singapore", "1 Fullerton Rd, Singapore", "30 Raffles Ave, Singapore", "1 Cluny Rd, Singapore", "6 Bayfront Ave, Singapore", "93 Stamford Rd, Singapore", "31 Mugliston Rd, Singapore", "287 Joo Chiat Rd, Singapore", "83 Marine Parade Central, Singapore", "122 Ceylon Rd, Singapore"].sample,
+      rating: (1..5).to_a.sample,
+      category: category
+      )
+    file = URI.open("https://source.unsplash.com/400x300/?#{listing.name}")
+    listing.photo.attach(io: file, filename: "#{listing.name}.png", content_type: 'image/png')
+    listing.save!
+    binding.pry
+    puts "creating listing: #{listing.address}"
+  end
 end
 
-5.times do
-  listing = Listing.new(
-    name: ["Sri Senpaga Vinayagar Temple","Parkland Green","Coastal Playgrove","Katong Antique House","Church of the Holy Family","Amber Beacon Tower","The Red House","Straits Enclave","Marina Bay Sands Singapore","Gardens by the Bay","Merlion","Singapore Flyer","Singapore Botanic Gardens","ArtScience Museum","National Museum of Singapore","Haig Walk","Peranakan Houses","Houses with preserved facade","Marine Parade Promenade","Ceylon Road Interim Park"].sample,
-    description: Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4),
-    address: ["920 ECP, Singapore", "902 E Coast Park Service Rd, Singapore", "208 E Coast Rd, Singapore", "6 Chapel Rd, Singapore", "920 East Coast Parkway, Singapore", "63 E Coast Rd, Singapore", "318A Joo Chiat Rd, Singapore", "10 Bayfront Ave, Singapore", "18 Marina Gardens Dr, Singapore", "1 Fullerton Rd, Singapore", "30 Raffles Ave, Singapore", "1 Cluny Rd, Singapore", "6 Bayfront Ave, Singapore", "93 Stamford Rd, Singapore", "31 Mugliston Rd, Singapore", "287 Joo Chiat Rd, Singapore", "83 Marine Parade Central, Singapore", "122 Ceylon Rd, Singapore"].sample,
-    rating: (1..5).to_a.sample,
-    )
-  file = URI.open("https://source.unsplash.com/400x300/?#{listing.name}")
-  listing.photo.attach(io: file, filename: "#{listing.name}.png", content_type: 'image/png')
-  listing.save!
-  puts "creating listing: #{listing.address}"
-  listing.categories << Category.all.sample
-end
+  1.times do
+    tag = Tag.new(
+      name: ["park", "historic"].sample,
+      listing_id: listing
+      )
+    puts "creating tag: #{tag.name}"
+    tag.save!
+    tag.listings << Tag.all.sample
+  end
 
 puts "Seed done!"
 
