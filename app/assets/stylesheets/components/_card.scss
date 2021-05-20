@@ -4,6 +4,10 @@
   border-radius: 8px;
 }
 
+.card-no-shadow {
+  background: grey;
+}
+
 .card-text {
   position: relative;
 }
@@ -13,3 +17,4 @@
   top: -80px;
   right: 10px;
 }
+
