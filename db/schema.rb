@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_054548) do
+ActiveRecord::Schema.define(version: 2021_05_20_064855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 2021_05_20_054548) do
     t.datetime "updated_at", precision: 6, null: false
     t.float "latitude"
     t.float "longitude"
-    t.bigint "categories_id"
-    t.index ["categories_id"], name: "index_listings_on_categories_id"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_listings_on_category_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -87,5 +87,5 @@ ActiveRecord::Schema.define(version: 2021_05_20_054548) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "listing_tags", "listings"
   add_foreign_key "listing_tags", "tags"
-  add_foreign_key "listings", "categories", column: "categories_id"
+  add_foreign_key "listings", "categories"
 end
