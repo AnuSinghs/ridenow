@@ -31,7 +31,6 @@ class ListingsController < ApplicationController
         lng: listing.longitude,
         category: listing.category.name,
       }
-      }
     end
   end
 end
