@@ -64,7 +64,7 @@
                       <p><small><%= listing.rating%></small></p>
                       <p><small><%= listing.tags.map(&:name).join(',') %></small></p>
                     </p>
-                    <div class="form-check">
+                    <div class="form-check" data-controller='itinerary'>
                       <input class="form-check-input" type="checkbox" value="" id="eatcheck<%= index + 1 %>">
                       <label class="form-check-label" for="eatcheck<%= index + 1 %>">
                         Select
@@ -100,7 +100,7 @@
                   <div class="route-tile-media">
                     <%= render "shared/listing-image", listing: listing %>
                   </div>
-                  <div class="route-tile-info" data-controller="itinerary">
+                  <div class="route-tile-info">
                     <h5 class="card-title"><strong><%= listing.name%></strong></h5>
                     <p class="card-text">
                       <span class="col-sm-4">
@@ -109,8 +109,8 @@
                       <p><small><%= listing.rating%></small></p>
                       <p><small><%= listing.tags.map(&:name).join(',') %></small></p>
                     </p>
-                    <div class="form-check" data-itinerary-target="select">
-                      <input class="form-check-input" type="checkbox" value="" id="sightcheck<%= index + 1 %>">
+                    <div class="form-check" data-controller='itinerary'>
+                      <input data-itinerary-target="select" class="form-check-input" type="checkbox" value="" id="sightcheck<%= index + 1 %>">
                       <label class="form-check-label" for="sightcheck<%= index + 1 %>">
                         Select
                       </label>
