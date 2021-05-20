@@ -4,7 +4,7 @@
 
   <div class="col-lg-7">
 
-    <!-- PANEL HEADER WITH TABS -->
+    <!-- PANEL HEADER WITH TABS ***INACTIVE FOR NOW***-->
 
     <div class="row">
       <div class="col-lg-12">
@@ -29,80 +29,110 @@
             document.getElementById("defaultOpen").click();
           </script>
 
-
-
-          <div class="row">
-            <div class="col-lg-12">
-
-              <div class="container" style="background-color: #F0F0F0; padding:5px">
-
-                <!--     INSERT EATS LISTINGS -->
-
-                <div class="card-75 m-2" style="background-color: white">
-                  <div class="card-body">
-                    <h5 class="card-title">Katong</h5>
-                    <div class="card-text">
-                      Distance: 15km
-                      <p>Be charmed by the quaint enclave that's a blend of heritage x hipster chic</p>
-                    </div>
-                  </div>
-                </div>
-
-                 <div class="card-75 m-2" style="background-color: white">
-                  <div class="card-body">
-                    <h5 class="card-title">Katong</h5>
-                    <div class="card-text">
-                      Distance: 15km
-                      <p>Be charmed by the quaint enclave that's a blend of heritage x hipster chic</p>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-
-          <div id="tab2" class="tabcontent" style="background-color: white">
-            <h1>Sights</h1>
-
-          </div>
-
         </div>
       </div>
 
-      <!-- PANEL WITH CARDS -->
+      <!-- EATS LISTINGS -->
 
-      <div class="routes-grid">
-        <% if @listings.count == 0 %>
-        <div class="col-sm-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
-          <h5>No listings available</h5>
-          <h5>Try again!</h5>
-        </div>
-        <%else%>
-        <li>
-          <% @listings.sample(6).each do |listing| %>
-          <div class="route-tile">
-            <div class="route-tile-media">
-              <%= render "shared/listing-image", listing: listing %>
+
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="container" style="background-color: #F0F0F0; padding:5px">
+
+            <h1>Eats</h1>
+
+
+            <div class="routes-grid">
+              <% if @listings.count == 0 %>
+              <div class="col-sm-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
+                <h5>No listings available</h5>
+                <h5>Try again!</h5>
+              </div>
+              <%else%>
+              <li>
+                <% @listings.sample(6).each do |listing| %>
+                <div class="route-tile">
+                  <div class="route-tile-media">
+                    <%= render "shared/listing-image", listing: listing %>
+                  </div>
+                  <div class="route-tile-info">
+                    <h5 class="card-title"><strong><%= listing.name%></strong></h5>
+                    <p class="card-text">
+                      <span class="col-sm-4">
+                        <strong><%= listing.address %></strong>
+                      </span>
+                      <p><small><%= listing.rating%></small></p>
+                      <p><small><%= listing.tags.map(&:name).join(',') %></small></p>
+                    </p>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Select
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+                <li>
+                  <% end %>
+                </ul>
+              </div>
             </div>
-            <div class="route-tile-info">
-              <h5 class="card-title"><strong><%= listing.name%></strong></h5>
-              <p class="card-text">
-                <%= listing.description %>
-                <span class="col-sm-4">
-                  <strong><%= listing.address %></strong>
-                </span>
-                <p><small><%= listing.rating%></small></p>
-                <p><small><%= listing.tags.map(&:name).join(',') %></small></p>
-              </p>
-            </div>
+
+
           </div>
-          <% end %>
-          <li>
-            <% end %>
-          </ul>
         </div>
+
+        <!-- SIGHTS LISTINGS-->
+        <div class="row">
+          <div class="col-lg-12">
+
+           <div id="tab2" class="tabcontent" style="background-color: white">
+            <h1>Sights</h1>
+
+            <div class="routes-grid">
+              <% if @listings.count == 0 %>
+              <div class="col-sm-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
+                <h5>No listings available</h5>
+                <h5>Try again!</h5>
+              </div>
+              <%else%>
+              <li>
+                <% @listings.sample(6).each do |listing| %>
+                <div class="route-tile">
+                  <div class="route-tile-media">
+                    <%= render "shared/listing-image", listing: listing %>
+                  </div>
+                  <div class="route-tile-info">
+                    <h5 class="card-title"><strong><%= listing.name%></strong></h5>
+                    <p class="card-text">
+                      <%= listing.description %>
+                      <span class="col-sm-4">
+                        <strong><%= listing.address %></strong>
+                      </span>
+                      <p><small><%= listing.rating%></small></p>
+                      <p><small><%= listing.tags.map(&:name).join(',') %></small></p>
+                    </p>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Select
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+                <li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
       <!-- RIGHT PANEL -->
