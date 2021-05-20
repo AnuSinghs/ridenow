@@ -94,7 +94,8 @@
                 <span class="col-sm-4">
                   <strong><%= listing.address %></strong>
                 </span>
-                <p><small><%= listing.categories.map(&:name).join(',') %></small></p>
+                <p><small><%= listing.rating%></small></p>
+                <p><small><%= listing.tags.map(&:name).join(',') %></small></p>
               </p>
             </div>
           </div>
