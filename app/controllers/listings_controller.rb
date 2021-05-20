@@ -27,7 +27,8 @@ class ListingsController < ApplicationController
     @listing_markers = @listings.geocoded.map do |listing|
       {
         lat: listing.latitude,
-        lng: listing.longitude
+        lng: listing.longitude,
+        category: listing.category.name
       }
     end
   end
