@@ -12,8 +12,10 @@ require "open-uri"
 puts 'destroy old data'
 
 User.destroy_all
+Tag.destroy_all
 Listing.destroy_all
 Category.destroy_all
+
 
 3.times do
   user = User.new(

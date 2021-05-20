@@ -6,7 +6,7 @@
 
     <!-- PANEL HEADER WITH TABS ***INACTIVE FOR NOW***-->
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-lg-12">
 
         <button class="tablink" style="width:50%" onclick="openTab('tab1', this, 'green')">Eats</button>
@@ -30,34 +30,33 @@
           </script>
 
         </div>
-      </div>
+      </div> -->
+
+      <div class="row">
 
       <!-- EATS LISTINGS -->
 
-
-      <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
 
           <div class="container" style="background-color: #F0F0F0; padding:5px">
 
-            <h1>Eats</h1>
-
+            <h3 style="padding: 7px">Eats</h3>
 
             <div class="routes-grid">
               <% if @listings.count == 0 %>
-              <div class="col-sm-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
+              <div class="col-lg-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
                 <h5>No listings available</h5>
                 <h5>Try again!</h5>
               </div>
               <%else%>
-              <li>
+
                 <% @listings.sample(6).each do |listing| %>
                 <div class="route-tile">
                   <div class="route-tile-media">
                     <%= render "shared/listing-image", listing: listing %>
                   </div>
                   <div class="route-tile-info">
-                    <h5 class="card-title"><strong><%= listing.name%></strong></h5>
+                    <h6 class="card-title"><strong><%= listing.name%></strong></h6>
                     <p class="card-text">
                       <span class="col-sm-4">
                         <strong><%= listing.address %></strong>
@@ -74,26 +73,23 @@
                   </div>
                 </div>
                 <% end %>
-                <li>
+
                   <% end %>
-                </ul>
+
               </div>
             </div>
 
-
           </div>
-        </div>
 
         <!-- SIGHTS LISTINGS-->
-        <div class="row">
-          <div class="col-lg-12">
 
-           <div id="tab2" class="tabcontent" style="background-color: white">
-            <h1>Sights</h1>
+          <div class="col-lg-6">
+
+            <h3 style="padding:7px">Sights</h3>
 
             <div class="routes-grid">
               <% if @listings.count == 0 %>
-              <div class="col-sm-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
+              <div class="col-lg-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
                 <h5>No listings available</h5>
                 <h5>Try again!</h5>
               </div>
@@ -107,7 +103,6 @@
                   <div class="route-tile-info" data-controller="itinerary">
                     <h5 class="card-title"><strong><%= listing.name%></strong></h5>
                     <p class="card-text">
-                      <%= listing.description %>
                       <span class="col-sm-4">
                         <strong><%= listing.address %></strong>
                       </span>
@@ -123,17 +118,15 @@
                   </div>
                 </div>
                 <% end %>
-                <li>
+
                   <% end %>
-                </ul>
+
               </div>
             </div>
 
           </div>
-
         </div>
 
-      </div>
 
       <!-- RIGHT PANEL -->
 
@@ -143,7 +136,8 @@
         data-start="<%= @start.to_json %>"
         data-end="<%= @end.to_json %>"
         data-fitpoints="<%= @fit_points.to_json %>"
-        data-listingmarkers="<%= @listing_markers.to_json %>"
+        data-listingsights="<%= @listing_sights.to_json %>"
+        data-listingeats="<%= @listing_eats.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
     </div>
