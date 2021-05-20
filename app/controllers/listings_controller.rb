@@ -3,18 +3,18 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
-    katong = 
+    @categories = Category.all
+    katong =
       [{
-        lat: 1.305880, 
-        lng: 103.900368 
+        lat: 1.305880,
+        lng: 103.900368
       }]
 
-    marina_bay= 
+    marina_bay =
       [{
-        lat: 1.280600, 
+        lat: 1.280600,
         lng: 103.865650
       }]
-    
     if params[:start] == "Katong"
       @start = katong
       @end = marina_bay
@@ -22,6 +22,6 @@ class ListingsController < ApplicationController
       @start = marina_bay
       @end = katong
     end
-    @fit_points = [ @start[0], @end[0]]
+    @fit_points = [@start[0], @end[0]]
   end
 end
