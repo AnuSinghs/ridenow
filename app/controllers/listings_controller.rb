@@ -24,11 +24,5 @@ class ListingsController < ApplicationController
     end
     @fit_points = [@start[0], @end[0]]
 
-    @listing_markers = @listings.geocoded.map do |listing|
-      {
-        lat: listing.latitude,
-        lng: listing.longitude
-      }
-    end
   end
 end
