@@ -2,7 +2,13 @@
 
   <!--  LEFT PANEL -->
 
-  <div class="col-lg-7">
+  <div class="col-lg-12">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="btn-success" style="text-align: center; color: white; height: 36px; padding-top: 7px">!! Click to complete your customisation !!</div>
+      </div>
+    </div>
 
     <!-- PANEL HEADER WITH TABS ***INACTIVE FOR NOW***-->
 
@@ -34,13 +40,17 @@
 
       <div class="row">
 
-      <!-- EATS LISTINGS -->
+        <!-- EATS LISTINGS -->
 
-        <div class="col-lg-6">
+        <div class="col-lg-3">
 
-          <div class="container" style="background-color: #F0F0F0; padding:5px">
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 style="padding-left: 15px; padding-top: 15px">Eats</h3>
+            </div>
+          </div>
 
-            <h3 style="padding: 7px">Eats</h3>
+          <div class="row" style="margin-left: 1px; margin-right:1px">
 
             <div class="routes-grid">
               <% if @listings.count == 0 %>
@@ -50,42 +60,49 @@
               </div>
               <%else%>
 
-                <% @listings.sample(6).each_with_index do |listing, index| %>
-                <div class="route-tile">
-                  <div class="route-tile-media">
-                    <%= render "shared/listing-image", listing: listing %>
-                  </div>
-                  <div class="route-tile-info">
-                    <h6 class="card-title"><strong><%= listing.name%></strong></h6>
-                    <p class="card-text">
-                      <span class="col-sm-4">
-                        <strong><%= listing.address %></strong>
-                      </span>
-                      <p><small><%= listing.rating%></small></p>
-                      <p><small><%= listing.tags.map(&:name).join(',') %></small></p>
-                    </p>
-                    <div class="form-check">
+              <% @listings.where(category_id: 2).each_with_index do |listing, index| %>
+              <div class="route-tile" style="background-color:#b6deef; padding:5px; margin: 7px">
+                <div class="route-tile-media">
+                  <%= render "shared/listing-image", listing: listing %>
+                </div>
+                <div class="route-tile-info">
+                  <h6 class="card-title" style="margin-top:5px"><strong><%= listing.name%></strong></h6>
+                  <div class="card-text">
+                    <small>
+                      <%= listing.address %></br>
+                      Rating: <%= listing.rating%></br>
+                      <div class="btn" style="font-size: 10px; background-color: grey; color: white; padding: 2px">
+                        <%= listing.tags.map(&:name).join(',') %>
+                      </div>
+                    </div>
+                    <div class="form-check" style="text-align: right">
                       <input class="form-check-input" type="checkbox" value="" id="eatcheck<%= index + 1 %>">
                       <label class="form-check-label" for="eatcheck<%= index + 1 %>">
                         Select
                       </label>
                     </div>
-                  </div>
+                  </small>
                 </div>
-                <% end %>
-
-                  <% end %>
-
               </div>
+              <% end %>
+              <% end %>
             </div>
-
           </div>
+
+        </div>
+
 
         <!-- SIGHTS LISTINGS-->
 
-          <div class="col-lg-6">
+        <div class="col-lg-3">
 
-            <h3 style="padding:7px">Sights Hello Arica</h3>
+          <div class="row">
+            <div class="col-lg-12">
+              <h3 style="padding-left: 15px; padding-top: 15px">Sights</h3>
+            </div>
+          </div>
+
+          <div class="row" style="margin-left: 1px; margin-right:1px">
 
             <div class="routes-grid">
               <% if @listings.count == 0 %>
@@ -94,51 +111,55 @@
                 <h5>Try again!</h5>
               </div>
               <%else%>
-              <li>
-                <% @listings.sample(6).each_with_index do |listing, index| %>
-                <div class="route-tile">
-                  <div class="route-tile-media">
-                    <%= render "shared/listing-image", listing: listing %>
-                  </div>
-                  <div class="route-tile-info" data-controller="itinerary">
-                    <h5 class="card-title"><strong><%= listing.name%></strong></h5>
-                    <p class="card-text">
-                      <span class="col-sm-4">
-                        <strong><%= listing.address %></strong>
-                      </span>
-                      <p><small><%= listing.rating%></small></p>
-                      <p><small><%= listing.tags.map(&:name).join(',') %></small></p>
-                    </p>
-                    <div class="form-check" data-itinerary-target="select">
+
+              <% @listings.where(category_id: 1).each_with_index do |listing, index| %>
+              <div class="route-tile" style="background-color:#fafad2; padding:5px; margin: 7px">
+                <div class="route-tile-media">
+                  <%= render "shared/listing-image", listing: listing %>
+                </div>
+                <div class="route-tile-info">
+                  <h6 class="card-title" style="margin-top:5px"><strong><%= listing.name%></strong></h6>
+                  <div class="card-text">
+                    <small>
+                      <%= listing.address %></br>
+                      Rating: <%= listing.rating%></br>
+                      <div class="btn" style="font-size: 10px; background-color: grey; color: white; padding: 2px">
+                        <%= listing.tags.map(&:name).join(',') %>
+                      </div>
+                    </div>
+                    <div class="form-check" style="text-align: right">
                       <input class="form-check-input" type="checkbox" value="" id="sightcheck<%= index + 1 %>">
                       <label class="form-check-label" for="sightcheck<%= index + 1 %>">
                         Select
                       </label>
                     </div>
-                  </div>
+                  </small>
                 </div>
-                <% end %>
-
-                  <% end %>
-
               </div>
+              <% end %>
+              <% end %>
             </div>
-
           </div>
         </div>
 
 
-      <!-- RIGHT PANEL -->
+        <!-- RIGHT PANEL -->
 
-      <div class="col-lg-5">
-        <div id="map"
-        style="width: 100%; height: 600px;"
-        data-start="<%= @start.to_json %>"
-        data-end="<%= @end.to_json %>"
-        data-fitpoints="<%= @fit_points.to_json %>"
-        data-listingmarkers="<%= @listing_markers.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        <div class="col-lg-6">
+
+          <div id="map"
+          style="width: 100%; height: 600px; position:sticky"
+          data-start="<%= @start.to_json %>"
+          data-end="<%= @end.to_json %>"
+          data-fitpoints="<%= @fit_points.to_json %>"
+          data-listingmarkers="<%= @listing_markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
       </div>
+
+
+
     </div>
 
   </div>
+</div>
