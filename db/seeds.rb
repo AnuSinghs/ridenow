@@ -9,7 +9,6 @@
 require 'faker'
 require "open-uri"
 require 'csv'
-require 'pry-byebug'
 
 puts 'destroy old data'
 
