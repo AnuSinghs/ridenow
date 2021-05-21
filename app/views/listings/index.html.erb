@@ -61,7 +61,7 @@
               <%else%>
 
               <% @listingeats.each_with_index do |listing, index| %>
-              <div class="route-tile" style="background-color:#b6deef; padding:5px; margin: 7px">
+              <div class="route-tile" style="background-color:#b6deef; padding:5px; margin: 7px" data-listing-id="<%=listing.id%>">
                 <div class="route-tile-media">
                   <%= render "shared/listing-image", listing: listing %>
                 </div>
@@ -114,7 +114,7 @@
               <%else%>
 
               <% @listingsights.each_with_index do |listing, index| %>
-              <div class="route-tile" style="background-color:#fafad2; padding:5px; margin: 7px">
+              <div class="route-tile" style="background-color:#fafad2; padding:5px; margin: 7px" data-listing-id="<%=listing.id%>">
                 <div class="route-tile-media">
                   <%= render "shared/listing-image", listing: listing %>
                 </div>
