@@ -4,13 +4,13 @@ class ListingsController < ApplicationController
   def index
     @listings = Listing.all
     @categories = Category.all
+    @journey = Journey.new
 
     sights = Category.first
     eats = Category.last
 
     @listingeats = Listing.where(category: eats)
     @listingsights = Listing.where(category: sights)
-
 
     katong =
       [{
@@ -31,6 +31,9 @@ class ListingsController < ApplicationController
       @end = katong
     end
 
+    @origin = params[:start]
+    @destination = params[:end]
+    
     @fit_points = [@start[0], @end[0]]
 
     @listing_markers = @listings.geocoded.map do |listing|
@@ -39,7 +42,7 @@ class ListingsController < ApplicationController
         lng: listing.longitude,
         category: listing.category.name,
         id: listing.id,
-        info_window: render_to_string(partial:"info_window", locals: { listing: listing })
+        info_window: render_to_string(partial:"shared/info_window", locals: { listing: listing })
       }
     end
   end
