@@ -4,6 +4,14 @@ class ListingsController < ApplicationController
   def index
     @listings = Listing.all
     @categories = Category.all
+
+    sights = Category.first
+    eats = Category.last
+
+    @listingeats = Listing.where(category: eats)
+    @listingsights = Listing.where(category: sights)
+
+
     katong =
       [{
         lat: 1.307734,

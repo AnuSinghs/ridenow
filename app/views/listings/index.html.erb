@@ -60,7 +60,7 @@
               </div>
               <%else%>
 
-              <% @listings.where(category_id: 2).each_with_index do |listing, index| %>
+              <% @listingeats.each_with_index do |listing, index| %>
               <div class="route-tile" style="background-color:#b6deef; padding:5px; margin: 7px">
                 <div class="route-tile-media">
                   <%= render "shared/listing-image", listing: listing %>
@@ -75,7 +75,7 @@
                         <%= listing.tags.map(&:name).join(',') %>
                       </div>
                     </div>
-               
+
                     <div class="form-check" data-controller='itinerary'>
                       <input class="form-check-input" type="checkbox" value="" id="eatcheck<%= index + 1 %>">
                       <label class="form-check-label" for="eatcheck<%= index + 1 %>">
@@ -113,7 +113,7 @@
               </div>
               <%else%>
 
-              <% @listings.where(category_id: 1).each_with_index do |listing, index| %>
+              <% @listingsights.each_with_index do |listing, index| %>
               <div class="route-tile" style="background-color:#fafad2; padding:5px; margin: 7px">
                 <div class="route-tile-media">
                   <%= render "shared/listing-image", listing: listing %>
