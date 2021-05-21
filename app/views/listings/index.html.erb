@@ -62,7 +62,7 @@
               <%else%>
 
               <% @listingeats.each_with_index do |listing, index| %>
-              <div class="route-tile" style="background-color:#b6deef; padding:5px; margin: 7px">
+              <div id="listing-<%=listing.id%>" class="route-tile" style="background-color:#b6deef; padding:5px; margin: 7px" data-listing-id="<%=listing.id%>">
                 <div class="route-tile-media">
                   <%= render "shared/listing-image", listing: listing %>
                 </div>
@@ -76,8 +76,8 @@
                         <%= listing.tags.map(&:name).join(',') %>
                       </div>
                     </div>
-
-                    <div class="form-check" data-controller='itinerary' style="text-align: right">
+               
+                    <div class="form-check" style="text-align: right">
                       <input class="form-check-input" type="checkbox" value="" id="eatcheck<%= index + 1 %>">
                       <label class="form-check-label" for="eatcheck<%= index + 1 %>">
                         Select
@@ -115,7 +115,7 @@
               <%else%>
 
               <% @listingsights.each_with_index do |listing, index| %>
-              <div class="route-tile" style="background-color:#fafad2; padding:5px; margin: 7px">
+              <div id="listing-<%=listing.id%>" class="route-tile" style="background-color:#fafad2; padding:5px; margin: 7px" data-listing-id="<%=listing.id%>">
                 <div class="route-tile-media">
                   <%= render "shared/listing-image", listing: listing %>
                 </div>
@@ -130,8 +130,8 @@
                       </div>
                     </div>
 
-                    <div class="form-check" data-controller='itinerary' style="text-align: right">
-                      <input data-itinerary-target="select" class="form-check-input" type="checkbox" value="" id="sightcheck<%= index + 1 %>">
+                    <div class="form-check" style="text-align: right">
+                      <input class="form-check-input" type="checkbox" value="" id="sightcheck<%= index + 1 %>">
                       <label class="form-check-label" for="sightcheck<%= index + 1 %>">
                         Select
                       </label>
