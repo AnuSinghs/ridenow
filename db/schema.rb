@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_20_121232) do
+ActiveRecord::Schema.define(version: 2021_05_21_043352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,25 @@ ActiveRecord::Schema.define(version: 2021_05_20_121232) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "itineraries", id: false, force: :cascade do |t|
+    t.bigint "journey_id", null: false
+    t.bigint "listing_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["journey_id", "listing_id"], name: "index_itineraries_on_journey_id_and_listing_id"
+    t.index ["listing_id", "journey_id"], name: "index_itineraries_on_listing_id_and_journey_id"
+  end
+
+  create_table "journeys", force: :cascade do |t|
+    t.string "destination"
+    t.string "origin"
+    t.boolean "privacy", default: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_journeys_on_user_id"
   end
 
   create_table "listing_tags", force: :cascade do |t|
@@ -85,6 +104,9 @@ ActiveRecord::Schema.define(version: 2021_05_20_121232) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "itineraries", "journeys"
+  add_foreign_key "itineraries", "listings"
+  add_foreign_key "journeys", "users"
   add_foreign_key "listing_tags", "listings"
   add_foreign_key "listing_tags", "tags"
   add_foreign_key "listings", "categories"

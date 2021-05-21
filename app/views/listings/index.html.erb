@@ -60,8 +60,8 @@
               </div>
               <%else%>
 
-              <% @listings.where(category_id: 2).each_with_index do |listing, index| %>
-              <div class="route-tile" style="background-color:#b6deef; padding:5px; margin: 7px" data-listing-id="<%= listing.id%>">
+              <% @listingeats.each_with_index do |listing, index| %>
+              <div class="route-tile" style="background-color:#b6deef; padding:5px; margin: 7px">
                 <div class="route-tile-media">
                   <%= render "shared/listing-image", listing: listing %>
                 </div>
@@ -76,7 +76,7 @@
                       </div>
                     </div>
                
-                    <div class="form-check">
+                    <div class="form-check" style="text-align: right">
                       <input class="form-check-input" type="checkbox" value="" id="eatcheck<%= index + 1 %>">
                       <label class="form-check-label" for="eatcheck<%= index + 1 %>">
                         Select
@@ -113,8 +113,8 @@
               </div>
               <%else%>
 
-              <% @listings.where(category_id: 1).each_with_index do |listing, index| %>
-              <div class="route-tile" style="background-color:#fafad2; padding:5px; margin: 7px" data-listing-id="<%= listing.id%>">
+              <% @listingsights.each_with_index do |listing, index| %>
+              <div class="route-tile" style="background-color:#fafad2; padding:5px; margin: 7px">
                 <div class="route-tile-media">
                   <%= render "shared/listing-image", listing: listing %>
                 </div>
@@ -129,7 +129,7 @@
                       </div>
                     </div>
 
-                    <div class="form-check">
+                    <div class="form-check" style="text-align: right">
                       <input class="form-check-input" type="checkbox" value="" id="sightcheck<%= index + 1 %>">
                       <label class="form-check-label" for="sightcheck<%= index + 1 %>">
                         Select
@@ -150,7 +150,7 @@
         <div class="col-lg-6">
 
           <div id="map"
-          style="width: 100%; height: 100%; position:sticky"
+          style="width: 100%; height: 800px; position:sticky"
           data-start="<%= @start.to_json %>"
           data-end="<%= @end.to_json %>"
           data-fitpoints="<%= @fit_points.to_json %>"

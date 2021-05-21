@@ -58,17 +58,27 @@ const initMapbox = () => {
 
 
     start.forEach((ele) => {
-      new mapboxgl.Marker({
-        color: "#2CBB73"
-      })
+      const element = document.createElement('div');
+      element.className = 'marker';
+      element.style.backgroundImage = `url(https://cdn2.iconfinder.com/data/icons/pins-3-1/24/style-three-pin-cicyling--bike-style-map-cycle-gps-cyclist-path-three-person-pin-human-cicyling-maps-navigation-512.png)`;
+      element.style.backgroundSize = 'contain';
+      element.style.width = '40px';
+      element.style.height = '40px';
+
+      new mapboxgl.Marker(element)
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
     });
 
     end.forEach((ele) => {
-      new mapboxgl.Marker({
-        color: "#1B512D"
-      })
+      const element = document.createElement('div');
+      element.className = 'marker';
+      element.style.backgroundImage = `url(https://cdn1.iconfinder.com/data/icons/vote-reward-9/24/race_flag_mark_state_wind-512.png)`;
+      element.style.backgroundSize = 'contain';
+      element.style.width = '40px';
+      element.style.height = '40px';
+
+      new mapboxgl.Marker(element)
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
     });
@@ -78,10 +88,10 @@ const initMapbox = () => {
       if (ele.category === "Eats") {
         const element = document.createElement('div');
         element.className = 'marker';
-        element.style.backgroundImage = `url(http://placekitten.com/g/200/300)`;
+        element.style.backgroundImage = `url(https://cdn4.iconfinder.com/data/icons/map-pins-2/256/21-512.png)`;
         element.style.backgroundSize = 'contain';
-        element.style.width = '25px';
-        element.style.height = '25px';
+        element.style.width = '35px';
+        element.style.height = '35px';
 
         const popup = new mapboxgl.Popup().setHTML(ele.info_window);
         const newListingMarker = new mapboxgl.Marker(element)
@@ -99,10 +109,10 @@ const initMapbox = () => {
       else {
         const element = document.createElement('div');
         element.className = 'marker';
-        element.style.backgroundImage = `url(https://place.dog/300/200)`;
+        element.style.backgroundImage = `url(https://cdn4.iconfinder.com/data/icons/map-pins-2/256/30-512.png)`;
         element.style.backgroundSize = 'contain';
-        element.style.width = '25px';
-        element.style.height = '25px';
+        element.style.width = '35px';
+        element.style.height = '35px';
 
         const popup = new mapboxgl.Popup().setHTML(ele.info_window);
         const newListingMarker = new mapboxgl.Marker(element)
