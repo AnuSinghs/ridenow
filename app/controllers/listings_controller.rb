@@ -30,6 +30,8 @@ class ListingsController < ApplicationController
         lat: listing.latitude,
         lng: listing.longitude,
         category: listing.category.name,
+        id: listing.id,
+        info_window: render_to_string(partial:"info_window", locals: { listing: listing })
       }
     end
   end
