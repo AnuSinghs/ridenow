@@ -8,6 +8,8 @@
 
 require 'faker'
 require "open-uri"
+require 'csv'
+require 'resolv-replace'
 
 puts 'destroy old data'
 
@@ -23,39 +25,39 @@ Category.destroy_all
     email: Faker::Internet.email,
     address:Faker::Address.full_address,
     password:Faker::Alphanumeric.alphanumeric(number: 8)
-    )
-  puts "creating user: #{user.username}"
-  fileav = URI.open(Faker::Avatar.image)
-  user.avatar.attach(io: fileav, filename: "#{user.username}.png", content_type: 'image/png')
-  user.save!
-end
+   )
+   puts "creating user: #{user.username}"
+   fileav = URI.open(Faker::Avatar.image)
+   user.avatar.attach(io: fileav, filename: "#{user.username}.png", content_type: 'image/png')
+   user.save!
+ end
 
- 3.times do
-    tag = Tag.new(
-      name: ["Park", "Historic", "Popular", "Top Rated"].sample
-      )
-    puts "creating tag: #{tag.name}"
-    tag.save!
-  end
+3.times do
+  tag = Tag.new(
+    name: ["Park", "Historic", "Popular", "Top Rated"].sample
+    )
+  puts "creating tag: #{tag.name}"
+  tag.save!
+end
 
 Category.create(name: "Sights")
 Category.create(name: "Eats")
 
-Category.all.each do |category|
-  4.times do
-    listing = Listing.new(
-      name: ["Sri Senpaga Vinayagar Temple","Parkland Green","Coastal Playgrove","Katong Antique House","Church of the Holy Family","Amber Beacon Tower","The Red House","Straits Enclave","Marina Bay Sands Singapore","Gardens by the Bay","Merlion","Singapore Flyer","Singapore Botanic Gardens","ArtScience Museum","National Museum of Singapore","Haig Walk","Peranakan Houses","Houses with preserved facade","Marine Parade Promenade","Ceylon Road Interim Park"].sample,
-      description: Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4),
-      address: ["920 ECP, Singapore", "902 E Coast Park Service Rd, Singapore", "208 E Coast Rd, Singapore", "6 Chapel Rd, Singapore", "920 East Coast Parkway, Singapore", "63 E Coast Rd, Singapore", "318A Joo Chiat Rd, Singapore", "10 Bayfront Ave, Singapore", "18 Marina Gardens Dr, Singapore", "1 Fullerton Rd, Singapore", "30 Raffles Ave, Singapore", "1 Cluny Rd, Singapore", "6 Bayfront Ave, Singapore", "93 Stamford Rd, Singapore", "31 Mugliston Rd, Singapore", "287 Joo Chiat Rd, Singapore", "83 Marine Parade Central, Singapore", "122 Ceylon Rd, Singapore"].sample,
-      rating: (1..5).to_a.sample,
-      category: category
-      )
-    listing.tags << Tag.all.sample
-    file = URI.open("https://source.unsplash.com/400x300/?#{listing.name}")
-    listing.photo.attach(io: file, filename: "#{listing.name}.png", content_type: 'image/png')
-    listing.save!
-    puts "creating listing: #{listing.address}"
-  end
+csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
+filepath = File.join(__dir__, "seeds.csv")
+
+CSV.foreach(filepath, csv_options) do |row|
+  l = Listing.new
+  l.name = row['Name']
+  l.description = Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4)
+  l.address = row['Address']
+  l.rating = (1..5).to_a.sample
+  l.category = Category.find_by_name(row['Category'])
+  l.tags << Tag.all.sample
+  file = URI.open("https://source.unsplash.com/400x300/?#{l.name}")
+  l.photo.attach(io: file, filename: "#{l.name}.png", content_type: 'image/png')
+  l.save!
+  puts "creating listing: #{l.address}"
 end
 
 puts "Seed done!"
