@@ -4,7 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 const fitMapToMarkers = (map, fitPoints) => {
   const bounds = new mapboxgl.LngLatBounds();
   fitPoints.forEach(point => bounds.extend([ point.lng, point.lat ]));
-  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 5000 });
+  map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 5000 });
 };
 
 const openInfoWindow = (mapListingMarkers) => {
@@ -69,9 +69,9 @@ const initMapboxJourney = () => {
       new mapboxgl.Marker(element)
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
-      origin.push(ele.lng, ele.lat)  
+      origin.push(ele.lng, ele.lat)
     });
-    
+
     // create marker for end
     const destination = [];
     end.forEach((ele) => {
@@ -115,7 +115,7 @@ const initMapboxJourney = () => {
       // Put a mic on listening for a mouseleave event
       newListingMarker.getElement().addEventListener('mouseleave', (e) => toggleCardHighlighting(e));
     });
-    
+
     fitMapToMarkers(map, fitPoints);
     // Give the array of listingMarker to a new function called "openInfoWindow"
     openInfoWindow(mapListingMarkers);
@@ -142,7 +142,7 @@ const initMapboxJourney = () => {
         // if the route already exists on the map, reset it using setData
         if (map.getSource('route')) {
           map.getSource('route').setData(geojson);
-        } 
+        }
         else { // otherwise, make a new request
           map.addLayer({
             id: 'route',
@@ -173,12 +173,12 @@ const initMapboxJourney = () => {
       };
       req.send();
     }
-    
+
     map.on('load', function() {
       // make an initial directions request that
       // starts and ends at the same location
       getRoute(origin);
-    
+
       // Add starting point to the map
       map.addLayer({
         id: 'point',
@@ -206,7 +206,7 @@ const initMapboxJourney = () => {
 
     map.on('load', function() {
       getRoute(destination);
-    
+
       // Add starting point to the map
       map.addLayer({
         id: 'point',
@@ -233,9 +233,9 @@ const initMapboxJourney = () => {
       });
       // this is where the code from the next step will go
     });
-    
-    
-    
+
+
+
 
 
 

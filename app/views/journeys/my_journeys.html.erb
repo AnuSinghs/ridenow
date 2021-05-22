@@ -1,0 +1,30 @@
+<div class="row">
+ <h3 style="margin-left: 15px; margin-top: 20px">My journeys</h3>
+
+ <div class="card-group" style="margin-top: 20px">
+
+  <!-- LIST ALL PUBLIC ROUTES - PRIVACY FALSE -->
+  <% @journeys.each do |listing| %>
+
+  <div class="col-lg-3">
+    <div class="card" style="margin-bottom: 7px">
+      <img class="card-img-top" src="https://source.unsplash.com/1600x900/?<%= listing.destination %>,city,singapore">
+      <div class="card-body">
+        <h6 class="card-title">
+          From: <%= listing.origin %> </br>
+          To: <%= listing.destination %>
+        </h6>
+      </div>
+      <div class="card-footer">
+        Link_to
+
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+</div>
+
+
+
+
