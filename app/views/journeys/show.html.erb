@@ -1,0 +1,12 @@
+<% @journey.listings.each do |listing| %>
+<p><%= listing.name %></p>
+<% end %>
+
+<div id="map"
+  style="width: 100%; height: 800px; position:sticky"
+  data-start="<%= @start.to_json %>"
+  data-end="<%= @end.to_json %>"
+  data-fitpoints="<%= @fit_points.to_json %>"
+  data-listingmarkers="<%= @listing_markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
