@@ -25,20 +25,19 @@ const openInfoWindow = (mapListingMarkers) => {
 
 const toggleCardHighlighting = (event) => {
   // Select the card corresponding to the marker's id
-  console.log('hello from mouseover marker')
   const card = document.querySelector(`[data-listing-id="${event.currentTarget.dataset.markerId}"]`);
   // Toggle the class "highlight" to the card
   card.classList.toggle("highlight");
 };
 
-const initMapbox = () => {
-  const mapElement = document.getElementById('map');
+const initMapboxListings = () => {
+  const mapElement = document.getElementById('map-listing');
 
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
 
     const map = new mapboxgl.Map({
-      container: 'map',
+      container: 'map-listing',
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [103.8198, 1.3521], // starting position
       zoom: 10
@@ -55,7 +54,6 @@ const initMapbox = () => {
     const fitPoints = JSON.parse(mapElement.dataset.fitpoints);
     // add listings (sights & eats) markers
     const listingMarkers = JSON.parse(mapElement.dataset.listingmarkers);
-
 
     start.forEach((ele) => {
       const element = document.createElement('div');
@@ -117,4 +115,4 @@ const initMapbox = () => {
   }
 };
 
-export default initMapbox;
+export default initMapboxListings;
