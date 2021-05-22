@@ -25,14 +25,13 @@ const openInfoWindow = (mapListingMarkers) => {
 
 const toggleCardHighlighting = (event) => {
   // Select the card corresponding to the marker's id
-  console.log('hello from mouseover marker')
   const card = document.querySelector(`[data-listing-id="${event.currentTarget.dataset.markerId}"]`);
   // Toggle the class "highlight" to the card
   card.classList.toggle("highlight");
 };
 
-const initMapbox = () => {
-  const mapElement = document.getElementById('map');
+const initMapboxListings = () => {
+  const mapElement = document.getElementById('map-listing');
 
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -48,15 +47,19 @@ const initMapbox = () => {
     var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
     map.setMaxBounds(mapBoundary);
 
-    // add start and end markers
+    // add start and end markers for listing index page
     const start = JSON.parse(mapElement.dataset.start);
     const end = JSON.parse(mapElement.dataset.end);
+    // add begin and finish markers for journey show
+    const begin = JSON.parse(mapElement.dataset.begin);
+    const finish = JSON.parse(mapElement.dataset.finish);
     // fit map to start and end
     const fitPoints = JSON.parse(mapElement.dataset.fitpoints);
     // add listings (sights & eats) markers
     const listingMarkers = JSON.parse(mapElement.dataset.listingmarkers);
 
-
+    // map on listings index page
+    // create marker for start
     start.forEach((ele) => {
       const element = document.createElement('div');
       element.className = 'marker';
@@ -69,7 +72,8 @@ const initMapbox = () => {
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
     });
-
+    
+    // create marker for end
     end.forEach((ele) => {
       const element = document.createElement('div');
       element.className = 'marker';
@@ -117,4 +121,4 @@ const initMapbox = () => {
   }
 };
 
-export default initMapbox;
+export default initMapboxListings;

@@ -27,12 +27,14 @@ import "bootstrap";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
-import initMapbox from '../plugins/init_mapbox';
+import initMapboxListings from '../plugins/init_mapboxlistings';
+import initMapboxJourney from '../plugins/init_mapboxjourney';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  initMapbox();
+  initMapboxListings();
+  initMapboxJourney();
 });
 
 import "controllers"
