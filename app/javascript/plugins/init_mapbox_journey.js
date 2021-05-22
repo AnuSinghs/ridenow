@@ -31,13 +31,13 @@ const toggleCardHighlighting = (event) => {
 };
 
 const initMapboxJourney = () => {
-  const mapElement = document.getElementById('map-listing');
+  const mapElement = document.getElementById('map-journey');
 
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
 
     const map = new mapboxgl.Map({
-      container: 'map',
+      container: 'map-journey',
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [103.8198, 1.3521], // starting position
       zoom: 10
@@ -50,9 +50,6 @@ const initMapboxJourney = () => {
     // add start and end markers for listing index page
     const start = JSON.parse(mapElement.dataset.start);
     const end = JSON.parse(mapElement.dataset.end);
-    // add begin and finish markers for journey show
-    const begin = JSON.parse(mapElement.dataset.begin);
-    const finish = JSON.parse(mapElement.dataset.finish);
     // fit map to start and end
     const fitPoints = JSON.parse(mapElement.dataset.fitpoints);
     // add listings (sights & eats) markers
@@ -60,6 +57,7 @@ const initMapboxJourney = () => {
 
     // map on listings index page
     // create marker for start
+    const origin = [];
     start.forEach((ele) => {
       const element = document.createElement('div');
       element.className = 'marker';
@@ -71,9 +69,11 @@ const initMapboxJourney = () => {
       new mapboxgl.Marker(element)
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
+      origin.push(ele.lng, ele.lat)  
     });
     
     // create marker for end
+    const destination = [];
     end.forEach((ele) => {
       const element = document.createElement('div');
       element.className = 'marker';
@@ -85,6 +85,7 @@ const initMapboxJourney = () => {
       new mapboxgl.Marker(element)
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
+      destination.push(ele.lng, ele.lat)
     });
 
     // Store map markers in an array
@@ -118,40 +119,6 @@ const initMapboxJourney = () => {
     fitMapToMarkers(map, fitPoints);
     // Give the array of listingMarker to a new function called "openInfoWindow"
     openInfoWindow(mapListingMarkers);
-
-    // journey show's map
-    // store origin coordinates
-    const origin = [];
-    // create marker for 
-    begin.forEach((ele) => {
-      const element = document.createElement('div');
-      element.className = 'marker';
-      element.style.backgroundImage = `url(https://cdn2.iconfinder.com/data/icons/pins-3-1/24/style-three-pin-cicyling--bike-style-map-cycle-gps-cyclist-path-three-person-pin-human-cicyling-maps-navigation-512.png)`;
-      element.style.backgroundSize = 'contain';
-      element.style.width = '40px';
-      element.style.height = '40px';
-
-      new mapboxgl.Marker(element)
-        .setLngLat([ ele.lng, ele.lat ])
-        .addTo(map);
-      origin.push(ele.lng, ele.lat)
-    });
-
-    // store destination coordinates
-    const destination = [];
-    finish.forEach((ele) => {
-      const element = document.createElement('div');
-      element.className = 'marker';
-      element.style.backgroundImage = `url(https://cdn1.iconfinder.com/data/icons/vote-reward-9/24/race_flag_mark_state_wind-512.png)`;
-      element.style.backgroundSize = 'contain';
-      element.style.width = '40px';
-      element.style.height = '40px';
-
-      new mapboxgl.Marker(element)
-        .setLngLat([ ele.lng, ele.lat ])
-        .addTo(map);
-      destination.push(ele.lng, ele.lat)
-    });
 
     // Create a function to make a directions request
     const getRoute = () => {

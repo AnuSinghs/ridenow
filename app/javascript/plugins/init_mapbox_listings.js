@@ -37,7 +37,7 @@ const initMapboxListings = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
 
     const map = new mapboxgl.Map({
-      container: 'map',
+      container: 'map-listing',
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [103.8198, 1.3521], // starting position
       zoom: 10
@@ -47,19 +47,14 @@ const initMapboxListings = () => {
     var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
     map.setMaxBounds(mapBoundary);
 
-    // add start and end markers for listing index page
+    // add start and end markers
     const start = JSON.parse(mapElement.dataset.start);
     const end = JSON.parse(mapElement.dataset.end);
-    // add begin and finish markers for journey show
-    const begin = JSON.parse(mapElement.dataset.begin);
-    const finish = JSON.parse(mapElement.dataset.finish);
     // fit map to start and end
     const fitPoints = JSON.parse(mapElement.dataset.fitpoints);
     // add listings (sights & eats) markers
     const listingMarkers = JSON.parse(mapElement.dataset.listingmarkers);
 
-    // map on listings index page
-    // create marker for start
     start.forEach((ele) => {
       const element = document.createElement('div');
       element.className = 'marker';
@@ -72,8 +67,7 @@ const initMapboxListings = () => {
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
     });
-    
-    // create marker for end
+
     end.forEach((ele) => {
       const element = document.createElement('div');
       element.className = 'marker';
