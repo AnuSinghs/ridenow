@@ -27,9 +27,10 @@ class JourneysController < ApplicationController
       @start = marina_bay
       @end = katong
     end
+
     @fit_points = [@start[0], @end[0]]
     @listing_markers = @journey.listings.geocoded.map do |listing|
-    {
+      {
         lat: listing.latitude,
         lng: listing.longitude,
         category: listing.category.name,
