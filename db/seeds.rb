@@ -9,6 +9,7 @@
 require 'faker'
 require "open-uri"
 require 'csv'
+require 'resolv-replace'
 
 puts 'destroy old data'
 
@@ -18,18 +19,18 @@ Listing.destroy_all
 Category.destroy_all
 
 
-# 3.times do
-#   user = User.new(
-#     username: Faker::Name.unique.name,
-#     email: Faker::Internet.email,
-#     address:Faker::Address.full_address,
-#     password:Faker::Alphanumeric.alphanumeric(number: 8)
-#     )
-#   puts "creating user: #{user.username}"
-#   fileav = URI.open(Faker::Avatar.image)
-#   user.avatar.attach(io: fileav, filename: "#{user.username}.png", content_type: 'image/png')
-#   user.save!
-# end
+3.times do
+  user = User.new(
+    username: Faker::Name.unique.name,
+    email: Faker::Internet.email,
+    address:Faker::Address.full_address,
+    password:Faker::Alphanumeric.alphanumeric(number: 8)
+   )
+   puts "creating user: #{user.username}"
+   fileav = URI.open(Faker::Avatar.image)
+   user.avatar.attach(io: fileav, filename: "#{user.username}.png", content_type: 'image/png')
+   user.save!
+ end
 
 3.times do
   tag = Tag.new(
