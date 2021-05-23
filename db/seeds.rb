@@ -57,7 +57,7 @@ CSV.foreach(filepath, csv_options) do |row|
   file = URI.open("https://source.unsplash.com/400x300/?#{l.name}")
   l.photo.attach(io: file, filename: "#{l.name}.png", content_type: 'image/png')
   l.save!
-  puts "creating listing: #{l.address}"
+  puts "creating listing: #{l.name}"
 end
 
 puts "Seed done!"
