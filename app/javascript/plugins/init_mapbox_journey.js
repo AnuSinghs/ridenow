@@ -233,8 +233,6 @@ const initMapboxJourney = () => {
             }
           },
           paint: {
-            'circle-radius': 10,
-            'circle-color': '#3887be'
           }
         });
       // this is where the code from the next step will go
