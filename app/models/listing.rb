@@ -2,7 +2,7 @@ class Listing < ApplicationRecord
   belongs_to :category, optional: true
   has_many :listing_tags, dependent: :destroy
   has_many :tags, through: :listing_tags
-  has_many:itineraries, dependent: :destroy
+  has_many :itineraries, dependent: :destroy
 
   include Geocoder::Model::Mongoid
   geocoded_by :address, skip_index: true

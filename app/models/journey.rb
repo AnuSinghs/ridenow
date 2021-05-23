@@ -1,5 +1,5 @@
 class Journey < ApplicationRecord
-  belongs_to :user, dependent: :destroy
+  belongs_to :user, optional: true
   has_many :itineraries, dependent: :destroy
   has_many :listings, through: :itineraries
 end
