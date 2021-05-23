@@ -6,12 +6,12 @@ class ListingsController < ApplicationController
     @categories = Category.all
     @journey = Journey.new
 
-
+    listing_markers
     #listing_example #function created below for Katong and Marina's coords
     start_end #function created below for finding the coords for start and end
-    @listingeats = Listing.by_latitude(@start[0][:lat], @end[0][:lat]).by_longitude(@start[0][:lng], @end[0][:lng]).where(category: Category.last)
-    @listingsights = Listing.by_latitude(@start[0][:lat], @end[0][:lat]).by_longitude(@start[0][:lng], @end[0][:lng]).where(category: Category.first)
-    listing_markers
+    raise
+    @listingeats = Listing.by_latitude(@start[0], @end[0]).by_longitude(@start[0], @end[0]).where(category: Category.last)
+    @listingsights = Listing.by_latitude(@start[0], @end[0]).by_longitude(@start[0], @end[0]).where(category: Category.first)
   end
 
   private
@@ -28,11 +28,12 @@ class ListingsController < ApplicationController
   def listing_markers
      @listing_markers = @listings.geocoded.map do |listing|
       address = Geocoder.search(listing.address)
+      coordinates = address.first.latitude, address.first.longitude
       {
         lat: address.first.latitude,
         lng: address.first.longitude,
         category: listing.category.name,
-        coordinates: [address.first.latitude, address.first.longitude],
+        coordinates: coordinates,
         id: listing.id,
         info_window: render_to_string(partial:"shared/info_window", locals: { listing: listing })
       }
