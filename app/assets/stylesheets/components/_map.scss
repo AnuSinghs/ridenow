@@ -11,3 +11,25 @@
   outline: solid 5px;
   outline-color: red;
 }
+
+.mapbox {
+  position: relative;
+}
+
+.mapbox #instructions {
+  position: absolute;
+  margin: 20px;
+  width: 30%;
+  top: 0;
+  bottom: 0;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow-y: scroll;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  line-height: 2em;
+}
+
+.duration {
+  font-size: 2em;
+}
