@@ -6,12 +6,12 @@ class ListingsController < ApplicationController
     @categories = Category.all
     @journey = Journey.new
 
-    listing_example #function created below
+    #listing_example #function created below
 
     start_end #function created below
-
-    @listingeats = Listing.by_latitude(@start[0][:lat], @end[0][:lat]).by_longitude(@start[0][:lng], @end[0][:lng]).where(category: Category.last)
-    @listingsights = Listing.by_latitude(@start[0][:lat], @end[0][:lat]).by_longitude(@start[0][:lng], @end[0][:lng]).where(category: Category.first)
+    @listingsgeocode = Listing.by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
+    @listingeats = Listing.by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).where(category: Category.last)
+    @listingsights = Listing.by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).where(category: Category.first)
 
     listing_markers
   end
@@ -19,9 +19,12 @@ class ListingsController < ApplicationController
   private
 
   def start_end
-    @origin = params[:start]
-    @destination = params[:end]
-    @fit_points = [@start[0], @end[0]]
+    start_location = Geocoder.search("#{params[:start]},Singapore")
+    @start = start_location.first.coordinates
+
+    end_location =  Geocoder.search("#{params[:end]},Singapore")
+    @end = start_location.first.coordinates
+    @fit_points = [@start, @end]
   end
 
   def listing_markers
@@ -36,24 +39,24 @@ class ListingsController < ApplicationController
     end
   end
 
-  def listing_example
-    katong =
-      [{
-        lat: 1.307734,
-        lng: 103.907653
-      }]
+  # def listing_example
+  #   katong =
+  #     [{
+  #       lat: 1.307734,
+  #       lng: 103.907653
+  #     }]
 
-    marina_bay =
-      [{
-        lat: 1.282534,
-        lng: 103.847962
-      }]
-    if params[:start] == "Katong"
-      @start = katong
-      @end = marina_bay
-    else
-      @start = marina_bay
-      @end = katong
-    end
-  end
+  #   marina_bay =
+  #     [{
+  #       lat: 1.282534,
+  #       lng: 103.847962
+  #     }]
+  #   if params[:start] == "Katong"
+  #     @start = katong
+  #     @end = marina_bay
+  #   else
+  #     @start = marina_bay
+  #     @end = katong
+  #   end
+  # end
 end
