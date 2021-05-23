@@ -53,6 +53,8 @@ CSV.foreach(filepath, csv_options) do |row|
   l.description = Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4)
   l.address = row['Address']
   l.rating = (1..5).to_a.sample
+  l.latitude = row['Latitude']
+  l.longitude = row['Longitude']
   l.category = Category.find_by_name(row['Category'])
   l.tags << Tag.all.sample
   file = URI.open("https://source.unsplash.com/400x300/?#{l.name}")
