@@ -3,7 +3,8 @@ class Listing < ApplicationRecord
   has_many :listing_tags, dependent: :destroy
   has_many :tags, through: :listing_tags
 
-  geocoded_by :address
+  include Geocoder::Model::Mongoid
+  geocoded_by :address, skip_index: true
   after_validation :geocode, if: :will_save_change_to_address?
   has_one_attached :photo
 

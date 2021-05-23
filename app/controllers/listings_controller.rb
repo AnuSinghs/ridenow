@@ -29,10 +29,12 @@ class ListingsController < ApplicationController
 
   def listing_markers
      @listing_markers = @listings.geocoded.map do |listing|
+      address = Geocoder.search(listing.address)
       {
-        lat: listing.latitude,
-        lng: listing.longitude,
+        lat: address.first.latitude,
+        lng: address.first.longitude,
         category: listing.category.name,
+        coordinates: [address.first.latitude, address.first.longitude],
         id: listing.id,
         info_window: render_to_string(partial:"shared/info_window", locals: { listing: listing })
       }
