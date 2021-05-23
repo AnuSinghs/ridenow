@@ -13,6 +13,7 @@ require 'resolv-replace'
 
 puts 'destroy old data'
 
+Journey.destroy_all
 User.destroy_all
 Tag.destroy_all
 Listing.destroy_all
