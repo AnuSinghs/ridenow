@@ -8,10 +8,18 @@ class Listing < ApplicationRecord
   has_one_attached :photo
 
   scope :by_latitude, ->(latitude_start, latitude_end) do
-    where("latitude >= ?", "#{latitude_start}").where("latitude <= ?", "#{latitude_end}") if latitude_start.present?
+    if latitude_start < latitude_end
+      where("latitude >= ?", "#{latitude_start}").where("latitude <= ?", "#{latitude_end}") if latitude_start.present?
+    else
+      where("latitude >= ?", "#{latitude_end}").where("latitude <= ?", "#{latitude_start}") if latitude_start.present?
+    end
   end
 
   scope :by_longitude, ->(longitude_start, longitude_end) do
-    where("longitude >= ?", "#{longitude_start}").where("longitude <= ?", "#{longitude_end}") if longitude_start.present?
+    if longitude_start < longitude_end
+      where("longitude >= ?", "#{longitude_start}").where("longitude <= ?", "#{longitude_end}") if longitude_start.present?
+    else
+      where("longitude >= ?", "#{longitude_end}").where("longitude <= ?", "#{longitude_start}") if longitude_start.present?
+    end
   end
 end
