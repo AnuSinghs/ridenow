@@ -118,16 +118,25 @@
 
       <div class="sticky">
         <div class="row">
-          <div class="col-lg-12" style="padding: 20px; border-radius: 15px; text-align: center">
+
+          <div class="col-lg-8 w-100">
+            <%= f.input :name, value: @name %>
+
+          </div>
+
+
+          <div class="col-lg-4" style="padding: 20px; border-radius: 15px; text-align: center">
            <%= f.hidden_field :origin, value: @origin %>
            <%= f.hidden_field :destination, value: @end %>
-           <%= f.submit "Click to Create Your Journey", method: :create, class: "btn btn-ghost w-60" %>
+           <%= f.submit "Create Journey!", method: :create, class: "btn btn-ghost" %>
            <% end %>
          </div>
+
+
              </div>
-        
+
              <!-- MAP -->
-        
+
              <div class="row">
         <div id="map-listing"
         data-start="<%= @start.to_json %>"
