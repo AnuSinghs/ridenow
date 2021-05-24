@@ -9,35 +9,8 @@ class JourneysController < ApplicationController
 
   def show
     @journey = Journey.find(params[:id])
-    katong =
-      [{
-        lat: 1.307734,
-        lng: 103.907653
-      }]
-
-    marina_bay =
-      [{
-        lat: 1.282534,
-        lng: 103.847962
-      }]
-    if @origin == "Katong"
-      @start = katong
-      @end = marina_bay
-    else
-      @start = marina_bay
-      @end = katong
-    end
-
-    @fit_points = [@start[0], @end[0]]
-    @listing_markers = @journey.listings.geocoded.map do |listing|
-      {
-        lat: listing.latitude,
-        lng: listing.longitude,
-        category: listing.category.name,
-        id: listing.id,
-        info_window: render_to_string(partial:"shared/info_window", locals: { listing: listing })
-      }
-    end
+    start_end
+    listing_markers
   end
 
   def create
@@ -52,7 +25,29 @@ class JourneysController < ApplicationController
   # def update
   # end
 
-  private
+ private
+
+  def start_end
+    start_location = Geocoder.search("#{@journey.origin},Singapore")
+    @start = start_location.first.coordinates
+
+    end_location =  Geocoder.search("#{@journey.destination},Singapore")
+    @end = end_location.first.coordinates
+    @fit_points = [@start, @end]
+  end
+
+  def listing_markers
+      @listing_markers = @journey.listings.geocoded.map do |listing|
+      {
+        lat: listing.latitude,
+        lng: listing.longitude,
+        category: listing.category.name,
+        id: listing.id,
+        info_window: render_to_string(partial:"shared/info_window", locals: { listing: listing })
+      }
+    end
+  end
+
   def journey_params
     params.require(:journey).permit!
   end
