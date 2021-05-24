@@ -1,41 +1,41 @@
-Name,Address,Category
-Sri Senpaga Vinayagar Temple,"19 Ceylon Rd, Singapore",Sights
-Parkland Green,"920 ECP, Singapore ",Sights
-Coastal Playgrove,"902 E Coast Park Service Rd, Singapore",Sights
-Katong Antique House,"208 E Coast Rd, Singapore ",Sights
-Church of the Holy Family,"6 Chapel Rd, Singapore",Sights
-Amber Beacon Tower,920 East Coast Parkway,Sights
-The Red House,"63 E Coast Rd, Singapore ",Sights
-Straits Enclave,"318A Joo Chiat Rd, Singapore ",Sights
-Marina Bay Sands Singapore,"10 Bayfront Ave, Singapore",Sights
-Gardens by the Bay,"18 Marina Gardens Dr, Singapore",Sights
-Merlion,"1 Fullerton Rd, Singapore ",Sights
-Singapore Flyer,"30 Raffles Ave, Singapore ",Sights
-Singapore Botanic Gardens,"1 Cluny Rd, Singapore ",Sights
-ArtScience Museum,"6 Bayfront Ave, Singapore ",Sights
-National Museum of Singapore,"93 Stamford Rd, Singapore ",Sights
-Haig Walk,"31 Mugliston Rd, Singapore ",Sights
-Peranakan Houses," 287 Joo Chiat Rd,Singapore",Sights
-Houses with preserved facade,"150D E Coast Rd, Singapore ",Sights
-Marine Parade Promenade,"83 Marine Parade Central, Singapore ",Sights
-Ceylon Road Interim Park,"122 Ceylon Rd, Singapore",Sights
-Viva Loca @ Katong,"Katong Square, 88 E Coast Rd",Eats
-Brotzeit Katong,"126 E Coast Rd, Singapore ",Eats
-Picotin - Katong,"382 Joo Chiat Rd, Singapore",Eats
-328 Katong Laksa,328 Katong Road Singapore,Eats
-Marine Parade Laksa,"Roxy Square 1, 50 E Coast Rd  Singapore ",Eats
-Sinpopo Brand,"458 Joo Chiat Rd, Singapore ",Eats
-Baba Chews Bar and Eatery,"86 E Coast Rd, Katong Square, Singapore ",Eats
-AlibabaR Hawker Bar East Coast,"125 E Coast Rd, Singapore ",Eats
-ENG'S Char Siew Wantan Mee,"248/250 Tanjong Katong Rd, Singapore ",Eats
-Loving Hut,"229 Joo Chiat Rd, #01-01, Singapore ",Eats
-Guan Hoe Soon Restaurant,"40, 38 Joo Chiat Pl",Eats
-Burlamacco Ristorante,"217 E Coast Rd, Singapore ",Eats
-Happy Wok,865 Mountbatten Rd Singapore,Eats
-Lazy Sloth & Drunken Sloth,"41 E Coast Rd, Singapore ",Eats
-ChaoTa,"232 Tanjong Katong Rd, Singapore ",Eats
-In Bad Company Restaurant & Craft Beer Bar,66 E Coast Rd  Singapore ,Eats
-Birds of Paradise Gelato Boutique,"63 E Coast Rd, #01-05, Singapore",Eats
-Little Italy,263 Tanjong Katong Road Suites@Katong ,Eats
-B4R,"362 Tanjong Katong Rd, Singapore ",Eats
-Katong Pork Rib Noodle,"364 Tanjong Katong Rd, Singapore 437123",Eats
+Name,Address,Category,Latitude,Longitude
+Sri Senpaga Vinayagar Temple,"19 Ceylon Rd, Sri Senpaga Vinayagar Temple, Singapore ",Sights,1.30552,103.90251
+Parkland Green,"920 ECP, Singapore ",Sights,1.29935,103.9066
+Coastal Playgrove,"902 E Coast Park Service Rd, Singapore",Sights,1.29688,103.90011
+Katong Antique House,"208 E Coast Rd, Singapore ",Sights,1.3072,103.90718
+Church of the Holy Family,"6 Chapel Rd, Singapore",Sights,1.30668,103.90702
+Amber Beacon Tower,920 East Coast Parkway,Sights,1.29786,103.90579
+The Red House,"63 E Coast Rd, Singapore ",Sights,1.30539,103.90347
+Straits Enclave,"318A Joo Chiat Rd, Singapore ",Sights,1.3093334,103.9022326
+Marina Bay Sands Singapore,"10 Bayfront Ave, Singapore",Sights,1.2837,103.86072
+Gardens by the Bay,"18 Marina Gardens Dr, Singapore",Sights,1.28081,103.8649
+Merlion,"1 Fullerton Rd, Singapore ",Sights,1.28676,103.8545
+Singapore Flyer,"30 Raffles Ave, Singapore ",Sights,1.28944,103.86326
+Singapore Botanic Gardens,"1 Cluny Rd, Singapore ",Sights,1.31463,103.81562
+ArtScience Museum,"6 Bayfront Ave, Singapore ",Sights,1.28604,103.85926
+National Museum of Singapore,"93 Stamford Rd, Singapore ",Sights,1.29655,103.84832
+Haig Walk,"31 Mugliston Rd, Singapore ",Sights,1.30718,103.9004
+Peranakan Houses," 287 Joo Chiat Rd,Singapore",Sights,1.31117,103.90115
+Houses with preserved facade,"150D E Coast Rd, Singapore ",Sights,1.3103,103.91857
+Marine Parade Promenade,"83 Marine Parade Central, Singapore ",Sights,1.30215,103.90681
+Ceylon Road Interim Park,"122 Ceylon Rd, Singapore",Sights,1.30712,103.9017
+Viva Loca @ Katong,"Katong Square, 88 E Coast Rd",Eats,1.3047,103.9048
+Brotzeit Katong,"126 E Coast Rd, Singapore ",Eats,1.3103,103.91857
+Picotin - Katong,"382 Joo Chiat Rd, Singapore",Eats,1.315,103.90696
+328 Katong Laksa,328 Katong Road Singapore,Eats,1.30742,103.90737
+Marine Parade Laksa,"Roxy Square 1, 50 E Coast Rd  Singapore ",Eats,1.3029,103.90458
+Sinpopo Brand,"458 Joo Chiat Rd, Singapore ",Eats,1.30633,103.9046
+Baba Chews Bar and Eatery,"86 E Coast Rd, Katong Square, Singapore ",Eats,1.3047,103.9048
+AlibabaR Hawker Bar East Coast,"125 E Coast Rd, Singapore ",Eats,1.28746,103.80511
+ENG'S Char Siew Wantan Mee,"248/250 Tanjong Katong Rd, Singapore ",Eats,1.30676,103.8958
+Loving Hut,"229 Joo Chiat Rd, #01-01, Singapore ",Eats,1.313,103.89982
+Guan Hoe Soon Restaurant,"40, 38 Joo Chiat Pl",Eats,1.31333,103.9012
+Burlamacco Ristorante,"217 E Coast Rd, Singapore ",Eats,1.30759,103.90695
+Happy Wok,865 Mountbatten Rd Singapore,Eats,1.30388,103.90117
+Lazy Sloth & Drunken Sloth,"41 E Coast Rd, Singapore ",Eats,1.30489,103.90298
+ChaoTa,"232 Tanjong Katong Rd, Singapore ",Eats,1.27661,103.84578
+In Bad Company Restaurant & Craft Beer Bar,66 E Coast Rd  Singapore ,Eats,1.30456,103.90427
+Birds of Paradise Gelato Boutique,"63 E Coast Rd,Singapore",Eats,1.30539,103.90347
+Little Italy,263 Tanjong Katong Road Suites@Katong ,Eats,1.31223,103.89418
+B4R,"362 Tanjong Katong Rd, Singapore ",Eats,1.31027,103.89422
+Katong Pork Rib Noodle,"364 Tanjong Katong Rd, Singapore 437123",Eats,1.3154,103.89406
