@@ -79,10 +79,6 @@ class JourneysController < ApplicationController
       "access_token=#{ENV['MAPBOX_API_KEY']}"
     ]
     @journey.route_url = url_params.join('')
-
-    if @journey.save
-      redirect_to journey_path(@journey)
-    end
   end
   # def update
   # end
