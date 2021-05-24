@@ -4,6 +4,11 @@ class Listing < ApplicationRecord
   has_many :tags, through: :listing_tags
   has_many :itineraries, dependent: :destroy
 
+  validates :address, presence: true
+  validates :name, presence: true
+  validates :longitude, presence: true
+  validates :latitude, presence: true
+
   include Geocoder::Model::Mongoid
   geocoded_by :address, skip_index: true
   after_validation :geocode, if: :will_save_change_to_address?

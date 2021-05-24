@@ -21,8 +21,8 @@ class JourneysController < ApplicationController
     @journey = Journey.new(journey_params)
     @journey.user = current_user
     @journey.listings = Listing.where(id: params[:listing_ids])
+    check_journey_valid
     start_end(params[:journey][:origin], params[:journey][:destination])
-
     listing_coords = @journey.listings.map do |listing|
       ["#{listing.longitude},#{listing.latitude};"]
     end
@@ -52,7 +52,7 @@ class JourneysController < ApplicationController
       n = 3
       select_waypoints = []
       select_waypoints << reverse_decoded_waypoints.first
-      (n-1).step(reverse_decoded_waypoints.size - 1, n).each do |i| 
+      (n-1).step(reverse_decoded_waypoints.size - 1, n).each do |i|
         select_waypoints << reverse_decoded_waypoints[i]
       end
       select_waypoints << reverse_decoded_waypoints.last
@@ -79,12 +79,7 @@ class JourneysController < ApplicationController
       "access_token=#{ENV['MAPBOX_API_KEY']}"
     ]
     @journey.route_url = url_params.join('')
- 
-    if @journey.save
-      redirect_to journey_path(@journey)
-    end
   end
-
   # def update
   # end
 
@@ -108,6 +103,18 @@ class JourneysController < ApplicationController
         id: listing.id,
         info_window: render_to_string(partial:"shared/info_window", locals: { listing: listing })
       }
+    end
+  end
+
+  def check_journey_valid
+    if @journey.name?
+      if @journey.save
+        redirect_to journey_path(@journey)
+      else
+        flash[:notice] = "Error in saving the Journey"
+      end
+    else
+      flash[:notice] = "Enter Your Journey's Name"
     end
   end
 
