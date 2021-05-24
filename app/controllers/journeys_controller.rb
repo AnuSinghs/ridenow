@@ -17,11 +17,9 @@ class JourneysController < ApplicationController
     @journey = Journey.new(journey_params)
     @journey.user = current_user
     @journey.listings = Listing.where(id: params[:listing_ids])
-    if @journey.save
-      redirect_to journey_path(@journey)
-    end
+    start_end
+    check_journey_valid
   end
-
   # def update
   # end
 
@@ -45,6 +43,18 @@ class JourneysController < ApplicationController
         id: listing.id,
         info_window: render_to_string(partial:"shared/info_window", locals: { listing: listing })
       }
+    end
+  end
+
+  def check_journey_valid
+    if @journey.name?
+      if @journey.save
+        redirect_to journey_path(@journey)
+      else
+        flash[:notice] = "Error in saving the Journey"
+      end
+    else
+      flash[:notice] = "Enter Your Journey's Name"
     end
   end
 

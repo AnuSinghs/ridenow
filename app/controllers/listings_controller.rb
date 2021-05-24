@@ -6,19 +6,17 @@ class ListingsController < ApplicationController
     @categories = Category.all
     @journey = Journey.new
 
-    if params[:start] = params[:end] || params[:end].empty?
-      raise
-      flash.now[:notice] = "Something went wrong!"
+    if params[:start].titleize == params[:end].titleize
+      flash[:notice] = "Error with Origin/Destination!"
       redirect_to root_path
     else
-        start_end #function created below for finding the coords for start and end
-        @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
-        @listingsights = Listing.by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).where(category: Category.first)
+      start_end #function created below for finding the coords for start and end
+      listing_markers #function created below for storing the details of listing and sending to javascript
+      listing_eats_sights #function created below for storing the eats and sights
 
-        listing_markers #function created below for storing the details of listing and sending to javascript
-        #passing the data to journey controller
-        @origin = params[:start]
-        @destination = params[:end]
+      #passing the data to journey controller
+      @origin = params[:start]
+      @destination = params[:end]
     end
   end
 
@@ -27,7 +25,6 @@ class ListingsController < ApplicationController
   def start_end
     start_location = Geocoder.search("#{params[:start]},Singapore")
     @start = start_location.first.coordinates
-
     end_location =  Geocoder.search("#{params[:end]},Singapore")
     @end = end_location.first.coordinates
     @fit_points = [@start, @end]
@@ -45,24 +42,8 @@ class ListingsController < ApplicationController
     end
   end
 
-  # def listing_example
-  #   katong =
-  #     [{
-  #       lat: 1.307734,
-  #       lng: 103.907653
-  #     }]
-
-  #   marina_bay =
-  #     [{
-  #       lat: 1.282534,
-  #       lng: 103.847962
-  #     }]
-  #   if params[:start] == "Katong"
-  #     @start = katong
-  #     @end = marina_bay
-  #   else
-  #     @start = marina_bay
-  #     @end = katong
-  #   end
-  # end
+  def listing_eats_sights
+    @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
+    @listingsights = Listing.where(category: Category.first).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
+  end
 end

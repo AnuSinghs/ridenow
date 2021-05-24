@@ -5,7 +5,6 @@
     <!--  LEFT PANEL #1 EATS -->
 
     <div class="col-lg-3">
-
       <%= simple_form_for(@journey) do |f| %>
 
       <!-- EATS TITLE -->
@@ -123,7 +122,7 @@
           <!-- FORM INPUT - JOURNEY NAME -->
 
           <div class="col-lg-7 w-100">
-            <%= f.input :name, value: @name %>
+            <%= f.input :name, value: @name, required: :true %>
           </div>
 
           <div class="col-lg-2">
