@@ -1,7 +1,7 @@
 <div class="row">
 
   <div class="col-lg-12" style="margin-top: 20px">
-    <h5>Our recommended routes</h5>
+    <h5>Our routes</h5>
   </div>
 
 
@@ -16,7 +16,8 @@
       <img class="card-img-top" src="https://source.unsplash.com/1600x900/?Location,city,singapore">
       <div class="card-body">
         <h6 class="card-title">
-          <%= listing.name %>
+          <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %>
+
         </h6>
         <p>
           From: <%= listing.origin %> </br>
@@ -29,7 +30,10 @@
         </div>
       </div>
       <div class="card-footer">
-        link_to
+        <small>
+          <%= link_to "see route", "/journeys/#{listing.id}}" %>
+        </small>
+
       </div>
     </div>
   </div>
