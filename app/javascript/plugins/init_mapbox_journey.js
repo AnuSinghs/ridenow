@@ -4,7 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 const fitMapToMarkers = (map, fitPoints) => {
   const bounds = new mapboxgl.LngLatBounds();
   fitPoints.forEach(point => bounds.extend([ point.lng, point.lat ]));
-  map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 5000 });
+  map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 5000 });
 };
 
 const openInfoWindow = (mapListingMarkers) => {
@@ -69,9 +69,9 @@ const initMapboxJourney = () => {
       new mapboxgl.Marker(element)
         .setLngLat([ ele.lng, ele.lat ])
         .addTo(map);
-      origin.push(ele.lng, ele.lat)  
+      origin.push(ele.lng, ele.lat)
     });
-    
+
     // create marker for end
     const destination = [];
     end.forEach((ele) => {
@@ -88,8 +88,10 @@ const initMapboxJourney = () => {
       destination.push(ele.lng, ele.lat)
     });
 
-    // Store map markers in an array
+    // Store map markers in an object
     const mapListingMarkers = {};
+    // Store map markers coordinates in an array
+    const listings = [];
     listingMarkers.forEach((ele) => {
       const element = document.createElement('div');
       element.className = 'marker';
@@ -108,6 +110,7 @@ const initMapboxJourney = () => {
         .setPopup(popup)
         .addTo(map);
       mapListingMarkers[`listing-${ele.id}`] = newListingMarker;
+      listings.push(`${ele.lng},${ele.lat};`)
       // Use "getElement" function provided by mapbox-gl to access to the marker's HTML and set an ID
       newListingMarker.getElement().dataset.markerId = ele.id;
       // Put a mic on the new marker listening for a mouseenter event on marker on Mapbox
@@ -115,7 +118,6 @@ const initMapboxJourney = () => {
       // Put a mic on listening for a mouseleave event
       newListingMarker.getElement().addEventListener('mouseleave', (e) => toggleCardHighlighting(e));
     });
-    
     fitMapToMarkers(map, fitPoints);
     // Give the array of listingMarker to a new function called "openInfoWindow"
     openInfoWindow(mapListingMarkers);
@@ -123,7 +125,7 @@ const initMapboxJourney = () => {
     // Create a function to make a directions request
     const getRoute = () => {
       // make a directions request using cycling profile
-      let url = 'https://api.mapbox.com/directions/v5/mapbox/cycling/' + origin[0] + ',' + origin[1] + ';' + destination[0] + ',' + destination[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+      let url = 'https://api.mapbox.com/directions/v5/mapbox/cycling/' + origin[0] + ',' + origin[1] + ';'+ listings.join('') + destination[0] + ',' + destination[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
       // make an XHR request https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
       let req = new XMLHttpRequest();
       req.open('GET', url, true);
@@ -142,7 +144,7 @@ const initMapboxJourney = () => {
         // if the route already exists on the map, reset it using setData
         if (map.getSource('route')) {
           map.getSource('route').setData(geojson);
-        } 
+        }
         else { // otherwise, make a new request
           map.addLayer({
             id: 'route',
@@ -170,14 +172,24 @@ const initMapboxJourney = () => {
           });
         }
         // add turn instructions here at the end
+        // get the sidebar and add the instructions
+        let instructions = document.getElementById('instructions');
+        let steps = data.legs[0].steps;
+
+        let tripInstructions = [];
+        for (let i = 0; i < steps.length; i++) {
+          tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
+          instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + '<br><span class="distance">Distance: ' + Math.floor(data.distance / 1000) + ' km </span>' + tripInstructions;
+        }
       };
       req.send();
     }
-    
+
     map.on('load', function() {
-      // make an initial directions request that
+      // set route for startcoordinates
       // starts and ends at the same location
       getRoute(origin);
+      getRoute(destination);
     
       // Add starting point to the map
       map.addLayer({
@@ -201,44 +213,33 @@ const initMapboxJourney = () => {
         paint: {
         }
       });
-      // this is where the code from the next step will go
-    });
-
-    map.on('load', function() {
-      getRoute(destination);
-    
-      // Add starting point to the map
-      map.addLayer({
-        id: 'point',
-        type: 'circle',
-        source: {
-          type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: [{
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'Point',
-                coordinates: destination
+      // Add end point to the map
+        map.addLayer({
+          id: 'Point',
+          type: 'circle',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'FeatureCollection',
+              features: [{
+                type: 'Feature',
+                properties: {},
+                geometry: {
+                  type: 'Point',
+                  coordinates: destination
+                }
               }
+              ]
             }
-            ]
+          },
+          paint: {
           }
-        },
-        paint: {
-          'circle-radius': 10,
-          'circle-color': '#3887be'
-        }
-      });
+        });
       // this is where the code from the next step will go
+    
+      
     });
     
-    
-    
-
-
-
   }
 };
 

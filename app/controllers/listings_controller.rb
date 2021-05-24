@@ -6,13 +6,10 @@ class ListingsController < ApplicationController
     @categories = Category.all
     @journey = Journey.new
 
-    listing_example #function created below
-
-    start_end #function created below
-
+    listing_example #function created below for Katong and Marina's coords
+    start_end #function created below for finding the coords for start and end
     @listingeats = Listing.by_latitude(@start[0][:lat], @end[0][:lat]).by_longitude(@start[0][:lng], @end[0][:lng]).where(category: Category.last)
     @listingsights = Listing.by_latitude(@start[0][:lat], @end[0][:lat]).by_longitude(@start[0][:lng], @end[0][:lng]).where(category: Category.first)
-
     listing_markers
   end
 
