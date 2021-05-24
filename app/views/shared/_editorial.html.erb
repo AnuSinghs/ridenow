@@ -1,29 +1,87 @@
-
-<!-- BOTTOM RACK - featured editorial -->
-
-<hr>
-<h4>Feeling in need of inspiration?</h4>
-
-<!-- BOTTOM: EDITORIAL RACK#1 - freshest produce (latest add) -->
-
 <div class="row">
+
   <div class="col-lg-12" style="margin-top: 20px">
-    <h6><strong>Get 'em Farm to table!</strong></h6>
-    The freshest of our grocers' crops, any fresher you may have to harvest them yourselves!
+    <h5>For inspiration</h5>
   </div>
 
-  <div class="row" style="padding: 12px">
-    <div class="col-lg 12">
-      <div class="cards-small">
-        <% @listings.last(5).each do |listing| %>
-        <div class="card-small">
-          <%= render "shared/listing-image", listing: listing %>
-          <%= render "shared/cards-of-5-rack", listing: listing %>
+  <div class="card-group" style="margin-top: 20px">
+
+    <!-- MOCK LANDING CARD 1-->
+
+    <div class="col-lg-3">
+      <div class="card">
+        <img class="card-img-top" src="https://source.unsplash.com/1600x900/?Location,city,singapore">
+        <div class="card-body">
+          <h5 class="card-title">Katong</h5>
+          <div class="card-text">
+            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-avatar avatar-bordered" />
+            Distance: 15km
+            <p>Be charmed by the quaint enclave that's a blend of heritage x hipster chic</p>
+          </div>
         </div>
-        <% end %>
+        <div class="card-footer">
+          <small class="text-muted"><i class="fa fa-map-marker"></i> Katong, Singapore</small>
+        </div>
       </div>
+    </div>
+
+    <!-- MOCK LANDING CARD 2-->
+
+    <div class="col-lg-3">
+      <div class="card">
+        <img class="card-img-top" src="https://source.unsplash.com/1600x900/?cafe,bicycle,singapore">
+        <div class="card-body">
+          <h5 class="card-title">Route title</h5>
+          <div class="card-text">
+            <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-avatar avatar-bordered" />
+            Distance: 15km
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, nulla!</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted"><i class="fa fa-map-marker"></i> Location, Singapore</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOCK LANDING CARD 3-->
+
+    <div class="col-lg-3">
+     <div class="card">
+      <img class="card-img-top" src="https://source.unsplash.com/1600x900/?singapore,city,bicycle">
+      <div class="card-body">
+        <h5 class="card-title">Route title</h5>
+        <div class="card-text">
+          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-avatar avatar-bordered" />
+          Distance: 15km
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, nulla!</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted"><i class="fa fa-map-marker"></i> Location, Singapore</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOCK LANDING CARD 4-->
+
+  <div class="col-lg-3">
+   <div class="card">
+    <img class="card-img-top" src="https://source.unsplash.com/1600x900/?city,skyline,singapore">
+    <div class="card-body">
+      <h5 class="card-title">Route title</h5>
+      <div class="card-text">
+        <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-avatar avatar-bordered" />
+        Distance: 15km
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, nulla!</p>
+      </div>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted"><i class="fa fa-map-marker"></i> Location, Singapore</small>
     </div>
   </div>
 </div>
 
-<!-- BOTTOM: EDITORIAL RACK#2 - featured category #1 -->
+</div>
+</div>
+
