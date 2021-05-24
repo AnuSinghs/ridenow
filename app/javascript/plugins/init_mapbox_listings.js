@@ -3,7 +3,6 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 const fitMapToMarkers = (map, fitPoints) => {
   const bounds = new mapboxgl.LngLatBounds();
-  debugger
   fitPoints.forEach(point => bounds.extend([ point[1], point[0] ]));
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 5000 });
 };
