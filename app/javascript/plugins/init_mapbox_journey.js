@@ -237,6 +237,7 @@ const initMapboxJourney = () => {
     fitMapToMarkers(map, fitPoints);
     // Give the array of listingMarker to a new function called "openInfoWindow"
     openInfoWindow(mapListingMarkers);
+
   }
 };
 
