@@ -11,16 +11,19 @@
       <img class="card-img-top" src="https://source.unsplash.com/1600x900/?Location,city,singapore">
       <div class="card-body">
         <h6 class="card-title">
-          From <%= listing.origin %> </br>
-          To <%= listing.destination %>
+          <%= listing.name %>
         </h6>
+        <p>
+          From: <%= listing.origin %> </br>
+          To: <%= listing.destination %>
+        </p>
         <div class="card-text">
           <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-avatar avatar-bordered" />
           Distance: 15km
         </div>
       </div>
       <div class="card-footer">
-        <!--   <p><%= link_to, journey_path %></p> -->
+        link_to
       </div>
     </div>
   </div>
