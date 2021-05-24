@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_05_24_035801) do
     t.float "latitude"
     t.float "longitude"
     t.bigint "category_id"
+    t.integer "coordinates"
     t.index ["category_id"], name: "index_listings_on_category_id"
   end
 
