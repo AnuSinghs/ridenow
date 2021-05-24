@@ -1,37 +1,7 @@
-<div class="row">
- <h1>All journeys</h1>
 
- <div class="card-group" style="margin-top: 20px">
+ <h1 style="margin-top:20px">All journeys</h1>
 
-  <!-- LIST ALL PUBLIC ROUTES - PRIVACY FALSE -->
-  <% @journeys.where(privacy: false).each do |listing| %>
-
-  <div class="col-lg-3">
-    <div class="card" style="margin-bottom: 7px">
-      <img class="card-img-top" src="https://source.unsplash.com/1600x900/?Location,city,singapore">
-      <div class="card-body">
-        <h6 class="card-title">
-          <%= listing.name %>
-        </h6>
-        <p>
-          From: <%= listing.origin %> </br>
-          To: <%= listing.destination %>
-        </p>
-        <div class="card-text">
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-avatar avatar-bordered" />
-          Distance: 15km
-        </div>
-      </div>
-      <div class="card-footer">
-        link_to
-      </div>
-    </div>
-  </div>
-
-
-  <% end %>
-
-</div>
+<%= render "shared/card" %>
 
 
 

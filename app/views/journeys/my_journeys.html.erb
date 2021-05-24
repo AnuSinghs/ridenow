@@ -11,7 +11,7 @@
       <img class="card-img-top" src="https://source.unsplash.com/1600x900/?<% listing.destination %>,city,singapore">
       <div class="card-body">
         <h6 class="card-title">
-          <%= listing.name %>
+          <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %>
         </h6>
         <p>
           From: <%= listing.origin %> </br>
@@ -19,8 +19,19 @@
         </p>
       </div>
       <div class="card-footer">
-        Link_to
+        <small>
+          <p>
+            <% if listing.privacy == true %>
+            Private route
 
+            <% else %>
+            Visible to public
+            <% end %>
+          </br>
+
+            <%= link_to "see route", "/journeys/#{listing.id}}" %>
+          </p>
+        </small>
       </div>
     </div>
   </div>
