@@ -117,27 +117,45 @@
       <!-- FORM SUBMIT   -->
 
       <div class="sticky">
-        <div class="row">
-          <div class="col-lg-12" style="padding: 20px; border-radius: 15px; text-align: center">
-           <%= f.hidden_field :origin, value: @origin %>
-           <%= f.hidden_field :destination, value: @destination %>
-           <%= f.submit "Click to Create Your Journey", method: :create, class: "btn btn-ghost w-60" %>
-           <% end %>
-         </div>
-             </div>
 
-             <!-- MAP -->
+        <div class="row" style="align-items: center">
 
-             <div class="row">
-            <div id="map-listing"
-              data-start="<%= @start.to_json %>"
-              data-end="<%= @end.to_json %>"
-              data-fitpoints="<%= @fit_points.to_json %>"
-              data-listingmarkers="<%= @listing_markers.to_json %>"
-              data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-            </div>
+          <!-- FORM INPUT - JOURNEY NAME -->
+
+          <div class="col-lg-7 w-100">
+            <%= f.input :name, value: @name %>
           </div>
-      </div>
+
+          <div class="col-lg-2">
+              <small>
+              <%= f.label "visible to public" %> </br>
+              <%= f.input_field :privacy, as: :boolean, checked_value: false, unchecked_value: true %>
+              </small>
+
+          </div>
+
+        <div class="col-lg-3" style="border-radius: 15px">
+         <%= f.hidden_field :origin, value: @origin %>
+         <%= f.hidden_field :destination, value: @destination %>
+         <%= f.submit "Submit!", method: :create, class: "btn btn-ghost" %>
+         <% end %>
+       </div>
+
+
+     </div>
+
+     <!-- MAP -->
+
+     <div class="row">
+      <div id="map-listing"
+      data-start="<%= @start.to_json %>"
+      data-end="<%= @end.to_json %>"
+      data-fitpoints="<%= @fit_points.to_json %>"
+      data-listingmarkers="<%= @listing_markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+</div>
 
 </div>
 

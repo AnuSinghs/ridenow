@@ -8,12 +8,15 @@
 
   <div class="col-lg-3">
     <div class="card" style="margin-bottom: 7px">
-      <img class="card-img-top" src="https://source.unsplash.com/1600x900/?<%= listing.destination %>,city,singapore">
+      <img class="card-img-top" src="https://source.unsplash.com/1600x900/?<% listing.destination %>,city,singapore">
       <div class="card-body">
         <h6 class="card-title">
+          <%= listing.name %>
+        </h6>
+        <p>
           From: <%= listing.origin %> </br>
           To: <%= listing.destination %>
-        </h6>
+        </p>
       </div>
       <div class="card-footer">
         Link_to
