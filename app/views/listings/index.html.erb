@@ -117,36 +117,44 @@
       <!-- FORM SUBMIT   -->
 
       <div class="sticky">
-        <div class="row">
+        <div class="row" style="align-items: center">
 
-          <div class="col-lg-8 w-100">
+          <!-- FORM INPUT - JOURNEY NAME -->
+
+          <div class="col-lg-7 w-100">
             <%= f.input :name, value: @name %>
+          </div>
+
+          <div class="col-lg-2">
+              <small>
+              <%= f.label "visible to public" %> </br>
+              <%= f.input_field :privacy, as: :boolean, checked_value: false, unchecked_value: true %>
+              </small>
 
           </div>
 
+        <div class="col-lg-3" style="border-radius: 15px">
+         <%= f.hidden_field :origin, value: @origin %>
+         <%= f.hidden_field :destination, value: @destination %>
+         <%= f.submit "Submit!", method: :create, class: "btn btn-ghost" %>
+         <% end %>
+       </div>
 
-          <div class="col-lg-4" style="padding: 20px; border-radius: 15px; text-align: center">
-           <%= f.hidden_field :origin, value: @origin %>
-           <%= f.hidden_field :destination, value: @end %>
-           <%= f.submit "Create Journey!", method: :create, class: "btn btn-ghost" %>
-           <% end %>
-         </div>
 
+     </div>
 
-             </div>
+     <!-- MAP -->
 
-             <!-- MAP -->
-
-             <div class="row">
-        <div id="map-listing"
-        data-start="<%= @start.to_json %>"
-        data-end="<%= @end.to_json %>"
-        data-fitpoints="<%= @fit_points.to_json %>"
-        data-listingmarkers="<%= @listing_markers.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-            </div>
-          </div>
-      </div>
+     <div class="row">
+      <div id="map-listing"
+      data-start="<%= @start.to_json %>"
+      data-end="<%= @end.to_json %>"
+      data-fitpoints="<%= @fit_points.to_json %>"
+      data-listingmarkers="<%= @listing_markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+</div>
 
 </div>
 
