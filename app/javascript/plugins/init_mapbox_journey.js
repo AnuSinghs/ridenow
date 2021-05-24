@@ -40,7 +40,8 @@ const initMapboxJourney = () => {
       container: 'map-journey',
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [103.8198, 1.3521], // starting position
-      zoom: 10
+      zoom: 10,
+      preserveDrawingBuffer: true
     });
 
     // set the bounds of the map
@@ -118,10 +119,7 @@ const initMapboxJourney = () => {
       // Put a mic on listening for a mouseleave event
       newListingMarker.getElement().addEventListener('mouseleave', (e) => toggleCardHighlighting(e));
     });
-    fitMapToMarkers(map, fitPoints);
-    // Give the array of listingMarker to a new function called "openInfoWindow"
-    openInfoWindow(mapListingMarkers);
-
+    
     // Create a function to make a directions request
     const getRoute = () => {
       // make a directions request using cycling profile
@@ -185,7 +183,7 @@ const initMapboxJourney = () => {
       req.send();
     }
 
-    map.on('load', function() {
+    map.on('load', () => {
       // set route for startcoordinates
       // starts and ends at the same location
       getRoute(origin);
@@ -239,7 +237,11 @@ const initMapboxJourney = () => {
     
       
     });
-    
+
+    fitMapToMarkers(map, fitPoints);
+    // Give the array of listingMarker to a new function called "openInfoWindow"
+    openInfoWindow(mapListingMarkers);
+    screenshot();
   }
 };
 
