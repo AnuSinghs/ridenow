@@ -9,7 +9,7 @@ class ListingsController < ApplicationController
     start_end #function created below for finding the coords for start and end
     @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
     @listingsights = Listing.by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).where(category: Category.first)
-    listing_markers
+    listing_markers #function created below for storing the details of listing and sending to javascript
   end
 
   private

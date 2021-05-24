@@ -3,8 +3,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 const fitMapToMarkers = (map, fitPoints) => {
   const bounds = new mapboxgl.LngLatBounds();
-  fitPoints.forEach(point => bounds.extend([ point.lng, point.lat ]));
   debugger
+  fitPoints.forEach(point => bounds.extend([ point[1], point[0] ]));
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 5000 });
 };
 
@@ -55,31 +55,28 @@ const initMapboxListings = () => {
     // add listings (sights & eats) markers
     const listingMarkers = JSON.parse(mapElement.dataset.listingmarkers);
 
-    start.forEach((ele) => {
-      const element = document.createElement('div');
-      element.className = 'marker';
-      element.style.backgroundImage = `url(https://cdn2.iconfinder.com/data/icons/pins-3-1/24/style-three-pin-cicyling--bike-style-map-cycle-gps-cyclist-path-three-person-pin-human-cicyling-maps-navigation-512.png)`;
-      element.style.backgroundSize = 'contain';
-      element.style.width = '40px';
-      element.style.height = '40px';
+// [1.2, 103]
+      const element_start = document.createElement('div');
+      element_start.className = 'marker';
+      element_start.style.backgroundImage = `url(https://cdn2.iconfinder.com/data/icons/pins-3-1/24/style-three-pin-cicyling--bike-style-map-cycle-gps-cyclist-path-three-person-pin-human-cicyling-maps-navigation-512.png)`;
+      element_start.style.backgroundSize = 'contain';
+      element_start.style.width = '40px';
+      element_start.style.height = '40px';
 
-      new mapboxgl.Marker(element)
-        .setLngLat([ ele.lng, ele.lat ])
+      new mapboxgl.Marker(element_start)
+        .setLngLat([start[1], start[0]])
         .addTo(map);
-    });
 
-    end.forEach((ele) => {
-      const element = document.createElement('div');
-      element.className = 'marker';
-      element.style.backgroundImage = `url(https://cdn1.iconfinder.com/data/icons/vote-reward-9/24/race_flag_mark_state_wind-512.png)`;
-      element.style.backgroundSize = 'contain';
-      element.style.width = '40px';
-      element.style.height = '40px';
+      const element_end = document.createElement('div');
+      element_end.className = 'marker';
+      element_end.style.backgroundImage = `url(https://cdn1.iconfinder.com/data/icons/vote-reward-9/24/race_flag_mark_state_wind-512.png)`;
+      element_end.style.backgroundSize = 'contain';
+      element_end.style.width = '40px';
+      element_end.style.height = '40px';
 
-      new mapboxgl.Marker(element)
-        .setLngLat([ ele.lng, ele.lat ])
+      new mapboxgl.Marker(element_end)
+        .setLngLat([ end[1], end[0] ])
         .addTo(map);
-    });
 
     // Store map markers in an array
     const mapListingMarkers = {};
