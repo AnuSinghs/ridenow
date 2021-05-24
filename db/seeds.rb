@@ -57,8 +57,6 @@ CSV.foreach(filepath, csv_options) do |row|
   l.longitude = row['Longitude']
   l.category = Category.find_by_name(row['Category'])
   l.tags << Tag.all.sample
-  file = URI.open("https://source.unsplash.com/400x300/?#{l.name}")
-  l.photo.attach(io: file, filename: "#{l.name}.png", content_type: 'image/png')
   l.save!
   puts "creating listing: #{l.name}"
 end
