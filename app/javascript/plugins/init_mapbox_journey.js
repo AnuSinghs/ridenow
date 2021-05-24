@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 const fitMapToMarkers = (map, fitPoints) => {
   const bounds = new mapboxgl.LngLatBounds();
   fitPoints.forEach(point => bounds.extend([ point.lng, point.lat ]));
+  debugger
   map.fitBounds(bounds, { padding: 70, maxZoom: 12, duration: 5000 });
 };
 
@@ -190,7 +191,7 @@ const initMapboxJourney = () => {
       // starts and ends at the same location
       getRoute(origin);
       getRoute(destination);
-    
+
       // Add starting point to the map
       map.addLayer({
         id: 'point',
@@ -236,10 +237,10 @@ const initMapboxJourney = () => {
           }
         });
       // this is where the code from the next step will go
-    
-      
+
+
     });
-    
+
   }
 };
 
