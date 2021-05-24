@@ -15,8 +15,8 @@ puts 'destroy old data'
 
 Journey.destroy_all
 User.destroy_all
-Tag.destroy_all
 Listing.destroy_all
+Tag.destroy_all
 Category.destroy_all
 
 
@@ -53,12 +53,12 @@ CSV.foreach(filepath, csv_options) do |row|
   l.description = Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4)
   l.address = row['Address']
   l.rating = (1..5).to_a.sample
+  l.latitude = row['Latitude']
+  l.longitude = row['Longitude']
   l.category = Category.find_by_name(row['Category'])
   l.tags << Tag.all.sample
-  file = URI.open("https://source.unsplash.com/400x300/?#{l.name}")
-  l.photo.attach(io: file, filename: "#{l.name}.png", content_type: 'image/png')
   l.save!
-  puts "creating listing: #{l.address}"
+  puts "creating listing: #{l.name}"
 end
 
 puts "Seed done!"
