@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 const fitMapToMarkers = (map, fitPoints) => {
   const bounds = new mapboxgl.LngLatBounds();
   fitPoints.forEach(point => bounds.extend([ point.lng, point.lat ]));
+  debugger
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 5000 });
 };
 
@@ -46,7 +47,6 @@ const initMapboxListings = () => {
     // set the bounds of the map
     var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
     map.setMaxBounds(mapBoundary);
-
     // add start and end markers
     const start = JSON.parse(mapElement.dataset.start);
     const end = JSON.parse(mapElement.dataset.end);
@@ -108,7 +108,7 @@ const initMapboxListings = () => {
       // Put a mic on listening for a mouseleave event
       newListingMarker.getElement().addEventListener('mouseleave', (e) => toggleCardHighlighting(e));
     });
-    
+
     fitMapToMarkers(map, fitPoints);
     // Give the array of listingMarker to a new function called "openInfoWindow"
     openInfoWindow(mapListingMarkers);

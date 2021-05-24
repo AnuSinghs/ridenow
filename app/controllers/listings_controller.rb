@@ -7,7 +7,7 @@ class ListingsController < ApplicationController
     @journey = Journey.new
 
     start_end #function created below for finding the coords for start and end
-    @listingeats = Listing.by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).where(category: Category.last)
+    @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
     @listingsights = Listing.by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).where(category: Category.first)
     listing_markers
   end
