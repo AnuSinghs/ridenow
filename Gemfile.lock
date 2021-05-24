@@ -99,6 +99,7 @@ GEM
     execjs (2.7.0)
     faker (2.18.0)
       i18n (>= 1.6, < 2)
+    fast-polylines (2.0.1)
     ffi (1.15.1)
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
@@ -272,6 +273,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   faker
+  fast-polylines (~> 2.0.0)
   font-awesome-sass
   geocoder (~> 1.6)
   jbuilder (~> 2.7)
