@@ -227,7 +227,6 @@ Longitude,Latitude,Name,Description,House,Address,Tags,Category
 103.9292677,1.324772068,McDonald's - Bedok Mall,Bedok Mall,311,New Upper Changi Road,Fastfood,Eats
 103.9253073,1.331313862,McDonald's - Bedok North,Bedok North Shopping Mall,539,Bedok North Street 3,Fastfood,Eats
 103.9216633,1.337860418,McDonald's - Bedok Reservior,,744,Bedok Reservoir,Fastfood,Eats
-103.9141451,1.332050943,McDonald's - Bedok Reservoir,,632,Bedok Reservoir Road,Fastfood,Eats
 103.8378537,1.423877598,NTUC Foodfare - KTPH,Khoo Teck Puat Hospital (KTPH),90,Yishun Central,Supermarkets,Eats
 103.8542974,1.279105668,NTUC Foodfare - MBFC,Marina Bay Financial Centre (MBFC),12,Marina Boulevard,Supermarkets,Eats
 103.7990648,1.274827483,NTUC Foodfare - Mapletree Business City (Kitchen Loft),Mapletree Business City,20,Pasir Panjang Road,Supermarkets,Eats
@@ -884,7 +883,6 @@ Longitude,Latitude,Name,Description,House,Address,Tags,Category
 103.8357765,1.42969848,Subway - Nanyang Polytechnic,Nanyang Polytechnic,180,Ang Mo Kio Ave 8,Restaurants,Eats
 103.6780964,1.324606646,Subway - FairPrice Hub,Fairprice Hub,1,Joon Koon Circle,Restaurants,Eats
 103.9530245,1.342706186,Subway - Eastpoint Mall,Eastpoint Mall,3,Simei St 6,Restaurants,Eats
-103.9851697,1.354370736,Subway - Changi Airport T3,Changi Airport Terminal 3,,,Restaurants,Eats
 103.848641,1.303321961,Subway - Far East Plaza,,14,Scotts Road,Restaurants,Eats
 103.8483992,1.369248913,Swensens - AMK Hub,AMK Hub,53,Ang Mo Kio Ave 3,Restaurants,Eats
 103.9292677,1.324772068,Swensens - Bedok Mall,Bedok Mall,311,New Upper Changi Road,Restaurants,Eats
@@ -908,9 +906,6 @@ Longitude,Latitude,Name,Description,House,Address,Tags,Category
 103.7639619,1.380517328,Mr Bean - Bukit Panjang Plaza,Bukit Panjang Plaza,1,Jelebu Road,Restaurants,Eats
 103.7441391,1.385672711,Mr Bean - Choa Chu Kang MRT,Choa Chu Kang MRT,10,Choa Chu Kang Avenue 4,Restaurants,Eats
 103.9623893,1.334325156,Mr Bean - Changi City Point,Changi City Point,5,Changi Business Park Central 1,Restaurants,Eats
-103.8456183,1.276799922,Kraftwich by Swissbake -  Tanjong Pagar Centre,Tanjong Pagar Centre,1,,Restaurants,Eats
-103.7627412,1.378349713,Kraftwich by Swissbake - Hillion Mall,Hillion Mall,17,,Restaurants,Eats
-103.8528517,1.277906339,Kraftwich by Swissbake - Marina One Heart Retail,Marina One The Heart Retail,7,,Restaurants,Eats
 103.8527683,1.293760279,Simply Wrapps -Raffles City Shopping Centre,Raffles City Shopping Centre,252,North Bridge Road,Restaurants,Eats
 103.8186256,1.262063364,Simply Wrapps -HarbourFront Center,HarbourFront Center,1,Maritime Square,Restaurants,Eats
 103.8524489,1.284132517,Simply Wrapps -Income at Raffles,Income at Raffles,16,Collyer Quay,Restaurants,Eats
@@ -1903,7 +1898,6 @@ Longitude,Latitude,Name,Description,House,Address,Tags,Category
 103.8727507,1.303843268,My Kampung Chicken Rice - Kallang Wave Mall,Kallang Wave Mall,1,Stadium Place,Restaurants,Eats
 103.7401767,1.333268187,My Kampung Chicken Rice - J Cube,J Cube,2,Jurong East Central 1,Restaurants,Eats
 103.8483992,1.369248913,My Kampung Chicken Rice - Ang Mo Kio Hub,Ang Mo Kio Hub,53,Ang Mo Kio Avenue 3,Restaurants,Eats
-103.6788181,1.346764651,My Kampung Chicken Rice - NTU Fine Food Canteen,NTU Fine Food Canteen,,,Restaurants,Eats
 103.8194093,1.271273262,Arbora - Mount Faber Road,,109,Mount Faber Road,Restaurants,Eats
 103.8507952,1.278307291,Wafuken - Asia Square Tower 2,Asia Square Tower 2,12,Marina View,Restaurants,Eats
 103.8486876,1.277439268,Wafuken - OUE Downtown Gallery,OUE Downtown Gallery,6A,Shenton Way,Restaurants,Eats

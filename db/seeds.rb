@@ -13,9 +13,7 @@ require 'resolv-replace'
 
 puts 'destroy old data'
 
-  Journey.destroy_all
   User.destroy_all
-  Listing.destroy_all
   Tag.destroy_all
   Category.destroy_all
 
@@ -34,16 +32,17 @@ puts 'destroy old data'
 
 Category.create(name: "Sights")
 Category.create(name: "Eats")
-Category.create(name: "Bakeries")
-Category.create(name: "Fastfood")
-Category.create(name: "Restaurants")
-Category.create(name: "Beverages")
-Category.create(name: "Cafés")
-Category.create(name: "Supermarket")
 
 Tag.create(name: "Monuments")
 Tag.create(name: "Museums")
 Tag.create(name: "Parks")
+Tag.create(name: "Bakeries")
+Tag.create(name: "Fastfood")
+Tag.create(name: "Restaurants")
+Tag.create(name: "Beverages")
+Tag.create(name: "Cafés")
+Tag.create(name: "Supermarkets")
+
 
 
  csv_options = { col_sep: ',', quote_char: '"', headers: :first_row }
@@ -59,9 +58,8 @@ Tag.create(name: "Parks")
     l.longitude = row['Longitude']
     l.category = Category.find_by_name(row['Category'])
     l.tags << Tag.find_by_name(row['Tags'])
-
     l.save!
-    puts "creating listing: #{l.name}"
+    puts "creating listing: #{l.name}-#{row['Tags']}"
  end
 
 puts "Seed done!"
