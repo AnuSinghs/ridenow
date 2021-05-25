@@ -21,7 +21,7 @@ class JourneysController < ApplicationController
   def create
     @journey = Journey.new(journey_params)
     @journey.user = current_user
-    @journey.listings = Listing.where(id: params[:listing_ids])
+    @journey.listings = Listing.where(id: params[:listing_ids]).near(@start, 20)
     start_end(params[:journey][:origin], params[:journey][:destination])
     listing_coords = @journey.listings.map do |listing|
       ["#{listing.longitude},#{listing.latitude};"]
@@ -38,11 +38,9 @@ class JourneysController < ApplicationController
     @categories = Category.all
     start_end(@journey.origin, @journey.destination) #function created below for finding the coords for start and end
     listing_eats_sights #function created below for storing the eats and sights
-    markers = []
-    markers << @listingeats
-    markers << @listingsights
+    markers = @listingeats + @listingsights
     #function created below for storing the details of listing and sending to javascript
-    listing_markers(Listing.where(id: markers.first).near(@start, 20)) # arrange selected markers according to proximity to origin
+    listing_markers(Listing.where(id: markers).near(@start, 20)) # arrange selected markers according to proximity to origin
     authorize @journey
   end
 
@@ -84,7 +82,6 @@ class JourneysController < ApplicationController
   end
 
   def listing_markers(markers)
-    raise
     @listing_markers = markers.geocoded.map do |listing|
       {
         lat: listing.latitude,
