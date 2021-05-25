@@ -1,0 +1,12 @@
+.route-tile {
+  padding: 5px;
+  margin: 7px;
+
+  &.category-eats {
+    background-color:#ffddc6;
+  }
+
+  &.category-sights {
+    background-color:#ffe2e8;
+  }
+}
