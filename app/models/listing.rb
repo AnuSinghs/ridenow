@@ -4,7 +4,9 @@ class Listing < ApplicationRecord
   has_many :tags, through: :listing_tags
   has_many :itineraries, dependent: :destroy
 
-  include Geocoder::Model::Mongoid
+  validates :address, presence: true
+  validates :name, presence: true
+
   geocoded_by :address, skip_index: true
   after_validation :geocode, if: :will_save_change_to_address?
   has_one_attached :photo
