@@ -59,7 +59,7 @@ class JourneysController < ApplicationController
         redirect_to journey_path(@journey)
       else
         flash.now[:notice] = "Error in saving the Journey"
-        redirect_to edit_journey_path(@journey) 
+        redirect_to edit_journey_path(@journey)
       end
     else
       flash[:notice] = "Enter Your Journey's Name"
@@ -112,7 +112,7 @@ class JourneysController < ApplicationController
         redirect_to journey_path(@journey)
       else
         flash[:notice] = "Error in saving the Journey"
-        redirect_to 
+        redirect_to
       end
     else
       flash[:notice] = "Enter Your Journey's Name"
