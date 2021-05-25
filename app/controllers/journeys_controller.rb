@@ -14,19 +14,105 @@ class JourneysController < ApplicationController
   def show
     @journey = Journey.find(params[:id])
     start_end(@journey.origin, @journey.destination)
-    listing_markers
+    listing_markers(@journey.listings.where(category: Category.last), @journey.listings.where(category: Category.first))
   end
 
   def create
     @journey = Journey.new(journey_params)
     @journey.user = current_user
     @journey.listings = Listing.where(id: params[:listing_ids])
-    check_journey_valid
     start_end(params[:journey][:origin], params[:journey][:destination])
     listing_coords = @journey.listings.map do |listing|
       ["#{listing.longitude},#{listing.latitude};"]
     end
 
+    screenshot(listing_coords)
+
+    @journey.route_url = @url_params.join('')
+    check_journey_valid
+  end
+
+  def edit
+    @journey = Journey.find(params[:id])
+    @listings = Listing.all
+    @categories = Category.all
+    start_end(@journey.origin, @journey.destination) #function created below for finding the coords for start and end
+    listing_eats_sights #function created below for storing the eats and sights
+    listing_markers(@listingeats, @listingsights) #function created below for storing the details of listing and sending to javascript
+    authorize @journey
+  end
+
+  def update
+    @journey = Journey.find(params[:id])
+    @journey.update(journey_params)
+    @journey.listings = Listing.where(id: params[:listing_ids])
+    start_end(@journey.origin, @journey.destination)
+    listing_coords = @journey.listings.map do |listing|
+      ["#{listing.longitude},#{listing.latitude};"]
+    end
+
+    screenshot(listing_coords)
+
+    @journey.route_url = @url_params.join('')
+    check_journey_valid
+    authorize @journey
+  end
+ private
+
+  def start_end(origin, destination)
+    start_location = Geocoder.search("#{origin},Singapore")
+    @start = start_location.first.coordinates
+
+    end_location =  Geocoder.search("#{destination},Singapore")
+    @end = end_location.first.coordinates
+    @fit_points = [@start, @end]
+  end
+
+  def listing_markers(eat_markers, sight_markers)
+      @listing_markers = []
+      eat_markers.geocoded.each do |listing|
+      @listing_markers << {
+        lat: listing.latitude,
+        lng: listing.longitude,
+        category: listing.category.name,
+        id: listing.id,
+        info_window: render_to_string(partial:"shared/info_window", locals: { listing: listing })
+      }
+    end
+
+    sight_markers.geocoded.each do |listing|
+     @listing_markers << {
+        lat: listing.latitude,
+        lng: listing.longitude,
+        category: listing.category.name,
+        id: listing.id,
+        info_window: render_to_string(partial:"shared/info_window", locals: { listing: listing })
+      }
+    end
+  end
+
+  def listing_eats_sights
+    @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
+    @listingsights = Listing.where(category: Category.first).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
+  end
+
+  def check_journey_valid
+    if @journey.name?
+      if @journey.save
+        redirect_to journey_path(@journey)
+      else
+        flash[:notice] = "Error in saving the Journey"
+      end
+    else
+      flash[:notice] = "Enter Your Journey's Name"
+    end
+  end
+
+  def journey_params
+    params.require(:journey).permit!
+  end
+
+  def screenshot(listing_coords)
     #obtain turn by turn coordinates for screenshot
     url_search_params = [
       'https://api.mapbox.com/directions/v5/mapbox/cycling/',
@@ -58,7 +144,7 @@ class JourneysController < ApplicationController
       select_waypoints << reverse_decoded_waypoints.last
 
     # obtain screenshot url
-    url_params = [
+    @url_params = [
       'https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/',
       'pin-s+6aec84',
       '(',
@@ -78,48 +164,6 @@ class JourneysController < ApplicationController
       '/103.8779,1.2986,11,0/500x300?',
       "access_token=#{ENV['MAPBOX_API_KEY']}"
     ]
-    @journey.route_url = url_params.join('')
-  end
-  # def update
-  # end
-
- private
-
-  def start_end(origin, destination)
-    start_location = Geocoder.search("#{origin},Singapore")
-    @start = start_location.first.coordinates
-
-    end_location =  Geocoder.search("#{destination},Singapore")
-    @end = end_location.first.coordinates
-    fit_points = [@start, @end]
-  end
-
-  def listing_markers
-      @listing_markers = @journey.listings.geocoded.map do |listing|
-      {
-        lat: listing.latitude,
-        lng: listing.longitude,
-        category: listing.category.name,
-        id: listing.id,
-        info_window: render_to_string(partial:"shared/info_window", locals: { listing: listing })
-      }
-    end
-  end
-
-  def check_journey_valid
-    if @journey.name?
-      if @journey.save
-        redirect_to journey_path(@journey)
-      else
-        flash[:notice] = "Error in saving the Journey"
-      end
-    else
-      flash[:notice] = "Enter Your Journey's Name"
-    end
-  end
-
-  def journey_params
-    params.require(:journey).permit!
   end
 end
 
