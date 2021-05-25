@@ -80,8 +80,9 @@ class JourneysController < ApplicationController
     ]
     @journey.route_url = url_params.join('')
   end
-  # def update
-  # end
+
+  def edit
+  end
 
  private
 
