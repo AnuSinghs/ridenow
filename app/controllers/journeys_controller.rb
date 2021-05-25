@@ -101,10 +101,12 @@ class JourneysController < ApplicationController
       if @journey.save
         redirect_to journey_path(@journey)
       else
-        flash[:notice] = "Error in saving the Journey"
+        flash.now[:notice] = "Error in saving the Journey"
+        redirect_to edit_journey_path(@journey) 
       end
     else
       flash[:notice] = "Enter Your Journey's Name"
+      redirect_to edit_journey_path(@journey)
     end
   end
 
