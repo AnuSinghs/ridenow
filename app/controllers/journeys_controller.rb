@@ -83,6 +83,12 @@ class JourneysController < ApplicationController
   # def update
   # end
 
+  def edit
+    @journey = Journey.find(params[:id])
+    authorize @journey
+  end
+
+
  private
 
   def start_end(origin, destination)

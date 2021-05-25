@@ -1,20 +1,20 @@
-class JourneyPolicy < ApplicationPolicy
-  class Scope < Scope
-    def resolve
-      scope.all
-    end
+class JourneyPolicy
+  attr_reader :user, :journey
+
+  def initialize(user, journey)
+    @user = user
+    @journey = journey
   end
 
-  def create?
-    return true
+  def edit?
+    update?
   end
 
   def update?
-    record.user == user
+    journey.user == user
   end
 
-  def destroy?
-    record.user == user
-  end
-
+  # def destroy?
+  #   record.user == user
+  # end
 end
