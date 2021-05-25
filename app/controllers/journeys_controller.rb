@@ -23,7 +23,6 @@ class JourneysController < ApplicationController
     @journey.listings = Listing.where(id: params[:listing_ids])
     check_journey_valid
     start_end(params[:journey][:origin], params[:journey][:destination])
-
     listing_coords = @journey.listings.map do |listing|
       ["#{listing.longitude},#{listing.latitude};"]
     end
