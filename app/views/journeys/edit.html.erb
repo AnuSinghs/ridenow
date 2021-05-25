@@ -1,0 +1,172 @@
+<div class="container">
+
+  <div class="row">
+
+    <!--  LEFT PANEL #1 EATS -->
+
+    <div class="col-lg-3">
+      <%= simple_form_for(@journey) do |f| %>
+
+      <!-- EATS TITLE -->
+
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 style="padding-left: 15px; padding-top: 15px">Eats</h3>
+        </div>
+      </div>
+
+      <!-- EATS LISTINGS -->
+
+      <div class="row" style="margin-left: 1px; margin-right:1px">
+
+        <div class="routes-grid">
+          <% if @listings.count == 0 %>
+          <div class="col-lg-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
+            <h5>No listings available</h5>
+            <h5>Try again!</h5>
+          </div>
+          <%else%>
+
+          <% @listingeats.each_with_index do |listing, index| %>
+          <div id="listing-<%=listing.id%>" class="route-tile" style="background-color:#ffddc6; padding:5px; margin: 7px" data-listing-id="<%=listing.id%>">
+            <div class="route-tile-media">
+              <%= render "shared/listing-image", listing: listing %>
+            </div>
+            <div class="route-tile-info">
+              <h6 class="card-title" style="margin-top:5px"><strong><%= listing.name%></strong></h6>
+              <div class="card-text">
+                <small>
+                  <%= listing.address %></br>
+                  Rating: <%= listing.rating%></br>
+                  <div class="btn" style="font-size: 10px; background-color: #A9A9A9; color: white; padding: 2px">
+                    <%= listing.tags.map(&:name).join(',') %>
+                  </div>
+                </div>
+
+                <div class="form-check" style="text-align: right">
+                  <% if @journey.listings.include? listing %>
+                    Select <%= check_box_tag 'listing_ids[]', listing.id, input_html: { checked: true } %>
+                  <% else %>
+                    Select <%= check_box_tag 'listing_ids[]', listing.id %>
+                  <% end %>
+                </div>
+              </small>
+            </div>
+          </div>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- MIDDLE PANEL #2 SIGHTS -->
+
+    <div class="col-lg-3">
+
+      <!-- SIGHTS TITLE   -->
+
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 style="padding-left: 15px; padding-top: 15px">Sights</h3>
+        </div>
+      </div>
+
+      <!-- SIGHTS LISTINGS-->
+
+      <div class="row" style="margin-left: 1px; margin-right:1px">
+
+        <div class="routes-grid">
+          <% if @listings.count == 0 %>
+          <div class="col-lg-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
+            <h5>No listings available</h5>
+            <h5>Try again!</h5>
+          </div>
+          <%else%>
+
+          <% @listingsights.each_with_index do |listing, index| %>
+          <div id="listing-<%=listing.id%>" class="route-tile" style="background-color:#ffe2e8; padding:5px; margin: 7px" data-listing-id="<%=listing.id%>">
+            <div class="route-tile-media">
+              <%= render "shared/listing-image", listing: listing %>
+            </div>
+            <div class="route-tile-info">
+              <h6 class="card-title" style="margin-top:5px"><strong><%= listing.name%></strong></h6>
+              <div class="card-text">
+                <small>
+                  <%= listing.address %></br>
+                  Rating: <%= listing.rating%></br>
+                  <div class="btn" style="font-size: 10px; background-color: #A9A9A9; color: white; padding: 2px">
+                    <%= listing.tags.map(&:name).join(',') %>
+                  </div>
+                </div>
+
+                <div class="form-check" style="text-align: right">
+                  <% if @journey.listings.include? listing %>
+                    Select <%= check_box_tag 'listing_ids[]', listing.id, input_html: { checked: true } %>
+                  <% else %>
+                    Select <%= check_box_tag 'listing_ids[]', listing.id %>
+                  <% end %>
+                </div>
+              </small>
+            </div>
+          </div>
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- RIGHT PANEL #3 MAP -->
+
+    <div class="col-lg-6">
+
+      <!-- FORM SUBMIT   -->
+
+      <div class="sticky">
+
+        <div class="row" style="align-items: center">
+
+          <!-- FORM INPUT - JOURNEY NAME -->
+
+          <div class="col-lg-7 w-100">
+            <%= f.input :name, value: @name, required: :true %>
+          </div>
+
+          <div class="col-lg-2">
+              <small>
+              <%= f.label "visible to public" %> </br>
+              <%= f.input_field :privacy, as: :boolean, checked_value: false, unchecked_value: true %>
+              </small>
+
+          </div>
+
+        <div class="col-lg-3" style="border-radius: 15px">
+         <%= f.hidden_field :origin, value: @journey.origin %>
+         <%= f.hidden_field :destination, value: @journey.destination %>
+         <%= f.submit "Submit!", class: "btn btn-ghost" %>
+         <% end %>
+       </div>
+
+
+     </div>
+
+     <!-- MAP -->
+
+     <div class="row">
+      <div id="map-listing"
+      data-start="<%= @start.to_json %>"
+      data-end="<%= @end.to_json %>"
+      data-fitpoints="<%= @fit_points.to_json %>"
+      data-listingmarkers="<%= @listing_markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
