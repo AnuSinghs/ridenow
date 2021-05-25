@@ -3,7 +3,9 @@
     <%= render "shared/listing-image", listing: listing %>
   </div>
   <div class="route-tile-info">
-    <h6 class="card-title" style="margin-top:5px"><strong><%= listing.name%></strong></h6>
+    <h6 class="card-title" style="margin-top:5px">
+      <strong><%= listing.name%></strong>
+    </h6>
     <div class="card-text">
       <small>
         <%= listing.address %></br>
@@ -13,11 +15,13 @@
         </div>
 
         <div class="form-check" style="text-align: right">
-          <% if @journey.listings.include? listing %>
-          Select <%= check_box_tag 'listing_ids[]', listing.id, input_html: { checked: true } %>
-          <% else %>
-          Select <%= check_box_tag 'listing_ids[]', listing.id %>
-          <% end %>
+          Select
+          <%=
+            check_box_tag "listing_ids-#{listing.id}",
+            listing.id,
+            @journey.listings.include?(listing),
+            class: 'listing-select'
+          %>
         </div>
       </small>
     </div>
