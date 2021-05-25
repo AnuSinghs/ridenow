@@ -73,11 +73,14 @@
 
   <!-- LINK BACK TO LISTING -->
 
+ <% if policy(@journey).update? %>
   <div class="row">
     <div class="col-lg-12" style="text-align: right; margin-top: 40px">
-      <%= link_to "Back to Edit", listings_path%>
+      <%= link_to "Edit Journey", edit_journey_path(@journey)%>
     </div>
   </div>
+  <% end %>
+
 
   <!-- NEXT STEP/OUTPUT OPTIONS -->
 
