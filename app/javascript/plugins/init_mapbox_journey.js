@@ -45,8 +45,8 @@ const initMapboxJourney = () => {
     });
 
     // set the bounds of the map
-    var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
-    map.setMaxBounds(mapBoundary);
+    // var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
+    // map.setMaxBounds(mapBoundary);
 
     // add start and end markers for listing index page
     const start = JSON.parse(mapElement.dataset.start);
