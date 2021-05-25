@@ -6,10 +6,7 @@ class Listing < ApplicationRecord
 
   validates :address, presence: true
   validates :name, presence: true
-  validates :longitude, presence: true
-  validates :latitude, presence: true
 
-  include Geocoder::Model::Mongoid
   geocoded_by :address, skip_index: true
   after_validation :geocode, if: :will_save_change_to_address?
   has_one_attached :photo
