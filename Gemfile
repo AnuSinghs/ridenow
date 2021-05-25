@@ -65,4 +65,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "geocoder", "~> 1.6"
 
+gem 'pundit'
+
 gem "fast-polylines", "~> 2.0.0"
+
