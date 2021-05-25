@@ -54,7 +54,17 @@ class JourneysController < ApplicationController
     screenshot(listing_coords)
 
     @journey.route_url = @url_params.join('')
-    check_journey_valid
+    if @journey.name?
+      if @journey.save
+        redirect_to journey_path(@journey)
+      else
+        flash.now[:notice] = "Error in saving the Journey"
+        redirect_to edit_journey_path(@journey)
+      end
+    else
+      flash[:notice] = "Enter Your Journey's Name"
+      redirect_to edit_journey_path(@journey)
+    end
     authorize @journey
   end
  private
@@ -102,6 +112,7 @@ class JourneysController < ApplicationController
         redirect_to journey_path(@journey)
       else
         flash[:notice] = "Error in saving the Journey"
+        redirect_to
       end
     else
       flash[:notice] = "Enter Your Journey's Name"
@@ -135,14 +146,13 @@ class JourneysController < ApplicationController
         coord.reverse
       end
       # select waypoints in intervals of 3
-      n = 3
+      n = 4
       select_waypoints = []
       select_waypoints << reverse_decoded_waypoints.first
       (n-1).step(reverse_decoded_waypoints.size - 1, n).each do |i|
         select_waypoints << reverse_decoded_waypoints[i]
       end
       select_waypoints << reverse_decoded_waypoints.last
-
     # obtain screenshot url
     @url_params = [
       'https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/',
@@ -161,7 +171,7 @@ class JourneysController < ApplicationController
       ')',
       ',',
       "path-5+f44-0.5(#{FastPolylines.encode(select_waypoints)})",
-      '/103.8779,1.2986,11,0/500x300?',
+      '/auto/500x300?',
       "access_token=#{ENV['MAPBOX_API_KEY']}"
     ]
   end

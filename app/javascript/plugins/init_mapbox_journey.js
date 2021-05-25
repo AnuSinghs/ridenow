@@ -115,7 +115,7 @@ const initMapboxJourney = () => {
       // Put a mic on listening for a mouseleave event
       newListingMarker.getElement().addEventListener('mouseleave', (e) => toggleCardHighlighting(e));
     });
-    
+
     // Create a function to make a directions request
     const getRoute = () => {
       // make a directions request using cycling profile
