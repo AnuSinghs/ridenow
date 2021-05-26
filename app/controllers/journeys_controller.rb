@@ -60,12 +60,12 @@ class JourneysController < ApplicationController
 
   def route_email
     @journey = Journey.find(params[:id])
-       JourneyMailer.with(journey: @journey).route_email.deliver_now
+    JourneyMailer.with(journey: @journey).route_email.deliver_now
+    redirect_to journey_path(@journey)
+    flash[:notice] = "Journey emailed!"
   end
 
  private
-
-
 
   def start_end(origin, destination)
     start_location = Geocoder.search("#{origin},Singapore")
