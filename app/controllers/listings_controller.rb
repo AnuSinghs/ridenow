@@ -2,7 +2,6 @@ class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @listings = Listing.all
     @categories = Category.all
     @journey = Journey.new
 
@@ -17,16 +16,17 @@ class ListingsController < ApplicationController
       #passing the data to journey controller
       @origin = params[:start]
       @destination = params[:end]
+
     end
   end
 
   private
 
   def start_end
-    start_location = Geocoder.search("#{params[:start]},Singapore")
-    @start = start_location.first.coordinates
-    end_location =  Geocoder.search("#{params[:end]},Singapore")
-    @end = end_location.first.coordinates
+    @start_location = Geocoder.search("#{params[:start]},Singapore")
+    @start = @start_location.first.coordinates
+    @end_location =  Geocoder.search("#{params[:end]},Singapore")
+    @end = @end_location.first.coordinates
     @fit_points = [@start, @end]
   end
 
@@ -54,7 +54,11 @@ class ListingsController < ApplicationController
 end
 
   def listing_eats_sights
-    @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
-    @listingsights = Listing.where(category: Category.first).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
+    center = Geocoder::Calculations.geographic_center([@start, @end])
+    distance= Geocoder::Calculations.distance_between(@start, @end)
+    box = Geocoder::Calculations.bounding_box(center, (distance/1.9))
+
+    @listingeats = Listing.where(category: Category.last).within_bounding_box(box).by_tag_eats(params[:tag_eats])
+    @listingsights = Listing.where(category: Category.first).within_bounding_box(box).by_tag_sights(params[:tag_sights])
   end
 end
