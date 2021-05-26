@@ -19,7 +19,7 @@
 
 .tabcontent {
   background-size: cover;
-  height: 300px;
+  height: 600px;
   background-position: center;
   padding: 70px 0;
 }
@@ -27,17 +27,18 @@
 .tabcontent h1 {
   margin: 0;
   color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  font-size: 40px;
   font-weight: bold;
   text-align: center;
+  padding-top: 140px;
 }
 
 .tabcontent p {
   font-size: 20px;
   color: white;
-  opacity: .7;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  opacity: 0.9;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
   text-align: center;
 }
 
