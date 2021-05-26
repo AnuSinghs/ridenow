@@ -18,10 +18,10 @@ puts 'destroy old data'
   Category.destroy_all
 
    user = User.new(
-     username: iambatman,
-     email: iambatman@joker.com,
-     address: doyoubleed,
-     password:Faker::Alphanumeric.alphanumeric(number: 8)
+     username: "iambatman",
+     email: "iambatman@joker.com",
+     address: "Batcave, Gotham City" ,
+     password: "doyoubleed"
     )
      puts "creating user: #{user.username}"
      fileav = URI.open(Faker::Avatar.image)
