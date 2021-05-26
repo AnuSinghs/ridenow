@@ -23,6 +23,7 @@ class JourneysController < ApplicationController
     @journey.user = current_user
     start_end(params[:journey][:origin], params[:journey][:destination])
     @journey.listings = Listing.where(id: params[:listing_ids]).near(@start, 20)
+    
     listing_coords = @journey.listings.map do |listing|
       ["#{listing.longitude},#{listing.latitude};"]
     end
@@ -68,6 +69,13 @@ class JourneysController < ApplicationController
       redirect_to edit_journey_path(@journey)
     end
     authorize @journey
+  end
+
+  def route_email
+    @journey = Journey.find(params[:id])
+    JourneyMailer.with(journey: @journey).route_email.deliver_now
+    redirect_to journey_path(@journey)
+    flash[:notice] = "Journey emailed!"
   end
 
  private
