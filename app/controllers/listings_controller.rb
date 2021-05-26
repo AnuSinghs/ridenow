@@ -4,7 +4,6 @@ class ListingsController < ApplicationController
   def index
     @categories = Category.all
     @journey = Journey.new
-
     if params[:start].titleize == params[:end].titleize
       flash[:notice] = "Error with Origin/Destination!"
       redirect_to root_path
@@ -56,7 +55,7 @@ end
     distance= Geocoder::Calculations.distance_between(@start, @end)
     box = Geocoder::Calculations.bounding_box(center, (distance/1.9))
 
-    @listingeats = Listing.where(category: Category.last).within_bounding_box(box).by_tag_eats(params[:tag_eats]).near(@start)
-    @listingsights = Listing.where(category: Category.first).within_bounding_box(box).by_tag_sights(params[:tag_sights]).near(@start)
+    @listingeats = Listing.where(category: Category.last).within_bounding_box(box).by_tag_eats(params[:tag_eats])
+    @listingsights = Listing.where(category: Category.first).within_bounding_box(box).by_tag_sights(params[:tag_sights])
   end
 end

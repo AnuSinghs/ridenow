@@ -23,7 +23,7 @@ class JourneysController < ApplicationController
     @journey.user = current_user
     start_end(params[:journey][:origin], params[:journey][:destination])
     @journey.listings = Listing.where(id: params[:listing_ids]).near(@start, 20)
-    
+
     listing_coords = @journey.listings.map do |listing|
       ["#{listing.longitude},#{listing.latitude};"]
     end
@@ -101,9 +101,13 @@ class JourneysController < ApplicationController
     end
   end
 
-  def listing_eats_sights
-    @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).near(@start)
-    @listingsights = Listing.where(category: Category.first).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).near(@start)
+ def listing_eats_sights
+    center = Geocoder::Calculations.geographic_center([@start, @end])
+    distance= Geocoder::Calculations.distance_between(@start, @end)
+    box = Geocoder::Calculations.bounding_box(center, (distance/1.9))
+
+    @listingeats = Listing.where(category: Category.last).within_bounding_box(box).by_tag_eats(params[:tag_eats])
+    @listingsights = Listing.where(category: Category.first).within_bounding_box(box).by_tag_sights(params[:tag_sights])
   end
 
   def check_journey_valid
@@ -146,7 +150,7 @@ class JourneysController < ApplicationController
       reverse_decoded_waypoints = decoded_waypoints.map do |coord|
         coord.reverse
       end
-      
+
     # obtain screenshot url
     @url_params = [
       'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/',
