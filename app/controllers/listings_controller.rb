@@ -12,11 +12,9 @@ class ListingsController < ApplicationController
       start_end #function created below for finding the coords for start and end
       listing_eats_sights #function created below for storing the eats and sights
       listing_markers(@listingeats, @listingsights) #function created below for storing the details of listing and sending to javascript
-
       #passing the data to journey controller
       @origin = params[:start]
       @destination = params[:end]
-
     end
   end
 

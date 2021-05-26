@@ -15,14 +15,15 @@ class JourneysController < ApplicationController
   def show
     @journey = Journey.find(params[:id])
     start_end(@journey.origin, @journey.destination)
-    listing_markers(@journey.listings) # arrange selected markers according to proximity to origin
+    listing_markers(@journey.listings)
   end
 
   def create
     @journey = Journey.new(journey_params)
     @journey.user = current_user
-    @journey.listings = Listing.where(id: params[:listing_ids]).near(@start, 20)
     start_end(params[:journey][:origin], params[:journey][:destination])
+    @journey.listings = Listing.where(id: params[:listing_ids]).near(@start, 20)
+    
     listing_coords = @journey.listings.map do |listing|
       ["#{listing.longitude},#{listing.latitude};"]
     end
@@ -70,6 +71,13 @@ class JourneysController < ApplicationController
     authorize @journey
   end
 
+  def route_email
+    @journey = Journey.find(params[:id])
+    JourneyMailer.with(journey: @journey).route_email.deliver_now
+    redirect_to journey_path(@journey)
+    flash[:notice] = "Journey emailed!"
+  end
+
  private
 
   def start_end(origin, destination)
@@ -94,8 +102,8 @@ class JourneysController < ApplicationController
   end
 
   def listing_eats_sights
-    @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
-    @listingsights = Listing.where(category: Category.first).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
+    @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).near(@start)
+    @listingsights = Listing.where(category: Category.first).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).near(@start)
   end
 
   def check_journey_valid
@@ -138,18 +146,10 @@ class JourneysController < ApplicationController
       reverse_decoded_waypoints = decoded_waypoints.map do |coord|
         coord.reverse
       end
-      # select waypoints in intervals
-      n = (reverse_decoded_waypoints.count / 10 )
-      select_waypoints = []
-      select_waypoints << reverse_decoded_waypoints.first
-      (n-1).step(reverse_decoded_waypoints.size - 1, n).each do |i|
-        select_waypoints << reverse_decoded_waypoints[i]
-      end
-      select_waypoints << reverse_decoded_waypoints.last
       
     # obtain screenshot url
     @url_params = [
-      'https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/',
+      'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/',
       'pin-s+6aec84',
       '(',
       @start[1],
@@ -164,7 +164,8 @@ class JourneysController < ApplicationController
       @end[0],
       ')',
       ',',
-      "path-5+f44-0.5(#{FastPolylines.encode(select_waypoints)})",
+      "path-5+5E2BFF-0.7(#{CGI.escape FastPolylines.encode(reverse_decoded_waypoints)})",
+      # change image resolution here 500x300
       '/auto/500x300?',
       "access_token=#{ENV['MAPBOX_API_KEY']}"
     ]
