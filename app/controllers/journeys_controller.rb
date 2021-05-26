@@ -15,7 +15,7 @@ class JourneysController < ApplicationController
   def show
     @journey = Journey.find(params[:id])
     start_end(@journey.origin, @journey.destination)
-    listing_markers(Listing.where(id: @journey.listings).near(@start, 20)) # arrange selected markers according to proximity to origin
+    listing_markers(@journey.listings) # arrange selected markers according to proximity to origin
   end
 
   def create
@@ -40,7 +40,7 @@ class JourneysController < ApplicationController
     listing_eats_sights #function created below for storing the eats and sights
     markers = @listingeats + @listingsights
     #function created below for storing the details of listing and sending to javascript
-    listing_markers(Listing.where(id: markers).near(@start, 20)) # arrange selected markers according to proximity to origin
+    listing_markers(Listing.where(id: markers)) # arrange selected markers according to proximity to origin
     authorize @journey
   end
 
@@ -117,9 +117,9 @@ class JourneysController < ApplicationController
   end
 
   def screenshot(listing_coords)
-    #obtain turn by turn coordinates for screenshot
+    # obtain turn by turn coordinates from mapbox
     url_search_params = [
-      'https://api.mapbox.com/directions/v5/mapbox/cycling/',
+      'https://api.mapbox.com/optimized-trips/v1/mapbox/cycling/',
       @start[1],
       ',',
       @start[0],
@@ -128,13 +128,13 @@ class JourneysController < ApplicationController
       @end[1],
       ',',
       @end[0],
-      "?steps=true&geometries=geojson&access_token=#{ENV['MAPBOX_API_KEY']}",
+      "?source=first&destination=last&roundtrip=false&steps=true&geometries=geojson&access_token=#{ENV['MAPBOX_API_KEY']}",
       ]
-      # send get request to mapbox to obtain step by step waypoints
+      # parse the json from mapbox
       url_search = url_search_params.join("")
       raw_json = open(url_search).read
       parsed_json = JSON.parse(raw_json)
-      decoded_waypoints = parsed_json['routes'].first['geometry']['coordinates']
+      decoded_waypoints = parsed_json['trips'].first['geometry']['coordinates']
       reverse_decoded_waypoints = decoded_waypoints.map do |coord|
         coord.reverse
       end
@@ -146,6 +146,7 @@ class JourneysController < ApplicationController
         select_waypoints << reverse_decoded_waypoints[i]
       end
       select_waypoints << reverse_decoded_waypoints.last
+      
     # obtain screenshot url
     @url_params = [
       'https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/',
