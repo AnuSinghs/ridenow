@@ -45,8 +45,8 @@ const initMapboxJourney = () => {
     });
 
     // set the bounds of the map
-    var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
-    map.setMaxBounds(mapBoundary);
+    // var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
+    // map.setMaxBounds(mapBoundary);
 
     // add start and end markers for listing index page
     const start = JSON.parse(mapElement.dataset.start);
@@ -119,13 +119,13 @@ const initMapboxJourney = () => {
     // Create a function to make a directions request
     const getRoute = () => {
       // make a directions request using cycling profile
-      let url = 'https://api.mapbox.com/directions/v5/mapbox/cycling/' + origin[0] + ',' + origin[1] + ';'+ listings.join('') + destination[0] + ',' + destination[1] + '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+      let url = 'https://api.mapbox.com/optimized-trips/v1/mapbox/cycling/' + origin[0] + ',' + origin[1] + ';'+ listings.join('') + destination[0] + ',' + destination[1] + '?source=first&destination=last&roundtrip=false&steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
       // make an XHR request https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
       let req = new XMLHttpRequest();
       req.open('GET', url, true);
       req.onload = function() {
         let json = JSON.parse(req.response);
-        let data = json.routes[0];
+        let data = json.trips[0];
         let route = data.geometry.coordinates;
         let geojson = {
           type: 'Feature',

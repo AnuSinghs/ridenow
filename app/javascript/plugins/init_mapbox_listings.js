@@ -44,8 +44,8 @@ const initMapboxListings = () => {
     });
 
     // set the bounds of the map
-    var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
-    map.setMaxBounds(mapBoundary);
+    // var mapBoundary = [[103.560, 1.215], [104.072, 1.487]];
+    // map.setMaxBounds(mapBoundary);
     // add start and end markers
     const start = JSON.parse(mapElement.dataset.start);
     const end = JSON.parse(mapElement.dataset.end);
