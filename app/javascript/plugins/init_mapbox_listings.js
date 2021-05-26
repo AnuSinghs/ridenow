@@ -7,6 +7,7 @@ const fitMapToMarkers = (map, fitPoints) => {
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 5000 });
 };
 
+const mapListingMarkers = {};
 const openInfoWindow = (mapListingMarkers) => {
   //Select all cards
   const cards = document.querySelectorAll('.route-tile');
@@ -28,6 +29,19 @@ const toggleCardHighlighting = (event) => {
   const card = document.querySelector(`[data-listing-id="${event.currentTarget.dataset.markerId}"]`);
   // Toggle the class "highlight" to the card
   card.classList.toggle("highlight");
+  mapListingMarkers["listing-" + event.currentTarget.dataset.markerId].togglePopup()
+};
+
+const toggleCardScroll = (event) => {
+  // Select the card corresponding to the marker's id
+  const card = document.querySelector(`[data-listing-id="${event.currentTarget.dataset.markerId}"]`);
+  // Toggle the class "highlight" to the card
+  window.scroll({
+    behavior: 'smooth',
+    left: 0,
+    top: card.offsetTop - 400
+  });
+  mapListingMarkers["listing-" + event.currentTarget.dataset.markerId].togglePopup()
 };
 
 const initMapboxListings = () => {
@@ -78,7 +92,6 @@ const initMapboxListings = () => {
         .addTo(map);
 
     // Store map markers in an array
-    const mapListingMarkers = {};
     listingMarkers.forEach((ele) => {
       const element = document.createElement('div');
       element.className = 'marker';
@@ -103,10 +116,10 @@ const initMapboxListings = () => {
       newListingMarker.getElement().addEventListener('mouseenter', (e) => toggleCardHighlighting(e));
       // Put a mic on listening for a mouseleave event
       newListingMarker.getElement().addEventListener('mouseleave', (e) => toggleCardHighlighting(e));
-
-      newListingMarker.getElement().addEventListener('mouseleave', (e) => mapListingMarkers[e.currentTarget.id]());
-
+      // Put a mic on listening for a click
+      newListingMarker.getElement().addEventListener('click', (e) => toggleCardScroll(e));
     });
+
     map.on('load', () => {
       map.resize();
       fitMapToMarkers(map, fitPoints);

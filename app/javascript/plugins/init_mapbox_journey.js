@@ -6,6 +6,8 @@ const fitMapToMarkers = (map, fitPoints) => {
   fitPoints.forEach(point => bounds.extend([ point[1], point[0] ]));
   map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 5000 });
 };
+// Store map markers in an object
+const mapListingMarkers = {};
 
 const openInfoWindow = (mapListingMarkers) => {
   //Select all cards
@@ -24,10 +26,23 @@ const openInfoWindow = (mapListingMarkers) => {
 };
 
 const toggleCardHighlighting = (event) => {
+  // // Select the card corresponding to the marker's id
+  // const card = document.querySelector(`[data-listing-id="${event.currentTarget.dataset.markerId}"]`);
+  // // Toggle the class "highlight" to the card
+  // card.classList.toggle("highlight");
+  mapListingMarkers["listing-" + event.currentTarget.dataset.markerId].togglePopup()
+};
+
+const openPopup = (event) => {
   // Select the card corresponding to the marker's id
-  const card = document.querySelector(`[data-listing-id="${event.currentTarget.dataset.markerId}"]`);
-  // Toggle the class "highlight" to the card
-  card.classList.toggle("highlight");
+  // const card = document.querySelector(`[data-listing-id="${event.currentTarget.dataset.markerId}"]`);
+  // // Toggle the class "highlight" to the card
+  // window.scroll({
+  //   behavior: 'smooth',
+  //   left: 0,
+  //   top: card.offsetTop - 400
+  // });
+  mapListingMarkers["listing-" + event.currentTarget.dataset.markerId].togglePopup()
 };
 
 const initMapboxJourney = () => {
@@ -85,8 +100,7 @@ const initMapboxJourney = () => {
         .addTo(map);
       destination.push(end[1], end[0])
 
-    // Store map markers in an object
-    const mapListingMarkers = {};
+
     // Store map markers coordinates in an array
     const listings = [];
     listingMarkers.forEach((ele) => {
@@ -114,6 +128,8 @@ const initMapboxJourney = () => {
       newListingMarker.getElement().addEventListener('mouseenter', (e) => toggleCardHighlighting(e));
       // Put a mic on listening for a mouseleave event
       newListingMarker.getElement().addEventListener('mouseleave', (e) => toggleCardHighlighting(e));
+      // Put a mic on listening for a click
+      newListingMarker.getElement().addEventListener('click', (e) => openPopup(e));
     });
 
     // Create a function to make a directions request
@@ -188,7 +204,7 @@ const initMapboxJourney = () => {
       // Add starting point to the map
       map.addLayer({
         id: 'start',
-        type: 'symbol: https://cdn2.iconfinder.com/data/icons/pins-3-1/24/style-three-pin-cicyling--bike-style-map-cycle-gps-cyclist-path-three-person-pin-human-cicyling-maps-navigation-512.png',
+        type: 'circle',
         source: {
           type: 'geojson',
           data: {
@@ -210,7 +226,7 @@ const initMapboxJourney = () => {
       // Add end point to the map
         map.addLayer({
           id: 'end',
-          type: 'symbol: https://cdn1.iconfinder.com/data/icons/vote-reward-9/24/race_flag_mark_state_wind-512.png',
+          type: 'circle',
           source: {
             type: 'geojson',
             data: {
