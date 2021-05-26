@@ -101,9 +101,13 @@ class JourneysController < ApplicationController
     end
   end
 
-  def listing_eats_sights
-    @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).near(@start).by_tag_eats(params[:tag_eats])
-    @listingsights = Listing.where(category: Category.first).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).near(@start).by_tag_sights(params[:tag_sights])
+ def listing_eats_sights
+    center = Geocoder::Calculations.geographic_center([@start, @end])
+    distance= Geocoder::Calculations.distance_between(@start, @end)
+    box = Geocoder::Calculations.bounding_box(center, (distance/1.9))
+
+    @listingeats = Listing.where(category: Category.last).within_bounding_box(box).by_tag_eats(params[:tag_eats])
+    @listingsights = Listing.where(category: Category.first).within_bounding_box(box).by_tag_sights(params[:tag_sights])
   end
 
   def check_journey_valid
