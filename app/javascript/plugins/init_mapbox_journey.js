@@ -233,12 +233,13 @@ const initMapboxJourney = () => {
 
 
     });
-
-    fitMapToMarkers(map, fitPoints);
-    // Give the array of listingMarker to a new function called "openInfoWindow"
-    openInfoWindow(mapListingMarkers);
-
-  }
+    map.on('load', () => {
+      map.resize();
+      fitMapToMarkers(map, fitPoints);
+      // Give the array of listingMarker to a new function called "openInfoWindow"
+      openInfoWindow(mapListingMarkers);
+    });
+    }
 };
 
 export default initMapboxJourney;
