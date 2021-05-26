@@ -7,9 +7,13 @@
 </head>
 <body>
 
-  <p>
-  Hello <%= @journey.user.username %>,
-  Enjoy your journey!
+  <p>Hello <%= @journey.user.username %>,</p>
+
+  <h3>Enjoy your journey!</h3>
+  <img src="<%= @journey.route_url %>">
+
+
+
 
 
 </p>

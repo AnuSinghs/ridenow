@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 
   <div class="row">
 
@@ -143,7 +143,7 @@
      </div>
 
       <%= form_with url: "/listings", method: :get, local: true, class: 'simple_form search' do |form| %>
-        <%= form.select :tag_eats, ["Bakeries", "Fastfood", "Restaurants", "Beverages", "Cafés", "Supermarkets" ], prompt: "Select Tag For Eats" %>
+        <%= form.select :tag_eats, ["Bakeries", "Fastfood", "Restaurants", "Beverages", "Cafés", "Supermarkets", "Hawkers" ], prompt: "Select Tag For Eats" %>
         <%= form.select :tag_sights, ["Monuments", "Museums", "Parks"], prompt: "Select Tag For Sights" %>
         <%= form.hidden_field :start, value: params[:start]%>
         <%= form.hidden_field :end, value: params[:end] %>
