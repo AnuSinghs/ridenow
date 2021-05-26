@@ -15,14 +15,14 @@ class JourneysController < ApplicationController
   def show
     @journey = Journey.find(params[:id])
     start_end(@journey.origin, @journey.destination)
-    listing_markers(@journey.listings) # arrange selected markers according to proximity to origin
+    listing_markers(@journey.listings)
   end
 
   def create
     @journey = Journey.new(journey_params)
     @journey.user = current_user
-    @journey.listings = Listing.where(id: params[:listing_ids]).near(@start, 20)
     start_end(params[:journey][:origin], params[:journey][:destination])
+    @journey.listings = Listing.where(id: params[:listing_ids]).near(@start, 20)
     listing_coords = @journey.listings.map do |listing|
       ["#{listing.longitude},#{listing.latitude};"]
     end

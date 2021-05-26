@@ -2,18 +2,15 @@ class ListingsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @listings = Listing.all
-    @categories = Category.all
-    @journey = Journey.new
-
     if params[:start].titleize == params[:end].titleize
       flash[:notice] = "Error with Origin/Destination!"
       redirect_to root_path
     else
+      @categories = Category.all
+      @journey = Journey.new
       start_end #function created below for finding the coords for start and end
       listing_eats_sights #function created below for storing the eats and sights
       listing_markers(@listingeats, @listingsights) #function created below for storing the details of listing and sending to javascript
-
       #passing the data to journey controller
       @origin = params[:start]
       @destination = params[:end]
@@ -54,7 +51,7 @@ class ListingsController < ApplicationController
 end
 
   def listing_eats_sights
-    @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
-    @listingsights = Listing.where(category: Category.first).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1])
+    @listingeats = Listing.where(category: Category.last).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).near(@start)
+    @listingsights = Listing.where(category: Category.first).by_latitude(@start[0], @end[0]).by_longitude(@start[1], @end[1]).near(@start)
   end
 end
