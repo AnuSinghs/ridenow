@@ -103,11 +103,16 @@ const initMapboxListings = () => {
       newListingMarker.getElement().addEventListener('mouseenter', (e) => toggleCardHighlighting(e));
       // Put a mic on listening for a mouseleave event
       newListingMarker.getElement().addEventListener('mouseleave', (e) => toggleCardHighlighting(e));
-    });
 
-    fitMapToMarkers(map, fitPoints);
-    // Give the array of listingMarker to a new function called "openInfoWindow"
-    openInfoWindow(mapListingMarkers);
+      newListingMarker.getElement().addEventListener('mouseleave', (e) => mapListingMarkers[e.currentTarget.id]());
+
+    });
+    map.on('load', () => {
+      map.resize();
+      fitMapToMarkers(map, fitPoints);
+      // Give the array of listingMarker to a new function called "openInfoWindow"
+      openInfoWindow(mapListingMarkers);
+    });
   }
 };
 
