@@ -70,6 +70,13 @@ class JourneysController < ApplicationController
     authorize @journey
   end
 
+  def route_email
+    @journey = Journey.find(params[:id])
+    JourneyMailer.with(journey: @journey).route_email.deliver_now
+    redirect_to journey_path(@journey)
+    flash[:notice] = "Journey emailed!"
+  end
+
  private
 
   def start_end(origin, destination)
@@ -146,7 +153,7 @@ class JourneysController < ApplicationController
         select_waypoints << reverse_decoded_waypoints[i]
       end
       select_waypoints << reverse_decoded_waypoints.last
-      
+
     # obtain screenshot url
     @url_params = [
       'https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/',
