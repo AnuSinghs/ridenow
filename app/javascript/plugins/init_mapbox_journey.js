@@ -187,8 +187,8 @@ const initMapboxJourney = () => {
 
       // Add starting point to the map
       map.addLayer({
-        id: 'point',
-        type: 'circle',
+        id: 'start',
+        type: 'symbol: https://cdn2.iconfinder.com/data/icons/pins-3-1/24/style-three-pin-cicyling--bike-style-map-cycle-gps-cyclist-path-three-person-pin-human-cicyling-maps-navigation-512.png',
         source: {
           type: 'geojson',
           data: {
@@ -209,8 +209,8 @@ const initMapboxJourney = () => {
       });
       // Add end point to the map
         map.addLayer({
-          id: 'Point',
-          type: 'circle',
+          id: 'end',
+          type: 'symbol: https://cdn1.iconfinder.com/data/icons/vote-reward-9/24/race_flag_mark_state_wind-512.png',
           source: {
             type: 'geojson',
             data: {
