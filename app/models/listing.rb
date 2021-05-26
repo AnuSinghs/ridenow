@@ -26,4 +26,13 @@ class Listing < ApplicationRecord
       where("longitude >= ?", "#{longitude_end}").where("longitude <= ?", "#{longitude_start}") if longitude_start.present?
     end
   end
+
+  scope :by_tag_eats, ->(tag_eats) do
+    joins(:tags).where(tags: {name: tag_eats} ) if tag_eats.present?
+  end
+
+   scope :by_tag_sights, ->(tag_sights) do
+    joins(:tags).where(tags: {name: tag_sights} ) if tag_sights.present?
+  end
+
 end
