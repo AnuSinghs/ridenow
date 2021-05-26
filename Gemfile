@@ -69,3 +69,6 @@ gem 'pundit'
 
 gem "fast-polylines", "~> 2.0.0"
 
+gem 'letter_opener', group: :development
+
+gem 'dotenv-rails', groups: [:development, :test]

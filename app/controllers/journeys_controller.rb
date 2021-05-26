@@ -57,7 +57,15 @@ class JourneysController < ApplicationController
     check_journey_valid
     authorize @journey
   end
+
+  def route_email
+    @journey = Journey.find(params[:id])
+       JourneyMailer.with(journey: @journey).route_email.deliver_now
+  end
+
  private
+
+
 
   def start_end(origin, destination)
     start_location = Geocoder.search("#{origin},Singapore")
