@@ -17,18 +17,16 @@ puts 'destroy old data'
   Tag.destroy_all
   Category.destroy_all
 
- # 3.times do
- #  user = User.new(
- #    username: Faker::Name.unique.name,
- #    email: Faker::Internet.email,
- #    address:Faker::Address.full_address,
- #    password:Faker::Alphanumeric.alphanumeric(number: 8)
- #   )
- #   puts "creating user: #{user.username}"
- #   fileav = URI.open(Faker::Avatar.image)
- #   user.avatar.attach(io: fileav, filename: "#{user.username}.png", content_type: 'image/png')
- #   user.save!
- # end
+   user = User.new(
+     username: iambatman,
+     email: iambatman@joker.com,
+     address: doyoubleed,
+     password:Faker::Alphanumeric.alphanumeric(number: 8)
+    )
+     puts "creating user: #{user.username}"
+     fileav = URI.open(Faker::Avatar.image)
+     user.avatar.attach(io: fileav, filename: "#{user.username}.png", content_type: 'image/png')
+     user.save!
 
 Category.create(name: "Sights")
 Category.create(name: "Eats")
@@ -42,6 +40,7 @@ Tag.create(name: "Restaurants")
 Tag.create(name: "Beverages")
 Tag.create(name: "Cafés")
 Tag.create(name: "Supermarkets")
+Tag.create(name: "Hawkers")
 
 
 
