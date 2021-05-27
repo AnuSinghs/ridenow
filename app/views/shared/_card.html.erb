@@ -1,13 +1,8 @@
-  <div class="card-group">
-    <div class="col-xl-12">
-      <h5>Some of our popular routes
-        <small><em><%= link_to "(see all)", journeys_path %></em></small>
-      </h5>
-    </div>
+
 
     <!-- LIST ALL PUBLIC ROUTES - PRIVACY FALSE -->
 
-    <% @journeys.where(privacy: false).limit(10).each do |listing| %>
+    <% @journeys.where(privacy: false).limit(12).each do |listing| %>
 
     <div class="col-lg-2">
       <div class="card">
@@ -34,4 +29,3 @@
     </div>
 
     <% end %>
-  </div>

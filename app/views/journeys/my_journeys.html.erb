@@ -1,14 +1,11 @@
-<div class="row">
- <h3 style="margin-left: 15px; margin-top: 20px">My journeys</h3>
-
- <div class="card-group" style="margin-top: 20px">
-
-  <!-- LIST ALL PUBLIC ROUTES - PRIVACY FALSE -->
+<div class="card-group">
+  <div class="col-xl-12">
+    <h5>Your journeys</h5>
+  </div>
   <% @journeys.each do |listing| %>
-
-  <div class="col-lg-3">
-    <div class="card" style="margin-bottom: 7px">
-      <img class="card-img-top" src="https://source.unsplash.com/1600x900/?<% listing.destination %>,city,singapore">
+  <div class="col-lg-2">
+    <div class="card">
+      <img class="card-img-top" src="<%=listing.route_url%>">
       <div class="card-body">
         <h6 class="card-title">
           <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %>
@@ -20,23 +17,18 @@
       </div>
       <div class="card-footer">
         <small>
-          <p>
-            <% if listing.privacy == true %>
-            Private route
-
-            <% else %>
-            Visible to public
-            <% end %>
-          </br>
-
-            <%= link_to "see route", "/journeys/#{listing.id}}" %>
-          </p>
-        </small>
-      </div>
+          <% if listing.privacy == true %>
+          Private route
+          <% else %>
+          Visible to public
+          <% end %>
+        </br>
+        <%= link_to "see route", "/journeys/#{listing.id}}" %>
+      </small>
     </div>
   </div>
-  <% end %>
-
+</div>
+<% end %>
 </div>
 
 
