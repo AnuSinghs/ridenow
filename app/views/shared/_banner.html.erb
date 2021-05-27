@@ -2,18 +2,30 @@
 <div class="row justify-content-center">
   <div class="col-xl-12">
 
-    <div id="Welcome" class="tabcontent" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),
-    url(https://i.ibb.co/n0C45Mv/kharl-anthony-paica-Bb-Aepbli-Gpw-unsplash.jpg)">
-    <h1>Explore Singapore on bicycle</h1>
-    <p>Discover the sights and eats of Singapore.</p>
+    <% if user_signed_in? %>
 
-    <div class="btn btn-success">
-      <a href="/users/sign_up">Signup for free</a>
+      <div id="Welcome" class="tabcontent" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),
+        url(https://images.unsplash.com/photo-1585658771091-319073dc8714?ixlib=rb-1.2.1&ixid=MnwxM[…]90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1368&q=80)">
+        <h1>Welcome Back <%= current_user.username%></h1>
+        <p> Time to discover the sights and eats of Singapore.</p>
+          <div class="btn btn-success">
+            <a href="/my-journeys">All My Routes</a>
+          </div>
+      </div>
+
+    <% else %>
+
+    <div id="Welcome" class="tabcontent" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),
+      url(https://images.unsplash.com/photo-1585658771091-319073dc8714?ixlib=rb-1.2.1&ixid=MnwxM[…]90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1368&q=80)">
+      <h1>Explore Singapore on bicycle</h1>
+      <p>Discover the sights and eats of Singapore.</p>
+        <div class="btn btn-success">
+          <a href="/users/sign_up">Signup for free</a>
+        </div>
     </div>
 
-
+    <% end %>
   </div>
-</div>
 </div>
 
 <!-- BANNER TABS x 4 -->
