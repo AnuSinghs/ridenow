@@ -14,6 +14,7 @@ class ListingsController < ApplicationController
       #passing the data to journey controller
       @origin = params[:start]
       @destination = params[:end]
+      flash[:notice] = "Select listings to create your itinerary!"
     end
   end
 
