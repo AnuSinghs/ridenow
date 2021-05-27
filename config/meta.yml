@@ -1,0 +1,6 @@
+
+meta_product_name: "RideNow"
+meta_title: "RideNow - cycling route planner for Singapore"
+meta_description: "Find the perfect cycling route to explore Singapore's sights and eats."
+meta_image: "logo.png" # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards
