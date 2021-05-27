@@ -1,0 +1,19 @@
+.tile-tag {
+  font-size: 12px;
+  font-weight: lighter;
+  background-color: grey;
+  opacity: 0.7;
+  padding: 1px;
+  margin-bottom: 10px;
+  margin-top: 6px;
+}
+
+.btn.tile-tag:hover {
+    color: inherit;
+  text-decoration: inherit;
+  &:link,
+  &:hover {
+    color: inherit;
+    text-decoration: inherit;
+  }
+}

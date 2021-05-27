@@ -4,6 +4,7 @@ require 'fast_polylines'
 require 'geocoder'
 
 class JourneysController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   def my_journeys
     @journeys = Journey.where(user: current_user)
   end
@@ -76,7 +77,7 @@ class JourneysController < ApplicationController
     @journey.destroy
     redirect_to my_journeys_path
   end
-  
+
 
   def route_email
     @journey = Journey.find(params[:id])
