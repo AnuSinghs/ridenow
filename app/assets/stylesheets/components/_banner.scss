@@ -1,22 +1,24 @@
-_.banner {
+.banner {
   background-size: cover;
   background-position: center;
   padding: 150px 0;
+  height: 400px;
+  overflow: hidden;
 }
 
 .banner h1 {
   margin: 0;
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
+  font-size: 40px;
   font-weight: bold;
   text-align: center;
 }
 
 .banner p {
-  font-size: 20px;
+  font-size: 24px;
   color: white;
-  opacity: .7;
+  opacity: .9;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   text-align: center;
 }
