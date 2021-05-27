@@ -3,6 +3,7 @@
   opacity: 0.8;
   border: none;
   background-color: grey;
+  font-size: 12px;
 }
 
 .form-popup {
@@ -13,10 +14,13 @@
   color: grey;
   padding: 5px;
   opacity: 0.9;
+  font-size: 12px;
 }
 
 .form-popup .btn {
   color: grey;
+  padding: 0px;
+  font-size: 12px;
 }
 
 .btn:hover {

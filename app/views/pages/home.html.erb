@@ -1,4 +1,13 @@
 <%= render 'shared/banner' %>
 <%= render 'shared/value-prop-under-banner' %>
-<%= render 'shared/card' %>
+
+<div class="card-group">
+  <div class="col-xl-12">
+    <h5>Some of our popular routes
+      <small><em><%= link_to "(see all)", journeys_path %></em></small>
+    </h5>
+  </div>
+  <%= render "shared/card" %>
+</div>
+
 <%= render 'shared/editorial' %>
