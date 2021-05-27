@@ -18,49 +18,65 @@
   width: 101%;
   max-width: 400px;
   display: flex;
-  align-content: stretch;
+  align-items: flex;
   margin: 1% auto;
  }
 
 .card.valueprop h5, .card.valueprop p, .container-fluid-valuepropbox h3 {
   text-align: center;
-  margin: 2%;
+  margin: 3%;
 }
 
 // For route cards
-.card-group-landing h3 {
-  display: block;
+.container-landing {
+  padding: 10px;
   margin: auto;
-  width: 100%;
-  text-align: center;
-  margin: 2%;
-}
-.card-img-landing {
-  width: 100%;
   display: flex;
-  margin: auto;
-  align-items: stretch;
+  align-items: flex-start;
+  max-height: 500px;
 }
 
 .card-landing {
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 8px;
-  height: 220px;
-  width: 100%;
+  height: 30%;
+  margin: 1%;
+  width: 40%;
+  margin: 2%;
  }
 
-
-.card-title {
-  position: relative;
-  padding: 0px;
-  margin: 0px;
+.card-group-landing h3 {
+  display: block;
+  margin: auto;
+  width: 100%;
+  text-align: center;
 }
 
-.card-avatar {
-  position: absolute;
-  top: 45px;
-  right: 5px;
+.card-title-landing {
+  position: relative;
+  padding: 0px;
+  margin: 2%;
+  text-align: center;
+}
+
+.card-avatar-landing  {
+  position: relative;
+  top: -115px;
+  right: -270px;
+  border-radius: 1px;
+  width: 20%
+}
+
+.card-img-landing {
+  width: 100%;
+  margin: auto;
+}
+
+.card-body-landing {
+  display: flex;
+  justify-content: space-between;
+  margin: 2%;
 }
 
 .card-landing .btn {
@@ -70,7 +86,8 @@
 
 .card-landing .btn a {
   color:white;
-  margin-left: 30%;
+  margin-left: 40%;
+  text-decoration: none;
 }
 
 
@@ -113,14 +130,14 @@
   width: 31%;
   border-radius: 15px;
   box-shadow: 2px 2px #40484E;
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://source.unsplash.com/1080x720/?bakery,singapore");
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://images.unsplash.com/photo-1619521495806-7b8367a1e79f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=360&h=150");
 }
 
  .editorial .item:nth-child(2) {
   display: flex;
   align-items: stretch;
   height: 450px;
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://source.unsplash.com/900x600/?cafe,market,singapore");
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1596718522181-2dbaaf2e8a69?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=370&q=100");
   border-radius: 15px;
   width: 31%;
   box-shadow: 2px 2px #40484E;
@@ -128,7 +145,7 @@
 
 .editorial .item:nth-child(3) {
   height: 650px;
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://source.unsplash.com/1080x720/?Singapore,hawker");
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1496136998968-81293d01179b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&&w=300&h=700");
   border-radius: 15px;
   width: 31%;
   display: flex;
@@ -136,8 +153,8 @@
 }
 
 .editorial .item:nth-child(4) {
-  height: 420px;
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://source.unsplash.com/900x600/?cycle,singapore");
+  height: 400px;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1517458047551-6766fa5a9362?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80");
   border-radius: 15px;
   width: 31%;
   display: flex;
@@ -145,8 +162,8 @@
 }
 
 .editorial .item:nth-child(5) {
-  height: 180px;
-  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://source.unsplash.com/900x600/?singapore,cafe");
+  height: 200px;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1602251627070-6a9bab4e420e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=350&q=60");
   border-radius: 15px;
   width: 31%;
   display: flex;
