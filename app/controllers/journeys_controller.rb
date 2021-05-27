@@ -71,6 +71,13 @@ class JourneysController < ApplicationController
     authorize @journey
   end
 
+  def destroy
+    @journey = Journey.find(params[:id])
+    @journey.destroy
+    redirect_to my_journeys_path
+  end
+  
+
   def route_email
     @journey = Journey.find(params[:id])
     JourneyMailer.with(journey: @journey).route_email.deliver_now

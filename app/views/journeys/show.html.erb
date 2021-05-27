@@ -76,7 +76,11 @@
  <% if policy(@journey).update? %>
   <div class="row">
     <div class="col-lg-12" style="text-align: right; margin-top: 40px">
-      <%= link_to "Edit Journey", edit_journey_path(@journey)%>
+      <%= link_to "", edit_journey_path(@journey), class: 'fas fa-edit' %>
+      <%= link_to "",
+            journey_path(@journey),
+            method: :delete,
+            data: { confirm: "Are you sure?" }, class:"fa fa-trash" %>
     </div>
   </div>
   <% end %>

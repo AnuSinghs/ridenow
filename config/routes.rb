@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   devise_for :users
   resources :listings, only: [ :index ]
-  resources :journeys, only: [ :index, :show, :create, :edit, :update] do
+  resources :journeys, only: [ :index, :show, :create, :edit, :update, :destroy] do
     member do
       get :route_email
     end
