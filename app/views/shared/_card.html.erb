@@ -1,50 +1,37 @@
-<div class="row">
+  <div class="card-group">
+    <div class="col-xl-12">
+      <h5>Some of our popular routes
+        <small><em><%= link_to "(see all)", journeys_path %></em></small>
+      </h5>
+    </div>
 
-  <div class="col-lg-12" style="margin-top: 20px">
-    <h5>Our routes</h5>
-  </div>
+    <!-- LIST ALL PUBLIC ROUTES - PRIVACY FALSE -->
 
+    <% @journeys.where(privacy: false).limit(10).each do |listing| %>
 
- <div class="card-group" style="margin-top: 20px">
-
-  <!-- LIST ALL PUBLIC ROUTES - PRIVACY FALSE -->
-
-  <% @journeys.where(privacy: false).each do |listing| %>
-
-  <div class="col-lg-3">
-    <div class="card" style="margin-bottom: 7px">
-      <img class="card-img-top" src="<%=listing.route_url%>">
-      <div class="card-body">
-        <h6 class="card-title">
-          <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %>
-
-        </h6>
-        <p>
-          From: <%= listing.origin %> </br>
-          To: <%= listing.destination %>
-        </p>
-        <div class="card-text">
-          <% user = User.find(listing.user_id)%>
-           <%= render "shared/user-avatar", user: user %>
-
+    <div class="col-lg-2">
+      <div class="card">
+        <img class="card-img-top" src="<%=listing.route_url%>">
+        <div class="card-body">
+          <h6 class="card-title">
+            <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %>
+          </h6>
+          <p>
+            From: <%= listing.origin %> </br>
+            To: <%= listing.destination %>
+          </p>
+          <div class="card-avatar">
+            <% user = User.find(listing.user_id)%>
+            <%= render "shared/user-avatar", user: user %>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small>
+            <%= link_to "see route", "/journeys/#{listing.id}}" %>
+          </small>
         </div>
       </div>
-      <div class="card-footer">
-        <small>
-          <%= link_to "see route", "/journeys/#{listing.id}}" %>
-        </small>
-
-      </div>
     </div>
+
+    <% end %>
   </div>
-
-
-  <% end %>
-
-</div>
-
-
-
-
-</div>
-

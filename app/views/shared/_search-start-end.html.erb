@@ -1,0 +1,19 @@
+<button class="open-form btn-flat" onclick="openForm()"> Start New Journey </button>
+
+<form class="form-popup" id="myForm" action="/listings">
+  <label for="start">Start</label>
+  <input type="text" id="start" name="start" required minlength="3"></input>
+  <label for="end">End</label>
+  <input type="text" id="end" name="end" required minlength="3"></input>
+  <button class="btn my-2 my-sm-0" type="submit">Let's go!</button>
+  <button type="submit" class="btn" onclick="closeForm()">Close</button>
+</form>
+
+<script>
+  function openForm() {
+    document.getElementById("myForm").style.display = "block";
+  }
+  function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+  }
+</script>

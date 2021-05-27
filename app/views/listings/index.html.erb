@@ -1,15 +1,9 @@
 <div class="container-fluid">
 
   <div class="row">
-
-    <!--  LEFT PANEL #1 EATS -->
-
-    <div class="col-lg-3">
+    <div class="col-lg-2">
       <%= simple_form_for(@journey) do |f| %>
-
-      <!-- EATS TITLE -->
-
-      <div class="row">
+     <div class="row">
         <div class="col-lg-12">
           <h3 style="padding-left: 15px; padding-top: 15px">Eats</h3>
         </div>
@@ -21,24 +15,24 @@
 
         <div class="routes-grid">
           <% if @listingeats.size == 0 %>
-          <div class="col-lg-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
+          <div class="col-lg-12">
             <h5>No listings available</h5>
             <h5>Try again!</h5>
           </div>
           <%else%>
 
           <% @listingeats.each_with_index do |listing, index| %>
-          <div id="listing-<%=listing.id%>" class="route-tile" style="background-color:#ffddc6; padding:5px; margin: 7px" data-listing-id="<%=listing.id%>">
+          <div id="listing-<%=listing.id%>" class="route-tile listings" style="" data-listing-id="<%=listing.id%>">
             <div class="route-tile-media">
-              <%= render "shared/listing-image", listing: listing %>
+              <%=  %>
             </div>
             <div class="route-tile-info">
               <h6 class="card-title" style="margin-top:5px"><strong><%= listing.name%></strong></h6>
               <div class="card-text">
                 <small>
                   <%= listing.address %></br>
-                  Rating: <%= listing.rating%></br>
-                  <div class="btn" style="font-size: 10px; background-color: #A9A9A9; color: white; padding: 2px">
+
+                  <div class="tags">
                     <%= listing.tags.map(&:name).join(',') %>
                   </div>
                 </div>
@@ -58,7 +52,7 @@
 
     <!-- MIDDLE PANEL #2 SIGHTS -->
 
-    <div class="col-lg-3">
+    <div class="col-lg-2">
 
       <!-- SIGHTS TITLE   -->
 
@@ -111,7 +105,7 @@
 
     <!-- RIGHT PANEL #3 MAP -->
 
-    <div class="col-lg-6">
+    <div class="col-lg-8">
 
       <!-- FORM SUBMIT   -->
 

@@ -19,9 +19,10 @@
 
 .tabcontent {
   background-size: cover;
-  height: 600px;
+  height: 480px;
   background-position: center;
-  padding: 70px 0;
+  text-align: center;
+
 }
 
 .tabcontent h1 {
@@ -31,7 +32,7 @@
   font-size: 40px;
   font-weight: bold;
   text-align: center;
-  padding-top: 140px;
+  padding-top: 100px;
 }
 
 .tabcontent p {
@@ -43,11 +44,9 @@
 }
 
 .tabcontent a {
-  display: flex;
-  width: 50%;
-  background-color: white;
-  color: black;
-  opacity: 50%;
+  color: white;
+  opacity: 90%;
   justify-content: center;
+  text-decoration: none;
 }
 
