@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index]
+  skip_before_action :authenticate_user!, only: [:index, :editorial]
 
   def index
     @categories = Category.all
@@ -59,4 +59,5 @@ end
     @listingeats = Listing.where(category: Category.last).within_bounding_box(box).by_tag_eats(params[:tag_eats]).near(@start)
     @listingsights = Listing.where(category: Category.first).within_bounding_box(box).by_tag_sights(params[:tag_sights]).near(@start)
   end
+
 end
