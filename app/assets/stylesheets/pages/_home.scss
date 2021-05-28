@@ -64,7 +64,7 @@
 .card-avatar-landing  {
   position: relative;
   top: -65px;
-  border-radius: 50%;
+  right: -5px;
 }
 
 .card-img-landing {
@@ -114,10 +114,15 @@
   text-align: center;
 }
 
+
 .editorial h3 {
   margin: 2%;
 }
 
+.editorial h5 a {
+  color: white;
+  text-decoration: none;
+}
 .editorial .container {
   padding: 10px;
   max-width: 1200px;
