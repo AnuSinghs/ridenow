@@ -5,21 +5,21 @@
 
     <!-- LIST ALL PUBLIC ROUTES - PRIVACY FALSE -->
  <div class="container-landing">
-    <% @journeys.where(privacy: false).limit(10).each do |listing| %>
+    <% @journeys.where(privacy: false).limit(10).each do |journey| %>
       <div class="card-landing">
-        <img class="card-img-landing" src="<%=listing.route_url%>">
+        <img class="card-img-landing" src="<%=journey.route_url%>">
            <div class="card-avatar-landing">
-              <% user = User.find(listing.user_id)%>
+              <% user = User.find(journey.user_id)%>
               <%= render "shared/user-avatar", user: user %>
             </div>
             <h6 class="card-title-landing">
-              <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %>
+              <%= link_to "#{journey.name}", journey %>
             </h6>
             <div class="card-body-landing">
-              <small>From: <%= listing.origin %> </small>
-              <small>To: <%= listing.destination %></small>
+              <small>From: <%= journey.origin %> </small>
+              <small>To: <%= journey.destination %></small>
             </div>
-          <div class="btn btn-success"><%= link_to "see route", "/journeys/#{listing.id}}" %></div>
+          <div class="btn btn-success"><%= link_to "see route", journey %></div>
       </div>
     <% end %>
   </div>
