@@ -66,7 +66,7 @@ class JourneysController < ApplicationController
         redirect_to edit_journey_path(@journey)
       end
     else
-      flash[:notice] = "Enter Your Journey's Name"
+      flash.now[:notice] = "Enter Your Journey's Name"
       redirect_to edit_journey_path(@journey)
     end
     authorize @journey
@@ -83,7 +83,7 @@ class JourneysController < ApplicationController
     @journey = Journey.find(params[:id])
     JourneyMailer.with(journey: @journey).route_email.deliver_now
     redirect_to journey_path(@journey)
-    flash[:notice] = "Journey emailed!"
+    flash.now[:notice] = "Journey emailed!"
   end
 
  private
@@ -123,11 +123,11 @@ class JourneysController < ApplicationController
       if @journey.save
         redirect_to journey_path(@journey)
       else
-        flash[:notice] = "Error in saving the Journey"
+        flash.now[:notice] = "Error in saving the Journey"
         redirect_to listings_path
       end
     else
-      flash[:notice] = "Enter Your Journey's Name"
+      flash.now[:notice] = "Enter Your Journey's Name"
       redirect_to listings_path
     end
   end
@@ -177,8 +177,8 @@ class JourneysController < ApplicationController
       ')',
       ',',
       "path-5+5E2BFF-0.7(#{CGI.escape FastPolylines.encode(reverse_decoded_waypoints)})",
-      # change image resolution here 500x300
-      '/auto/500x300?',
+      # change image resolution here 1200x630
+      '/auto/1200x630?',
       "access_token=#{ENV['MAPBOX_API_KEY']}"
     ]
   end
