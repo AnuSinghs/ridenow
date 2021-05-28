@@ -1,7 +1,21 @@
+.col-lg-4 {
+ padding-left: 30px;
+}
+
+.col-lg-8 {
+  padding-left: 40px;
+}
+
 .journey-create-name {
   font-size: 25px;
   font-weight: bold;
   margin-top: 19px;
+}
+
+.journey-create-name-edit {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 35px;
 }
 
 .filter-parent {
@@ -23,3 +37,17 @@
   display: none;
 }
 
+h3 img {
+  height: 30px;
+}
+
+.sticky .col-lg-12 {
+  padding: 0px;
+}
+
+.badge-success {
+  background-color: #59E8A2;
+  color: black;
+  text-align: center;
+  font-size: 12px;
+}

@@ -16,8 +16,10 @@
   color: white;
   padding: 8px 24px;
   border-radius: 40px;
-  background: $green;
+  background: $gray;
   transition: background 0.3s ease;
+  position:relative;
+  left: 25px;
 }
 
 .btn-flat:hover {

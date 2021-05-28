@@ -5,6 +5,13 @@
   width: 95%;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  margin-bottom: 20px;
+}
+
+.routes-grid {
+  flex-grow: 1;
+  max-width: 370px;
+  margin: auto;
 }
 
 .route-tile-info {
@@ -15,4 +22,8 @@
   height: 38px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.routes-grid h5 {
+  text-align: center;
 }
