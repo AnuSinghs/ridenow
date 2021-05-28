@@ -36,3 +36,54 @@
   padding-bottom: 2px;
   padding-left: 15px;
 }
+<<<<<<< HEAD
+=======
+
+.card.valueprop {
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 50px;
+  opacity: 0.9;
+  height: 80px;
+ }
+
+.card.valueprop h5 {
+ width: 80%;
+}
+
+.card-group.editorial {
+  background-color: #404850;
+}
+
+.card.editorial {
+  height: 90%;
+  border-radius: 15px;
+}
+
+.card.editorial .card-avatar {
+  position: absolute;
+  top: 160px;
+}
+
+.card-small {
+  background-color: white;
+  height: 120px;
+  max-width: 250px;
+  padding: 15px;
+  margin-top: 7px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-title h6 {
+  font-size: 16px;
+  margin: 0px;
+  padding: 0px;
+ }
+
+ .card-small-text {
+  margin-left: 10px;
+  margin-right: 10px;
+  line-height: 80%;
+ }
+>>>>>>> master
