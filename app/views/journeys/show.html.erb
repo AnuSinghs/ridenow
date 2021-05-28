@@ -6,11 +6,15 @@
 
   <div class="col-xl-4">
 
-    <div class="row" style="padding-left: 20px">
+    <div class="row" style="padding-left: 10px; padding-right: 10px">
       <div class="col-xl-8">
-        <h5><%= @journey.name  %></h5>
-        <p>From: <%= @journey.origin %></br>
-         To: <%= @journey.destination %></p>
+
+        <div class="container">
+          <h5><%= @journey.name  %></h5>
+          <p>From: <%= @journey.origin %></br>
+           To: <%= @journey.destination %></p>
+         </div>
+
        </div>
        <div class="col-xl-4 avatar">
         <div class="avatar">
@@ -26,12 +30,12 @@
 
     <div class="container">
       <div class="row g-0">
-      <div class="col-xl-6">
-        <div class="text-center">
-          <h6>Eats</h6>
-        </div>
-        <div class="d-flex flex-column align-items-center">
-          <% @journey.listings.where(category: Category.last).each do |listing| %>
+        <div class="col-xl-6">
+          <div class="text-center">
+            <h6>Eats</h6>
+          </div>
+          <div class="d-flex flex-column align-items-center">
+            <% @journey.listings.where(category: Category.last).each do |listing| %>
             <div class="card-small d-flex flex-column justify-content-between">
               <div class="card-title">
                 <h6><strong><%= listing.name%></strong></h6>
@@ -47,16 +51,16 @@
                 </small>
               </div>
             </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
-      </div>
-      <div class="col-xl-6">
-        <div class="text-center">
-          <h6>Sights</h6>
-        </div>
-        <div class="d-flex flex-column align-items-center">
-          <% @journey.listings.where(category: Category.first).each do |listing| %>
-           <div class="card-small d-flex flex-column justify-content-between">
+        <div class="col-xl-6">
+          <div class="text-center">
+            <h6>Sights</h6>
+          </div>
+          <div class="d-flex flex-column align-items-center">
+            <% @journey.listings.where(category: Category.first).each do |listing| %>
+            <div class="card-small d-flex flex-column justify-content-between">
               <div class="card-title">
                 <h6><strong><%= listing.name%></strong></h6>
               </div>
@@ -71,45 +75,45 @@
                 </small>
               </div>
             </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <div class="row icons">
+      <div class="col-xl-9">
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0" nonce="NXLjCoj3"></script>
+        <div class="fb-share-button" data-href="https://ridenowrightnow.herokuapp.com/journeys/<%= @journey.id %>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fridenowrightnow.herokuapp.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+      </div>
+      <div class="col-xl-3 icons">
+        <% if user_signed_in? %>
+        <%= link_to "", route_email_journey_path, class: 'fas fa-envelope' %>
+        <% end %>
+        <% if policy(@journey).update? %>
+        <%= link_to "", edit_journey_path(@journey), class: 'fas fa-edit' %>
+        <%= link_to "",
+        journey_path(@journey),
+        method: :delete,
+        data: { confirm: "Are you sure?" }, class:"fa fa-trash" %>
+        <% end %>
       </div>
     </div>
   </div>
 
-  <div class="row icons">
-    <div class="col-xl-9">
-      <div id="fb-root"></div>
-      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v10.0" nonce="NXLjCoj3"></script>
-      <div class="fb-share-button" data-href="https://ridenowrightnow.herokuapp.com/journeys/<%= @journey.id %>" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fridenowrightnow.herokuapp.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+  <div class="col-xl-8">
+    <div class="mapbox">
+      <div id="map-journey"
+      style="width: 100%; height: 800px; position:sticky"
+      data-start="<%= @start.to_json %>"
+      data-end="<%= @end.to_json %>"
+      data-fitpoints="<%= @fit_points.to_json %>"
+      data-listingmarkers="<%= @listing_markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-    <div class="col-xl-3 icons">
-      <% if user_signed_in? %>
-      <%= link_to "", route_email_journey_path, class: 'fas fa-envelope' %>
-      <% end %>
-      <% if policy(@journey).update? %>
-      <%= link_to "", edit_journey_path(@journey), class: 'fas fa-edit' %>
-      <%= link_to "",
-      journey_path(@journey),
-      method: :delete,
-      data: { confirm: "Are you sure?" }, class:"fa fa-trash" %>
-      <% end %>
-    </div>
+    <div id="instructions"></div>
   </div>
-</div>
-
-<div class="col-xl-8">
-  <div class="mapbox">
-    <div id="map-journey"
-    style="width: 100%; height: 800px; position:sticky"
-    data-start="<%= @start.to_json %>"
-    data-end="<%= @end.to_json %>"
-    data-fitpoints="<%= @fit_points.to_json %>"
-    data-listingmarkers="<%= @listing_markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
-  <div id="instructions"></div>
-</div>
 </div>
 
 </div>
