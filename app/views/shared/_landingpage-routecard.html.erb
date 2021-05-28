@@ -1,11 +1,10 @@
 <div class="card-group">
-  <div class="col-xl-12">
       <h3>Our Popular Routes<small><em><%= link_to "(see all)", journeys_path %></em></small></h3>
   </div>
 
     <!-- LIST ALL PUBLIC ROUTES - PRIVACY FALSE -->
  <div class="container-landing">
-    <% @journeys.where(privacy: false).limit(10).each do |journey| %>
+    <% @journeys.where(privacy: false).limit(5).each do |journey| %>
       <div class="card-landing">
         <img class="card-img-landing" src="<%=journey.route_url%>">
            <div class="card-avatar-landing">
@@ -16,11 +15,11 @@
               <%= link_to "#{journey.name}", journey %>
             </h6>
             <div class="card-body-landing">
-              <small>From: <%= journey.origin %> </small>
-              <small>To: <%= journey.destination %></small>
+              <small>From: <%= journey.origin.titleize %> </small>
+              <small>To: <%= journey.destination.titleize %></small>
             </div>
           <div class="btn btn-success"><%= link_to "see route", journey %></div>
       </div>
     <% end %>
   </div>
-</div>
+

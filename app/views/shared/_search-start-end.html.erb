@@ -1,18 +1,18 @@
-<div class="text-right filter-parent">
-    <button class="open-form btn-flat" data-toggle="collapse" data-target="#collapseDropDownSearch">Start New Journey</button>
-</div>
-      <div class="collapse-search" id="collapseDropDownSearch">
+<div class="container-search">
+  <div class="text-right filter-parent">
+    <button class="btn btn-flat" data-toggle="collapse" data-target="#collapseDropDownSearch">Start New Journey</button>
+  </div>
+      <div class="collapse" id="collapseDropDownSearch">
         <div class="card-search" id = "drop-down-filtersearch">
-        <%= form_with url: "/listings", method: :get, local: true, class: 'simple_form search drop-down-form' do |form| %>
-          <div class="form-group-search">
-            <label for="start">Start</label>
-            <%= form.text_field :start, id: "start", name: "start", required: 3%>
-          </div>
-          <div class="form-group-search">
-            <label for="end">End</label>
-            <%= form.text_field :end, id: "end", name: "end", required: 3 %>
-          </div>
-          <button type="submit" class="btn btn-success">Submit</button>
-        <% end %>
+          <%= form_with url: "/listings", method: :get, local: true, class: 'simple_form search drop-down-form' do |form| %>
+            <div class="search-input">
+              <label for="start">Start</label>
+              <%= form.text_field :start, id: "start", name: "start", required: 3%>
+              <label for="end">End</label>
+              <%= form.text_field :end, id: "end", name: "end", required: 3 %>
+              <button type="submit" class="btn btn-ghost"><i class="fas fa-search"></i></button>
+             </div>
+          <% end %>
         </div>
       </div>
+    </div>
