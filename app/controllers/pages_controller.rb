@@ -4,4 +4,8 @@ class PagesController < ApplicationController
   def home
     @journeys = Journey.all
   end
+
+  def editorial
+  end
+
 end

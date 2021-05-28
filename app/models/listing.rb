@@ -35,4 +35,8 @@ class Listing < ApplicationRecord
     joins(:tags).where(tags: {name: tag_sights} ) if tag_sights.present?
   end
 
+  scope :by_tag_eats, ->(tag_hawkers) do
+    joins(:tags).where(tags: {name: tag_hawkers} ) if tag_hawkers.present?
+  end
+
 end
