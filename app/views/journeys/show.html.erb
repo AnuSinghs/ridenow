@@ -1,6 +1,6 @@
 <% content_for :meta_title, "Check out cycling route #{@journey.name} on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, "Discover sights and eats from #{@journey.origin} to #{@journey.destination}!" %>
-<% content_for :meta_image, cl_image_path(@journey.route_url) %>
+<% content_for :meta_image, @journey.route_url %>
 
 <div class="row">
 
