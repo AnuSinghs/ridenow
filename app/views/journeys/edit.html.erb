@@ -1,48 +1,65 @@
 <div class="container-fluid journey-edit">
   <div class="row">
-    <div class="col-lg-3">
-      <div class="row">
-        <div class="col-lg-12">
-          <h3 style="padding-left: 15px; padding-top: 15px">Eats</h3>
+    <div class="col-lg-4">
+      <div class="d-flex justify-content-around mt-3">
+        <h3>Eats</h3>
+        <h3>Sights</h3>
+      </div>
+      <div class="text-right filter-parent">
+        <button class="btn btn-filter filter" data-toggle="collapse" data-target="#collapseDropDown">
+          <i class="fas fa-sliders-h"></i>
+        </button>
+      </div>
+      <div class="collapse" id="collapseDropDown">
+        <div class="card card-body" id = "drop-down-filter">
+        <%= form_with url: "/listings", method: :get, local: true, class: 'simple_form search drop-down-form' do |form| %>
+          <div class="form-group">
+            <label for="eat-tags">Select your tag for Eats</label>
+            <%= form.select :tag_eats, ["Bakeries", "Fastfood", "Restaurants", "Beverages", "Cafés", "Supermarkets", "Hawkers" ], {:include_blank => 'All'}, class: "form-control", id: "eat-tags", prompt: "All" %>
+          </div>
+          <div class="form-group">
+            <label for="sight-tags">Select your tag Sights</label>
+            <%= form.select :tag_sights, ["Monuments", "Museums", "Parks"], {:include_blank => 'All'}, class: "form-control", id: "sight-tags" %>
+          </div>
+          <%= form.hidden_field :start, value: params[:start]%>
+          <%= form.hidden_field :end, value: params[:end] %>
+          <button type="submit" class="btn btn-block btn-success mb-0">Submit</button>
+        <% end %>          
         </div>
       </div>
-      <div class="row" style="margin-left: 1px; margin-right:1px">
-        <div class="routes-grid">
-          <% if @listingeats.size == 0 %>
-          <div class="col-lg-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
-            <h5>No listings available</h5>
-            <h5>Try again!</h5>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="routes-grid">
+              <% if @listingeats.size == 0 %>
+                <h5>No listings available</h5>
+                <h5>Try again!</h5>
+              <% else %>
+                <%= render @listingeats %>
+              <% end %>
+            </div>
           </div>
-          <% end %>
-
-          <%= render @listingeats %>
+        </div>
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="routes-grid">
+              <% if @listingsights.size == 0 %>
+                <h5>No listings available</h5>
+                <h5>Try again!</h5>
+              <% else %>
+                <%= render @listingsights %>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-3">
-      <div class="row">
-        <div class="col-lg-12">
-          <h3 style="padding-left: 15px; padding-top: 15px">Sights</h3>
-        </div>
-      </div>
-      <div class="row" style="margin-left: 1px; margin-right:1px">
-        <div class="routes-grid">
-          <% if @listingsights.size == 0 %>
-          <div class="col-lg-12" style="display: block; color: #F0F0F0; text-align: center; padding: 100px">
-            <h5>No listings available</h5>
-            <h5>Try again!</h5>
-          </div>
-          <% end %>
-          <%= render @listingsights %>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-6">
+    <div class="col-lg-8">
       <div class="sticky">
         <div class="row" style="align-items: center">
           <div class="col-lg-12">
             <%= simple_form_for @journey do |f| %>
-              <%= f.input :name, value: @name, required: :true %>
+              <%= f.input :name, label: "Name Your Journey", label_html: { class: 'journey-create-name' }, required: :true %>
               <%= f.association :listings, as: :check_boxes %>
               <small>
                 <%= f.input :privacy, label: 'Visible to public',
@@ -50,21 +67,10 @@
               </small>
               <%= f.hidden_field :origin, value: @journey.origin %>
               <%= f.hidden_field :destination, value: @journey.destination %>
-              <%= f.submit "Submit!", class: "btn btn-primary btn-block" %>
+              <%= f.submit "Submit!", class: "btn btn-success btn-block" %>
             <% end %>
           </div>
         </div>
-
-        <%= form_with url: "/listings", method: :get, local: true, class: 'simple_form search' do |form| %>
-        <%= form.select :tag_eats, ["Bakeries", "Fastfood", "Restaurants", "Beverages", "Cafés", "Supermarkets", "Hawkers" ], prompt: "Select Tag For Eats" %>
-        <%= form.select :tag_sights, ["Monuments", "Museums", "Parks"], prompt: "Select Tag For Sights" %>
-        <%= form.hidden_field :start, value: params[:start]%>
-        <%= form.hidden_field :end, value: params[:end] %>
-          <button name="button" type="submit" class="search_icon">
-          <i class="fas fa-search"></i></button>
-        <% end %>
-
-
         <div class="row">
           <%= render 'shared/map',
               start: @start,
