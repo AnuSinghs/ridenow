@@ -1,3 +1,7 @@
+<% content_for :meta_title, "Check out cycling route #{@journey.name} on #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, "Discover sights and eats from #{@journey.origin} to #{@journey.destination}!" %>
+<% content_for :meta_image, cl_image_path(@journey.route_url) %>
+
 <div class="row">
 
   <div class="col-xl-4">
@@ -24,34 +28,42 @@
       <div class="row g-0">
       <div class="col-xl-6">
         <h6>Eats</h6>
-        <% @journey.listings.where(category_id: 2).each do |listing| %>
-        <div class="card-small">
-          <div class="card-small-title">
-            <h6><strong><%= listing.name%></strong></h6>
-          </div>
-          <div class="card-small-text">
-            <small><%= listing.address %></small></br>
-            <div class="btn tile-tag">
-              <%= listing.tags.map(&:name).join(',') %>
+        <% @journey.listings.where(category: Category.last).each do |listing| %>
+          <div class="card-small d-flex flex-column justify-content-between">
+            <div class="card-title">
+              <h6><strong><%= listing.name%></strong></h6>
+            </div>
+            <div class="card-text d-flex flex-column">
+              <small>
+                <%= listing.address %> 
+              </small>
+            </div>
+            <div class="badge badge-pill badge-success">
+              <small>
+                <%= listing.tags.map(&:name).join('') %>
+              </small>
             </div>
           </div>
-        </div>
         <% end %>
       </div>
       <div class="col-xl-6">
         <h6>Sights</h6>
-        <% @journey.listings.where(category_id: 1).each do |listing| %>
-        <div class="card-small">
-          <div class="card-small-title">
-            <h6><strong><%= listing.name%></strong></h6>
-          </div>
-          <div class="card-small-text">
-            <small><%= listing.address %></small></br>
-            <div class="btn tile-tag">
-              <%= listing.tags.map(&:name).join(',') %>
+        <% @journey.listings.where(category: Category.first).each do |listing| %>
+         <div class="card-small d-flex flex-column justify-content-between">
+            <div class="card-title">
+              <h6><strong><%= listing.name%></strong></h6>
+            </div>
+            <div class="card-text d-flex flex-column">
+              <small>
+                <%= listing.address %> 
+              </small>
+            </div>
+            <div class="badge badge-pill badge-success">
+              <small>
+                <%= listing.tags.map(&:name).join('') %>
+              </small>
             </div>
           </div>
-        </div>
         <% end %>
       </div>
     </div>
