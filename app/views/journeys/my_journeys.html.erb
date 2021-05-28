@@ -3,28 +3,34 @@
     <h3>Your Journeys</h3>
   </div>
 
+  <div class="container-landing">
+    <% if @journeys.size == 0 %>
+    <h5>Awww... Snap! You've yet to create any journey</h5>
 
-<div class="container-landing">
-  <% @journeys.each do |listing| %>
+
+    <% else %>
+
+    <% @journeys.each do |listing| %>
     <div class="card-landing">
       <img class="card-img-landing" src="<%=listing.route_url%>">
-        <h6 class="card-title-landing">
-          <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %></h6>
-          <div class="card-body-landing">
-            <small>From: <%= listing.origin %> </small>
-            <small>To: <%= listing.destination %></small>
-          </div>
-          <div class="card-footer-landing">
-           <small>
-            <% if listing.privacy == true %>
-              Private route
-            <% else %>
-              Visible to public
-            <% end %></br>
-            </small>
-            </div>
-            <div class="btn btn-success"><%= link_to "see route", "/journeys/#{listing.id}}" %></div>
+      <h6 class="card-title-landing">
+        <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %></h6>
+        <div class="card-body-landing">
+          <small>From: <%= listing.origin %> </small>
+          <small>To: <%= listing.destination %></small>
         </div>
+        <div class="card-footer-landing">
+         <small>
+          <% if listing.privacy == true %>
+          Private route
+          <% else %>
+          Visible to public
+          <% end %></br>
+        </small>
+      </div>
+      <div class="btn btn-success"><%= link_to "see route", "/journeys/#{listing.id}}" %></div>
+    </div>
+    <% end %>
     <% end %>
   </div>
 </div>
