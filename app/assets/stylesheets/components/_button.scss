@@ -18,6 +18,8 @@
   border-radius: 40px;
   background: $gray;
   transition: background 0.3s ease;
+  position:relative;
+  left: 25px;
 }
 
 .btn-flat:hover {
