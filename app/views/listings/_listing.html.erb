@@ -15,10 +15,17 @@
             <%= listing.tags.map(&:name).join('') %>
           </div>
         </small>
-        <div class="form-check">
-          Select <%= check_box_tag 'listing_ids[]', listing.id %>
+        <div class="form-check" style="text-align: right">
+          Select
+          <%=
+            check_box_tag "listing_ids-#{listing.id}",
+            listing.id,
+            @journey.listings.include?(listing),
+            class: 'listing-select'
+          %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
