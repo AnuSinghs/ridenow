@@ -1,0 +1,26 @@
+<div class="card-group">
+  <div class="col-xl-12">
+      <h3>Our Popular Routes<small><em><%= link_to "(see all)", journeys_path %></em></small></h3>
+  </div>
+
+    <!-- LIST ALL PUBLIC ROUTES - PRIVACY FALSE -->
+ <div class="container-landing">
+    <% @journeys.where(privacy: false).limit(10).each do |listing| %>
+      <div class="card-landing">
+        <img class="card-img-landing" src="<%=listing.route_url%>">
+           <div class="card-avatar-landing">
+              <% user = User.find(listing.user_id)%>
+              <%= render "shared/user-avatar", user: user %>
+            </div>
+            <h6 class="card-title-landing">
+              <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %>
+            </h6>
+            <div class="card-body-landing">
+              <small>From: <%= listing.origin %> </small>
+              <small>To: <%= listing.destination %></small>
+            </div>
+          <div class="btn btn-success"><%= link_to "see route", "/journeys/#{listing.id}}" %></div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -5,7 +5,7 @@ class ListingsController < ApplicationController
     @categories = Category.all
     @journey = Journey.new
     if params[:start].titleize == params[:end].titleize
-      flash[:notice] = "Error with Origin/Destination!"
+      flash.now[:notice] = "Error with Origin/Destination!"
       redirect_to root_path
     else
       start_end #function created below for finding the coords for start and end
@@ -14,7 +14,7 @@ class ListingsController < ApplicationController
       #passing the data to journey controller
       @origin = params[:start]
       @destination = params[:end]
-      flash[:notice] = "Select listings to create your itinerary!"
+      flash.now[:notice] = "Select listings to create your itinerary!"
     end
   end
 

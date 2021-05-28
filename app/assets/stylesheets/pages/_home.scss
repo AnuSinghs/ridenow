@@ -1,1 +1,181 @@
 // Specific CSS for your home-page
+
+// For Value Props
+.image-value-prop {
+  width: 20%;
+  display:block;
+  margin-left: 40%;
+  margin-top: 10%;
+  margin-bottom: 3%;
+}
+
+.card.valueprop {
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 50px;
+  opacity: 0.9;
+  height:150px auto;
+  width: 101%;
+  max-width: 400px;
+  display: flex;
+  align-items: stretch;
+  margin: 2%;
+ }
+
+.card.valueprop h5, .card.valueprop p, .container-fluid-valuepropbox h3 {
+  text-align: center;
+  margin: 3%;
+}
+
+// For route cards
+.container-landing {
+  padding: 10px;
+  margin: auto;
+  display: flex;
+  justify-content: flex-start;
+  max-height: 500px;
+}
+
+.card-landing {
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 8px;
+  height: 25%;
+  margin: 1%;
+  width: 45%;
+  margin: 2%;
+  max-width: 500px;
+ }
+
+.card-group-landing h3, .col-xl-12 h3 {
+  display: block;
+  margin: 1% auto;
+  width: 100%;
+  text-align: center;
+}
+
+.card-title-landing {
+  position: relative;
+  padding: 0px;
+  margin: 1%;
+  text-align: center;
+}
+
+.card-avatar-landing  {
+  position: relative;
+  top: -65px;
+  border-radius: 50%;
+}
+
+.card-img-landing {
+  width: 100%;
+  margin: auto;
+  max-height: 300px;
+  max-width: 400px;
+}
+
+.card-body-landing {
+  display: flex;
+  justify-content: space-between;
+  margin: 2%;
+}
+
+.card-landing .btn {
+  display: flex;
+  align-items: stretch;
+}
+
+.card-landing .btn a {
+  color:white;
+  margin-left: 40%;
+  text-decoration: none;
+}
+
+.card-footer-landing
+{
+  display: flex;
+  justify-content: space-between;
+  margin: 2%;
+}
+
+
+// For editorial
+
+.card-group.editorial {
+  background-color: #40484E;
+}
+
+
+ .editorial h5, .editorial h3 {
+  display: block;
+  margin: auto;
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+
+.editorial h3 {
+  margin: 2%;
+}
+
+.editorial .container {
+  padding: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 700px;
+  display: flex;
+  flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
+  justify-content: center;
+  color: white;
+  text-align: center;
+}
+
+.editorial .item {
+  display: flex;
+  align-items: stretch;
+  margin: 1%;
+  height: 150px;
+  width: 31%;
+  border-radius: 15px;
+  box-shadow: 2px 2px #40484E;
+  background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("https://images.unsplash.com/photo-1619521495806-7b8367a1e79f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=360&h=150");
+}
+
+ .editorial .item:nth-child(2) {
+  display: flex;
+  align-items: stretch;
+  height: 450px;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1596718522181-2dbaaf2e8a69?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=370&q=100");
+  border-radius: 15px;
+  width: 31%;
+  box-shadow: 2px 2px #40484E;
+}
+
+.editorial .item:nth-child(3) {
+  height: 650px;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1496136998968-81293d01179b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&&w=300&h=700");
+  border-radius: 15px;
+  width: 31%;
+  display: flex;
+  align-items: stretch;
+}
+
+.editorial .item:nth-child(4) {
+  height: 400px;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1517458047551-6766fa5a9362?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80");
+  border-radius: 15px;
+  width: 31%;
+  display: flex;
+  align-items: stretch;
+}
+
+.editorial .item:nth-child(5) {
+  height: 200px;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url("https://images.unsplash.com/photo-1602251627070-6a9bab4e420e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=350&q=60");
+  border-radius: 15px;
+  width: 31%;
+  display: flex;
+  align-items: stretch;
+}
+
+

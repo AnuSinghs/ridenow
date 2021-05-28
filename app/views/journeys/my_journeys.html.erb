@@ -1,36 +1,32 @@
 <div class="card-group">
   <div class="col-xl-12">
-    <h5>Your journeys</h5>
+    <h3>Your Journeys</h3>
   </div>
+
+
+<div class="container-landing">
   <% @journeys.each do |listing| %>
-  <div class="col-lg-2">
-    <div class="card">
-      <img class="card-img-top" src="<%=listing.route_url%>">
-      <div class="card-body">
-        <h6 class="card-title">
-          <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %>
-        </h6>
-        <p>
-          From: <%= listing.origin %> </br>
-          To: <%= listing.destination %>
-        </p>
-      </div>
-      <div class="card-footer">
-        <small>
-          <% if listing.privacy == true %>
-          Private route
-          <% else %>
-          Visible to public
-          <% end %>
-        </br>
-        <%= link_to "see route", "/journeys/#{listing.id}}" %>
-      </small>
-    </div>
+    <div class="card-landing">
+      <img class="card-img-landing" src="<%=listing.route_url%>">
+        <h6 class="card-title-landing">
+          <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %></h6>
+          <div class="card-body-landing">
+            <small>From: <%= listing.origin %> </small>
+            <small>To: <%= listing.destination %></small>
+          </div>
+          <div class="card-footer-landing">
+           <small>
+            <% if listing.privacy == true %>
+              Private route
+            <% else %>
+              Visible to public
+            <% end %></br>
+            </small>
+            </div>
+            <div class="btn btn-success"><%= link_to "see route", "/journeys/#{listing.id}}" %></div>
+        </div>
+    <% end %>
   </div>
 </div>
-<% end %>
 </div>
-
-
-
 
