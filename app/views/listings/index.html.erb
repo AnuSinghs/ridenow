@@ -23,7 +23,7 @@
           </div>
           <%= form.hidden_field :start, value: params[:start]%>
           <%= form.hidden_field :end, value: params[:end] %>
-          <button type="submit" class="btn btn-block btn-primary mb-0">Submit</button>
+          <button type="submit" class="btn btn-block btn-success mb-0">Submit</button>
         <% end %>          
         </div>
       </div>
@@ -50,8 +50,8 @@
           <div class="row">
             <div class="routes-grid">
               <% if @listingsights.size == 0 %>
-                  <h5>No listings available</h5>
-                  <h5>Try again!</h5>
+                <h5>No listings available</h5>
+                <h5>Try again!</h5>
               <%else%>
                 <% @listingsights.each do |listing| %>
                   <%= render "/shared/route_tile", listing: listing %>
@@ -62,14 +62,14 @@
         </div>
       </div>
     </div>
-    <!-- RIGHT PANEL #3 MAP -->
     <div class="col-lg-8">
       <!-- FORM SUBMIT   -->
       <div class="sticky mt-3">
         <!-- FORM INPUT - JOURNEY NAME -->
         <%= f.input :name, label: "Name Your Journey", label_html: { class: 'journey-create-name' }, required: :true %>
-        <%= f.label "visible to public" %>
-        <%= f.input_field :privacy, as: :boolean, checked_value: false, unchecked_value: true %>
+        <small>
+          <%= f.input :privacy, label: 'Visible to public',
+          checked_value: false, unchecked_value: true %>
         </small>
         <%= f.hidden_field :origin, value: @origin %>
         <%= f.hidden_field :destination, value: @destination %>

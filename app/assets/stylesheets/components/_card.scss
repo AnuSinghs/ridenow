@@ -36,14 +36,21 @@
   padding-bottom: 2px;
   padding-left: 15px;
 }
+
 .card-small {
   background-color: white;
   height: 120px;
+  width: 95%;
   max-width: 250px;
   padding: 15px;
   margin-top: 7px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.listings-edit{
+  display: flex;
+  justify-content: center;
 }
 
 .card-title h6 {
