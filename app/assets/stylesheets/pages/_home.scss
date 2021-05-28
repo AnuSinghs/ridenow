@@ -18,8 +18,8 @@
   width: 101%;
   max-width: 400px;
   display: flex;
-  align-items: flex;
-  margin: 1% auto;
+  align-items: stretch;
+  margin: 2%;
  }
 
 .card.valueprop h5, .card.valueprop p, .container-fluid-valuepropbox h3 {
@@ -32,7 +32,7 @@
   padding: 10px;
   margin: auto;
   display: flex;
-  align-items: flex-start;
+  justify-content: flex-start;
   max-height: 500px;
 }
 
@@ -40,15 +40,16 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 8px;
-  height: 30%;
+  height: 25%;
   margin: 1%;
-  width: 40%;
+  width: 45%;
   margin: 2%;
+  max-width: 500px;
  }
 
-.card-group-landing h3 {
+.card-group-landing h3, .col-xl-12 h3 {
   display: block;
-  margin: auto;
+  margin: 1% auto;
   width: 100%;
   text-align: center;
 }
@@ -56,21 +57,21 @@
 .card-title-landing {
   position: relative;
   padding: 0px;
-  margin: 2%;
+  margin: 1%;
   text-align: center;
 }
 
 .card-avatar-landing  {
   position: relative;
-  top: -115px;
-  right: -270px;
-  border-radius: 1px;
-  width: 20%
+  top: -65px;
+  border-radius: 50%;
 }
 
 .card-img-landing {
   width: 100%;
   margin: auto;
+  max-height: 300px;
+  max-width: 400px;
 }
 
 .card-body-landing {
@@ -88,6 +89,13 @@
   color:white;
   margin-left: 40%;
   text-decoration: none;
+}
+
+.card-footer-landing
+{
+  display: flex;
+  justify-content: space-between;
+  margin: 2%;
 }
 
 
@@ -169,3 +177,5 @@
   display: flex;
   align-items: stretch;
 }
+
+
