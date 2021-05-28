@@ -11,33 +11,26 @@
   width: 60px;
 }
 
-.form-group-search {
-  display: inline-block;
+.text-right {
+  display: flex;
+  justify-content: center;
 }
 
 .card-search {
   margin-top: 20px;
 }
 
-.collapse-search {
-  max-height: 70px;
-  max-width: 550px;
-  border-radius: 2%;
+.container-search {
+  display: flex;
+  flex-direction: column;
 }
 
-.form-group-search > label, .form-group-search >input  {
+.search-input> label, .search-input>input  {
   color: gray;
-  padding: 3px;
   opacity: 0.9;
-  font-size: 15px;
+  font-size: 17px;
 }
 
-.form-group-search >input {
-    margin-right: 10px;
-}
-
-.form-group-search.btn {
-   padding: 5px;
-   padding-right: 5px;
-   padding-left: 5px;
+.search-input >input {
+  margin-right:10px;
 }

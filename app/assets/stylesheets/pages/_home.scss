@@ -5,7 +5,7 @@
   width: 20%;
   display:block;
   margin-left: 40%;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-bottom: 3%;
 }
 
@@ -14,12 +14,12 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 50px;
   opacity: 0.9;
-  height: auto;
+  height: 300px;
   width: 101%;
   max-width: 600px;
   display: flex;
-  align-items: stretch;
-  margin: 3%;
+  justify-content: center;
+  margin: 4%;
  }
 
 .card.valueprop h5, .card.valueprop p, .container-fluid-valuepropbox h3 {
@@ -32,22 +32,22 @@
   padding: 10px;
   margin: auto;
   display: flex;
-  justify-content: flex-start;
-  max-height: 500px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card-landing {
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 8px;
-  height: 25%;
+  height: 30%;
   margin: 1%;
   width: 45%;
   margin: 2%;
-  max-width: 600px;
+  max-width: 300px;
  }
 
-.card-group-landing h3, .col-xl-12 h3 {
+.card-group-landing h3, .card-group h3 {
   display: block;
   margin: 1% auto;
   width: 100%;
