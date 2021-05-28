@@ -177,7 +177,6 @@ class JourneysController < ApplicationController
       ')',
       ',',
       "path-5+5E2BFF-0.7(#{CGI.escape FastPolylines.encode(reverse_decoded_waypoints)})",
-      # change image resolution here 1200x630
       '/auto/1200x630?',
       "access_token=#{ENV['MAPBOX_API_KEY']}"
     ]
