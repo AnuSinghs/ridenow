@@ -1,0 +1,24 @@
+ <div id="listing-<%=listing.id%>" class="route-tile" data-listing-id="<%=listing.id%>">
+  <div class="route-tile-info d-flex flex-column justify-content-between">
+    <div class="card-title">
+      <h6>
+        <strong><%= listing.name%></strong>
+      </h6>
+    </div>
+    <div class="card-text ">
+      <small>
+        <%= listing.address %>
+      </small>
+      <div class="d-flex justify-content-between">
+        <small>
+          <div class="badge badge-pill badge-success">
+            <%= listing.tags.map(&:name).join('') %>
+          </div>
+        </small>
+        <div class="form-check">
+          Select <%= check_box_tag 'listing_ids[]', listing.id %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

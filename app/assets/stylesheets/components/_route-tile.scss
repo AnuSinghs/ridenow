@@ -1,14 +1,18 @@
-.route-tile-media {
-  position: relative;
+.route-tile {
+  padding: 15px;
+  background-color: white;
+  height: 140px;
+  width: 95%;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-.route-tile-info .form-check {
-  position: absolute;
-  top: 100px;
-  padding: 5px;
+.route-tile-info {
+  height: 100%;
 }
 
-.scroll {
-  overflow-x: hidden;
-  overflow-y: auto;
+.card-title {
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
