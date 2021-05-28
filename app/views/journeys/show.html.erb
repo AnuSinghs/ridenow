@@ -30,7 +30,7 @@
         <div class="text-center">
           <h6>Eats</h6>
         </div>
-        <div class="listings-edit">
+        <div class="d-flex flex-column align-items-center">
           <% @journey.listings.where(category: Category.last).each do |listing| %>
             <div class="card-small d-flex flex-column justify-content-between">
               <div class="card-title">
@@ -54,7 +54,7 @@
         <div class="text-center">
           <h6>Sights</h6>
         </div>
-        <div class="listings-edit">
+        <div class="d-flex flex-column align-items-center">
           <% @journey.listings.where(category: Category.first).each do |listing| %>
            <div class="card-small d-flex flex-column justify-content-between">
               <div class="card-title">
