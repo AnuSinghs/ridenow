@@ -1,19 +1,20 @@
-<div id="listing-<%=listing.id%>" class="route-tile category-<%= listing.category.name.downcase %>" style="" data-listing-id="<%=listing.id%>">
-  <div class="route-tile-media">
-    <%= render "shared/listing-image", listing: listing %>
-  </div>
-  <div class="route-tile-info">
-    <h6 class="card-title" style="margin-top:5px">
-      <strong><%= listing.name%></strong>
-    </h6>
-    <div class="card-text">
+ <div id="listing-<%=listing.id%>" class="route-tile" data-listing-id="<%=listing.id%>">
+  <div class="route-tile-info d-flex flex-column justify-content-between">
+    <div class="card-title">
+      <h6>
+        <strong><%= listing.name%></strong>
+      </h6>
+    </div>
+    <div class="card-text ">
       <small>
-        <%= listing.address %></br>
-        Rating: <%= listing.rating%></br>
-        <div class="btn" style="font-size: 10px; background-color: #A9A9A9; color: white; padding: 2px">
-          <%= listing.tags.map(&:name).join(',') %>
-        </div>
-
+        <%= listing.address %>
+      </small>
+      <div class="d-flex justify-content-between">
+        <small>
+          <div class="badge badge-pill badge-success">
+            <%= listing.tags.map(&:name).join('') %>
+          </div>
+        </small>
         <div class="form-check" style="text-align: right">
           Select
           <%=
@@ -23,7 +24,8 @@
             class: 'listing-select'
           %>
         </div>
-      </small>
+      </div>
     </div>
   </div>
 </div>
+

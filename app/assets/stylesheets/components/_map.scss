@@ -9,7 +9,8 @@
 
 .highlight {
   outline: solid 5px;
-  outline-color: red;
+  outline-color: #1B915B;
+  transition: opacity 0.3s ease;
 }
 
 .mapbox {

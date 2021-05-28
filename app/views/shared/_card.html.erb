@@ -2,27 +2,27 @@
 
     <!-- LIST ALL PUBLIC ROUTES - PRIVACY FALSE -->
 
-    <% @journeys.where(privacy: false).limit(12).each do |listing| %>
+    <% @journeys.where(privacy: false).limit(12).each do |journey| %>
 
     <div class="col-lg-2">
       <div class="card">
-        <img class="card-img-top" src="<%=listing.route_url%>">
+        <img class="card-img-top" src="<%=journey.route_url%>">
         <div class="card-body">
           <h6 class="card-title">
-            <%= link_to "#{listing.name}", "/journeys/#{listing.id}}" %>
+            <%= link_to "#{journey.name}", journey %>
           </h6>
           <p>
-            From: <%= listing.origin %> </br>
-            To: <%= listing.destination %>
+            From: <%= journey.origin %> </br>
+            To: <%= journey.destination %>
           </p>
           <div class="card-avatar">
-            <% user = User.find(listing.user_id)%>
+            <% user = User.find(journey.user_id)%>
             <%= render "shared/user-avatar", user: user %>
           </div>
         </div>
         <div class="card-footer">
           <small>
-            <%= link_to "see route", "/journeys/#{listing.id}}" %>
+            <%= link_to "see route", journey %>
           </small>
         </div>
       </div>
