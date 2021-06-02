@@ -1,18 +1,38 @@
-.banner {
-  background-size: cover;
-  background-position: center;
-  padding: 150px 0;
-  height: 400px;
-  overflow: hidden;
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px 5px;
+  font-size: 16px;
+  width: 25%;
+  opacity: 70%;
 }
 
-.banner h1 {
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content */
+
+.tabcontent {
+  background-size: cover;
+  height: 480px;
+  background-position: center;
+  text-align: center;
+
+}
+
+.tabcontent h1 {
   margin: 0;
   color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
   font-size: 40px;
   font-weight: bold;
   text-align: center;
+  padding-top: 100px;
 }
 
 .tabcontent h2 {
@@ -24,19 +44,18 @@
   margin-bottom: 20px;
 }
 
-.banner p {
-  font-size: 24px;
+.tabcontent p {
+  font-size: 20px;
   color: white;
-  opacity: .9;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  opacity: 0.9;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
   text-align: center;
 }
 
-.banner a {
-  display: flex;
-  width: 50%;
-  background-color: white;
-  color: black;
-  opacity: 50%;
+.tabcontent a {
+  color: white;
+  opacity: 90%;
   justify-content: center;
+  text-decoration: none;
 }
+

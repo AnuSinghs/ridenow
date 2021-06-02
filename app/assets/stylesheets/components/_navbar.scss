@@ -1,6 +1,8 @@
 .navbar-lewagon {
-  justify-content: space-between;
   background: white;
+  text-align: center;
+  position: relative;
+  justify-content: space-between;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -23,6 +25,9 @@
 .container-search {
   display: flex;
   flex-direction: column;
+  position: absolute;
+  margin: 0px;
+  left: 45.2%;
 }
 
 .search-input> label, .search-input>input  {
