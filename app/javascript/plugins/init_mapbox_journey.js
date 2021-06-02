@@ -45,6 +45,20 @@ const openPopup = (event) => {
   mapListingMarkers["listing-" + event.currentTarget.dataset.markerId].togglePopup()
 };
 
+const instructionBtnToggle = (event, data, leg) => {
+  let instructions = document.getElementById('instructions');
+
+  let steps = data.legs[leg].steps;
+
+  let tripInstructions = [];
+  for (let i = 0; i < steps.length; i++) {
+    tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
+    instructions.innerHTML = '';
+    instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + '<br><span class="distance">Distance: ' + Math.floor(data.distance / 1000) + ' km </span>' + '<ol>' + tripInstructions + '</ol>';
+  }
+};
+
+
 const initMapboxJourney = () => {
   const mapElement = document.getElementById('map-journey');
 
@@ -189,8 +203,26 @@ const initMapboxJourney = () => {
         let tripInstructions = [];
         for (let i = 0; i < steps.length; i++) {
           tripInstructions.push('<br><li>' + steps[i].maneuver.instruction) + '</li>';
-          instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + '<br><span class="distance">Distance: ' + Math.floor(data.distance / 1000) + ' km </span>' + tripInstructions;
+          instructions.innerHTML = '<br><span class="duration">Trip duration: ' + Math.floor(data.duration / 60) + ' min 🚴 </span>' + '<br><span class="distance">Distance: ' + Math.floor(data.distance / 1000) + ' km </span>' + '<ol>' + tripInstructions + '</ol>';
         }
+        const nextBtn = document.querySelector('.nextBtn');
+        const backBtn = document.querySelector('.backBtn');
+        let leg = 0;
+        let destinations = data.legs.length;
+        nextBtn.addEventListener('click', (e) => {
+          leg += 1;
+          if (leg >= destinations) {
+            leg = destinations;
+          };
+          instructionBtnToggle(e, data, leg)
+        });
+        backBtn.addEventListener('click', (e) => {
+          leg -= 1;
+          if (leg < 0) {
+            leg = 0;
+          };
+          instructionBtnToggle(e, data, leg)
+        });
       };
       req.send();
     }

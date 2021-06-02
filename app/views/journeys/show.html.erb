@@ -2,7 +2,7 @@
 <% content_for :meta_description, "Discover sights and eats from #{@journey.origin.capitalize} to #{@journey.destination.capitalize}!" %>
 <% content_for :meta_image, @journey.route_url %>
 
-<div class="row">
+<div class="row" id="map-row">
 
   <div class="col-xl-4">
 
@@ -11,8 +11,8 @@
 
         <div class="container">
           <h5><%= @journey.name  %></h5>
-          <p>From: <%= @journey.origin %></br>
-           To: <%= @journey.destination %></p>
+          <p>From: <%= @journey.origin.capitalize %></br>
+           To: <%= @journey.destination.capitalize %></p>
          </div>
 
        </div>
@@ -102,7 +102,7 @@
     </div>
   </div>
 
-  <div class="col-xl-8">
+  <div class="col-xl-8 map-right">
     <div class="mapbox">
       <div id="map-journey"
       style="width: 100%; height: 800px; position:sticky"
@@ -112,7 +112,12 @@
       data-listingmarkers="<%= @listing_markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-    <div id="instructions"></div>
+    <div id="instructions">
+    </div>
+  </div>
+  <div class="button-box">
+    <button class="backBtn btn btn-success">Back</button>
+    <button class="nextBtn btn btn-success">Next</button>
   </div>
 </div>
 

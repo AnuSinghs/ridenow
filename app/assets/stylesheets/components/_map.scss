@@ -21,6 +21,7 @@
   position: absolute;
   margin: 20px;
   width: 30%;
+  height: 90%;
   top: 0;
   bottom: 0;
   padding: 20px;
@@ -49,4 +50,26 @@
 
 .info-window {
   border-radius: 25px;
+}
+
+.map-right {
+  position: relative;
+}
+
+.button-box {
+  position: absolute;
+  left: 10.5%;
+  bottom: 5%;
+}
+
+.backBtn {
+  margin-right: 10px;
+}
+
+.backBtn {
+  margin-left: 10px;
+}
+
+#map-row {
+  margin: 0px;
 }
