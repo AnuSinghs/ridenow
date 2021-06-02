@@ -16,10 +16,10 @@
   opacity: 0.9;
   height: 300px;
   width: 101%;
-  max-width: 600px;
   display: flex;
   justify-content: center;
-  margin: 4%;
+  margin: 0px;
+  margin-bottom: 4%;
  }
 
 .card.valueprop h5, .card.valueprop p, .container-fluid-valuepropbox h3 {
@@ -42,7 +42,6 @@
   border-radius: 8px;
   height: 30%;
   margin: 1%;
-  width: 45%;
   margin: 2%;
   max-width: 300px;
  }
